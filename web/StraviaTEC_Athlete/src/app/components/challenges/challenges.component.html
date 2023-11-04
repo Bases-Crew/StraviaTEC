@@ -1,0 +1,25 @@
+<!-- challenges.component.html -->
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="col" *ngFor="let challenge of challenges">
+      <div class="card shadow-sm">
+        <!-- Aquí iría la imagen del reto, si existiera -->
+        <div class="card-body">
+          <h5 class="card-title">{{ challenge.challenge_name }}</h5>
+          <p class="card-text">{{ challenge.description }}</p>
+          <!-- Agrega esto para mostrar el tipo -->
+          <div class="badge bg-secondary">{{ challenge.challenge_type }}</div>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted"
+              >Desde: {{ challenge.start_date | date : "shortDate" }}</small
+            >
+            <small class="text-muted"
+              >Hasta: {{ challenge.final_date | date : "shortDate" }}</small
+            >
+          </div>
+          <a href="#" class="btn btn-primary">Unirse al reto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

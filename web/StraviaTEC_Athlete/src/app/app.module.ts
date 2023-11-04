@@ -13,7 +13,8 @@ import { DisplayExampleComponent } from './components/display-example/display-ex
 import { DisplayInitComponent } from './components/display-init/display-init.component';
 import { DisplayFriendsComponent } from './components/display-friends/display-friends.component';
 import { FriendsComponent } from './components/friends/friends.component';
-
+import { ChallengesComponent } from './components/challenges/challenges.component';
+import { ChallengeService } from './services/challenges.service';
 @NgModule({
   imports: [
     BrowserModule, // Esto debería estar en imports
@@ -31,8 +32,9 @@ import { FriendsComponent } from './components/friends/friends.component';
     DisplayInitComponent,
     DisplayFriendsComponent,
     FriendsComponent,
+    ChallengesComponent,
   ],
-  providers: [ExampleRickMortyService],
+  providers: [ChallengeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
