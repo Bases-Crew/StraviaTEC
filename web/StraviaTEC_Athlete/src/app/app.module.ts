@@ -11,6 +11,9 @@ import { ExampleRickMortyService } from './services/example-rick-morty.service';
 import { NextPageExampleComponent } from './components/next-page-example/next-page-example.component';
 import { DisplayExampleComponent } from './components/display-example/display-example.component';
 import { DisplayInitComponent } from './components/display-init/display-init.component';
+import { BasicPanelComponent } from './components/basic-pannel/basic-panel.component';
+import { BasicBackgroundComponent } from './components/basic-background/basic-background.component';
+import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
 @NgModule({
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -20,6 +23,9 @@ import { DisplayInitComponent } from './components/display-init/display-init.com
     NextPageExampleComponent,
     DisplayExampleComponent,
     DisplayInitComponent,
+    BasicPanelComponent,
+    BasicBackgroundComponent,
+    InitialStageComponent,
   ],
   providers: [ExampleRickMortyService],
   bootstrap: [AppComponent],
