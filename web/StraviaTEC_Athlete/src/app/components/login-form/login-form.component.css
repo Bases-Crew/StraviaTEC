@@ -1,0 +1,20 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 10px;
+  margin: auto;
+}
+
+.form-signin h2 {
+  font-weight: bold;
+}
+
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  margin-bottom: 15px; /* Adds more space between the input fields */
+}

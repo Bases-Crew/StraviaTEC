@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,8 +15,9 @@ import { DisplayInitComponent } from './components/display-init/display-init.com
 import { BasicPanelComponent } from './components/basic-pannel/basic-panel.component';
 import { BasicBackgroundComponent } from './components/basic-background/basic-background.component';
 import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 @NgModule({
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -26,6 +28,7 @@ import { InitialStageComponent } from './components/initial-stage/initial-stage.
     BasicPanelComponent,
     BasicBackgroundComponent,
     InitialStageComponent,
+    LoginFormComponent,
   ],
   providers: [ExampleRickMortyService],
   bootstrap: [AppComponent],

@@ -8,13 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./basic-panel.component.css'],
 })
 export class BasicPanelComponent {
-  iniciarSesion() {
-    // Lógica para iniciar sesión
-    console.log('Iniciar Sesión');
+  showLoginForm: boolean = false;
+
+  signin() {
+    this.showLoginForm = true;
   }
 
-  registrarse() {
-    // Lógica para registrarse
-    console.log('Registrarse');
+  signup() {
+    // handle the register action
+  }
+
+  backToWelcome() {
+    this.showLoginForm = false;
   }
 }

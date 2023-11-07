@@ -1,20 +1,39 @@
 <!-- basic-panel.component.html -->
 
-<!-- Contenedor central "responsive" -->
 <div class="center-box">
-  <!-- Contenido dentro del cuadro -->
   <div class="icon">
     <img
-      src="https://media.discordapp.net/attachments/599522055746093057/1170680874837221417/icon2.png?ex=6559ec86&is=65477786&hm=e51a3f79dfe974018e14fedb753531ed5c8c0bc7117608ae9febe2f1f2af5f1f&="
+      src="https://media.discordapp.net/attachments/599522055746093057/1170680874837221417/icon2.png"
       alt="icon"
     />
   </div>
-  <div class="content">
-    <!-- Aquí puedes agregar el contenido del login -->
-    <h2>Bienvenido</h2>
-    <p>Por favor, identifíquese</p>
-    <!-- Botones para iniciar sesión y registrarse -->
-    <button (click)="iniciarSesion()">Iniciar Sesión</button>
-    <button (click)="registrarse()">Registrarse</button>
+  <!-- Contenido dentro del cuadro -->
+  <!-- Mostrar este div solo si showLoginForm es falso -->
+  <div *ngIf="!showLoginForm">
+    <div class="content">
+      <h2 class="h4">Bienvenido</h2>
+      <p class="mb-3">Por favor, identifíquese</p>
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="button"
+        (click)="signin()"
+      >
+        Iniciar Sesión
+      </button>
+      <button
+        class="btn btn-lg btn-secondary btn-block"
+        type="button"
+        (click)="signup()"
+      >
+        Registrarse
+      </button>
+    </div>
   </div>
+
+  <!-- Mostrar el formulario de inicio de sesión solo si showLoginForm es verdadero -->
+  <app-login-form
+    *ngIf="showLoginForm"
+    (back)="backToWelcome()"
+  ></app-login-form>
+  <p class="mt-5 mb-3 text-muted">&copy; TEC 2023</p>
 </div>
