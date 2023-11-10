@@ -15,15 +15,11 @@ import { DisplayFriendsComponent } from './components/display-friends/display-fr
 import { FriendsComponent } from './components/friends/friends.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
 import { ChallengeService } from './services/challenges.service';
+import { ProfilesComponent } from './components/profiles/profiles.component';
+
 @NgModule({
-  imports: [
-    BrowserModule, // Esto debería estar en imports
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-  ],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
-    // BrowserModule y FormsModule NO deben estar aquí
     AppComponent,
     HeaderComponent,
     ExampleRickMortyComponent,
@@ -33,8 +29,12 @@ import { ChallengeService } from './services/challenges.service';
     DisplayFriendsComponent,
     FriendsComponent,
     ChallengesComponent,
+    ProfilesComponent,
   ],
-  providers: [ChallengeService],
+  providers: [
+    ExampleRickMortyService, // Asegúrate de incluir tus servicios aquí
+    ChallengeService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
