@@ -5,6 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+
+import { ExampleRickMortyService } from './services/example-rick-morty.service';
+import { ChallengeService } from './services/challenges.service';
+import { FriendsService } from './services/friends.service';
+import { ProfilesService } from './services/profiles.service';
+
 import { HeaderComponent } from './components/header/header.component';
 import { ExampleRickMortyComponent } from './components/example-rick-morty/example-rick-morty.component';
 import { NextPageExampleComponent } from './components/next-page-example/next-page-example.component';
@@ -14,13 +20,11 @@ import { DisplayFriendsComponent } from './components/display-friends/display-fr
 import { FriendsComponent } from './components/friends/friends.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
 import { ProfilesComponent } from './components/profiles/profiles.component';
-
-import { ExampleRickMortyService } from './services/example-rick-morty.service';
-import { ChallengeService } from './services/challenges.service';
-import { FriendsService } from './services/friends.service';
-import { ProfilesService } from './services/profiles.service';
+import { BasicPanelComponent } from './components/basic-pannel/basic-panel.component';
+import { BasicBackgroundComponent } from './components/basic-background/basic-background.component';
+import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FooterComponent } from './footer/footer.component';
-
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -35,6 +39,10 @@ import { FooterComponent } from './footer/footer.component';
     ChallengesComponent,
     ProfilesComponent,
     FooterComponent,
+    BasicPanelComponent,
+    BasicBackgroundComponent,
+    InitialStageComponent,
+    LoginFormComponent,
   ],
   providers: [
     ExampleRickMortyService,
