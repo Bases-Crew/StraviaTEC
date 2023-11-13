@@ -15,7 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { ExampleRickMortyComponent } from './components/example-rick-morty/example-rick-morty.component';
 import { NextPageExampleComponent } from './components/next-page-example/next-page-example.component';
 import { DisplayExampleComponent } from './components/display-example/display-example.component';
-import { DisplayInitComponent } from './components/display-init/display-init.component';
 import { DisplayFriendsComponent } from './components/display-friends/display-friends.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
@@ -33,7 +32,6 @@ import { FooterComponent } from './footer/footer.component';
     ExampleRickMortyComponent,
     NextPageExampleComponent,
     DisplayExampleComponent,
-    DisplayInitComponent,
     DisplayFriendsComponent,
     FriendsComponent,
     ChallengesComponent,
