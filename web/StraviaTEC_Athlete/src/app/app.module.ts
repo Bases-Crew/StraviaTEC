@@ -19,6 +19,7 @@ import { ExampleRickMortyService } from './services/example-rick-morty.service';
 import { ChallengeService } from './services/challenges.service';
 import { FriendsService } from './services/friends.service';
 import { ProfilesService } from './services/profiles.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
@@ -33,6 +34,7 @@ import { ProfilesService } from './services/profiles.service';
     FriendsComponent,
     ChallengesComponent,
     ProfilesComponent,
+    FooterComponent,
   ],
   providers: [
     ExampleRickMortyService,
