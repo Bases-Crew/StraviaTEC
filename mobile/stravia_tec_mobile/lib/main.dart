@@ -1,7 +1,8 @@
+import 'dart:async';
+import 'dart:math' show asin, cos, pi, pow, sin, sqrt;
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'dart:async';
 
 void main() {
   runApp(MyApp());
@@ -29,10 +30,15 @@ class _MapPageState extends State<MapPage> {
   final Set<Marker> _markers = Set();
   late GoogleMapController _controller;
   LocationData? currentLocation;
+  Location location = Location();
+  double totalDistance = 0; // Variable para la distancia total
+  double currentSpeed = 0; // Variable para la velocidad actual
   int seconds = 0;
   int minutes = 0;
   int hours = 0;
   late Timer timer;
+  List<LatLng> routeCoordinates = [];
+  bool isTimerActive = false;
 
   @override
   void initState() {
@@ -40,20 +46,66 @@ class _MapPageState extends State<MapPage> {
     getCurrentLocation();
   }
 
-  void getCurrentLocation() async {
-    Location location = Location();
-    try {
-      currentLocation = await location.getLocation();
-      if (currentLocation != null) {
-        _addMarker(
-          LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-          'Ubicación Actual',
-        );
-      }
-    } catch (e) {
-      print('Error al obtener la ubicación: $e');
-    }
+  double calculateDistance(
+      double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
+    const double radiusOfEarth = 6371; // Radio de la Tierra en kilómetros
+
+    // Convertir grados a radianes
+    double startLatRadians = startLatitude * (pi / 180);
+    double startLongRadians = startLongitude * (pi / 180);
+    double endLatRadians = endLatitude * (pi / 180);
+    double endLongRadians = endLongitude * (pi / 180);
+
+    // Calcular la diferencia entre las longitudes y latitudes
+    double latDiff = endLatRadians - startLatRadians;
+    double longDiff = endLongRadians - startLongRadians;
+
+    // Aplicar la fórmula de Haversine
+    double a = pow(sin(latDiff / 2), 2) +
+        cos(startLatRadians) * cos(endLatRadians) * pow(sin(longDiff / 2), 2);
+    double c = 2 * asin(sqrt(a));
+
+    // Calcular la distancia
+    double distance = radiusOfEarth * c;
+    return distance;
   }
+
+  void getCurrentLocation() async {
+  try {
+    location.onLocationChanged.listen((LocationData newLocation) {
+      setState(() {
+        if (isTimerActive) {
+          // Solo agregar a la ruta cuando el temporizador está activo
+          if (currentLocation != null) {
+            // Calcular la distancia entre las ubicaciones actuales
+            double distance = calculateDistance(
+              currentLocation!.latitude!,
+              currentLocation!.longitude!,
+              newLocation.latitude!,
+              newLocation.longitude!,
+            );
+
+            totalDistance += distance;
+          }
+
+          // Añadir la nueva ubicación a la ruta
+          routeCoordinates.add(LatLng(newLocation.latitude!, newLocation.longitude!));
+        }
+
+        currentLocation = newLocation;
+
+        // Calcular la velocidad
+        currentSpeed = newLocation.speed != null
+            ? newLocation.speed! * 3.6 // Convertir de m/s a km/h
+            : 0;
+      });
+
+      _addMarker(LatLng(newLocation.latitude!, newLocation.longitude!));
+    });
+  } catch (e) {
+    print('Error al obtener la ubicación: $e');
+  }
+}
 
   @override
   void dispose() {
@@ -84,6 +136,15 @@ class _MapPageState extends State<MapPage> {
                       zoom: 15.0,
                     ),
               markers: _markers,
+              polylines: isTimerActive
+                  ? {
+                      Polyline(
+                        polylineId: const PolylineId("route"),
+                        color: Colors.blue,
+                        points: routeCoordinates,
+                      ),
+                    }
+                  : Set<Polyline>(),
               onMapCreated: (GoogleMapController controller) {
                 setState(() {
                   _controller = controller;
@@ -106,15 +167,15 @@ class _MapPageState extends State<MapPage> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Distancia"),
-                        Text("0 Km"),
+                        const Text("Distancia total"),
+                        Text("${totalDistance.toStringAsFixed(2)} Km"),
                       ],
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Velocidad promedio"),
-                        Text("0,0 Km/h"),
+                        const Text("Velocidad actual"),
+                        Text("${currentSpeed.toStringAsFixed(2)} Km/h"),
                       ],
                     ),
                   ],
@@ -130,6 +191,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                       onPressed: () {
                         startTimer();
+                        isTimerActive = true;
                       },
                       child: const Text("Iniciar"),
                     ),
@@ -140,6 +202,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                       onPressed: () {
                         stopTimer();
+                        isTimerActive = false;
                       },
                       child: const Text("Detener"),
                     ),
@@ -147,7 +210,7 @@ class _MapPageState extends State<MapPage> {
                       width: 40.0,
                       height: 40.0,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.deepOrange,
                         ),
@@ -164,7 +227,7 @@ class _MapPageState extends State<MapPage> {
                               );
                             }
                           },
-                          icon: Icon(Icons.my_location),
+                          icon: const Icon(Icons.my_location),
                           color: Colors.white,
                         ),
                       ),
@@ -179,16 +242,17 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  void _addMarker(LatLng position, String markerId) {
+  void _addMarker(LatLng position) {
     final Marker marker = Marker(
-      markerId: MarkerId(markerId),
+      markerId: MarkerId(position.toString()),
       position: position,
-      infoWindow: InfoWindow(
-        title: markerId,
+      infoWindow: const InfoWindow(
+        title: 'Ubicación Actual',
       ),
     );
 
     setState(() {
+      _markers.clear();
       _markers.add(marker);
     });
   }
