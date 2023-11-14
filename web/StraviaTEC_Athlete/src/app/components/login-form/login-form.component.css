@@ -5,9 +5,8 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
-  padding: 10px;
-  margin: auto;
+  max-width: 400px;
+  padding: 40px;
 }
 
 .form-signin h2 {
@@ -16,5 +15,20 @@ body {
 
 .form-signin input[type="text"],
 .form-signin input[type="password"] {
-  margin-bottom: 15px; /* Adds more space between the input fields */
+  margin-bottom: 20px; /* Adds more space between the input fields */
+}
+
+.icon {
+  display: flex; /* Makes .icon a flex container */
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically */
+}
+
+/* Estilos para el ícono cuadrado */
+.icon img {
+  width: 150px; /* Tamaño del ícono cuadrado */
+  height: 130px; /* Tamaño del ícono cuadrado */
+  background-color: #ffffff; /* Color de fondo del ícono */
+  border-radius: 5px; /* Bordes redondeados del ícono */
+  margin-bottom: 10px; /* Espacio entre el ícono y el texto */
 }

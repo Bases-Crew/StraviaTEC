@@ -1,10 +1,10 @@
 //
 export interface User {
-  email: string;
-  password: string;
+  Aemail: string;
+  Apassword: string;
 }
 
-export const exampleUser: User = {
-  email: 'pedrog@gmail.com',
-  password: '1234',
+export const exampleAthlete: User = {
+  Aemail: 'pedrog@gmail.com',
+  Apassword: '1234',
 };

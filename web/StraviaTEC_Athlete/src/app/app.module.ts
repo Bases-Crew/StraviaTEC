@@ -16,6 +16,7 @@ import { BasicPanelComponent } from './components/basic-pannel/basic-panel.compo
 import { BasicBackgroundComponent } from './components/basic-background/basic-background.component';
 import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 @NgModule({
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   declarations: [
@@ -29,6 +30,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     BasicBackgroundComponent,
     InitialStageComponent,
     LoginFormComponent,
+    RegisterFormComponent,
   ],
   providers: [ExampleRickMortyService],
   bootstrap: [AppComponent],

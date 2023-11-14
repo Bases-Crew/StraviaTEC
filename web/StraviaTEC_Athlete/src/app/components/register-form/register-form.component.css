@@ -1,0 +1,32 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signup {
+  width: 100%;
+  max-width: 380px;
+  padding: 10px;
+}
+
+.form-signup h2 {
+  font-weight: bold;
+}
+
+/* Increase spacing around form groups */
+.form-group {
+  margin-bottom: 15px; /* Adjust this value as needed for more space */
+}
+
+/* Style the image preview */
+#imagePreview {
+  margin-bottom: 10px;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  #imagePreview {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}

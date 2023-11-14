@@ -9,16 +9,20 @@ import { Component } from '@angular/core';
 })
 export class BasicPanelComponent {
   showLoginForm: boolean = false;
+  showRegisterForm: boolean = false;
 
-  signin() {
+  login() {
     this.showLoginForm = true;
+    this.showRegisterForm = false;
   }
 
-  signup() {
-    // handle the register action
+  register() {
+    this.showRegisterForm = true;
+    this.showLoginForm = false;
   }
 
   backToWelcome() {
     this.showLoginForm = false;
+    this.showRegisterForm = false;
   }
 }

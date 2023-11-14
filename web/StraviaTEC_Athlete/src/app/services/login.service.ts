@@ -1,7 +1,7 @@
 // services/authentication.service.ts
 
 import { Injectable } from '@angular/core';
-import { User, exampleUser } from '../models/login.module';
+import { Athlete, exampleAthlete } from '../models/athlete.module';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -16,7 +16,10 @@ export class AuthenticationService {
     password: string
   ): Observable<{ success: boolean; message?: string }> {
     // Simulate checking credentials
-    if (email === exampleUser.email && password === exampleUser.password) {
+    if (
+      email === exampleAthlete.Aemail &&
+      password === exampleAthlete.Apassword
+    ) {
       // If credentials match, return success
       return of({ success: true });
     } else {
