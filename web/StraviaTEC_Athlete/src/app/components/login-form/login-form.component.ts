@@ -1,7 +1,7 @@
 // login-form.component.ts
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AuthenticationService } from '../../services/login.service'; // Update the path as necessary
+import { LoginService as LoginFormService } from '../../services/login.service'; // Update the path as necessary
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,12 +16,12 @@ export class LoginFormComponent {
   password: string = '';
   errorMessage: string = '';
   constructor(
-    private authService: AuthenticationService,
+    private loginFormService: LoginFormService,
     private router: Router
   ) {}
 
   login() {
-    this.authService.login(this.email, this.password).subscribe({
+    this.loginFormService.login(this.email, this.password).subscribe({
       next: (result) => {
         if (result.success) {
           // Handle successful login
