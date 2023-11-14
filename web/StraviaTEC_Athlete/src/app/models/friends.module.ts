@@ -1,8 +1,8 @@
 // Definiendo la interfaz Friend
 export interface Friend {
   nombre: string;
-  firstName: string;
-  secondName: string;
+  firstname: string;
+  secondname: string;
   apellido1: string;
   apellido2: string;
   residencia: {
@@ -10,7 +10,7 @@ export interface Friend {
     pais: string;
   };
   activities: {
-    rideBikes: number;
+    ridebikes: number;
     runs: number;
   };
 }
@@ -18,8 +18,8 @@ export interface Friend {
 // Creando un amigo de ejemplo
 export const friend: Friend = {
   nombre: 'Juan Carlos',
-  firstName: 'Juan',
-  secondName: 'Carlos',
+  firstname: 'Juan',
+  secondname: 'Carlos',
   apellido1: 'González',
   apellido2: 'Fernández',
   residencia: {
@@ -27,7 +27,7 @@ export const friend: Friend = {
     pais: 'España',
   },
   activities: {
-    rideBikes: 50,
+    ridebikes: 50,
     runs: 20, // Aquí faltaba una llave de cierre
   },
 };
@@ -36,8 +36,8 @@ export const friend: Friend = {
 export const friendsList: Friend[] = [
   {
     nombre: 'Ana Torres',
-    firstName: 'Ana',
-    secondName: '',
+    firstname: 'Ana',
+    secondname: '',
     apellido1: 'Torres',
     apellido2: 'García',
     residencia: {
@@ -45,14 +45,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 20,
+      ridebikes: 20,
       runs: 25,
     },
   },
   {
     nombre: 'Javier Gómez',
-    firstName: 'Javier',
-    secondName: '',
+    firstname: 'Javier',
+    secondname: '',
     apellido1: 'Gómez',
     apellido2: 'Lorenzo',
     residencia: {
@@ -60,14 +60,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 15,
+      ridebikes: 15,
       runs: 35,
     },
   },
   {
     nombre: 'Sofía Navarro',
-    firstName: 'Sofía',
-    secondName: '',
+    firstname: 'Sofía',
+    secondname: '',
     apellido1: 'Navarro',
     apellido2: 'Molina',
     residencia: {
@@ -75,14 +75,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 40,
+      ridebikes: 40,
       runs: 45,
     },
   },
   {
     nombre: 'David Ruiz',
-    firstName: 'David',
-    secondName: '',
+    firstname: 'David',
+    secondname: '',
     apellido1: 'Ruiz',
     apellido2: 'Moreno',
     residencia: {
@@ -90,14 +90,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 35,
+      ridebikes: 35,
       runs: 20,
     },
   },
   {
     nombre: 'Lucía Hernández',
-    firstName: 'Lucía',
-    secondName: '',
+    firstname: 'Lucía',
+    secondname: '',
     apellido1: 'Hernández',
     apellido2: 'Santos',
     residencia: {
@@ -105,14 +105,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 50,
+      ridebikes: 50,
       runs: 50,
     },
   },
   {
     nombre: 'Daniel Jiménez',
-    firstName: 'Daniel',
-    secondName: '',
+    firstname: 'Daniel',
+    secondname: '',
     apellido1: 'Jiménez',
     apellido2: 'Gutiérrez',
     residencia: {
@@ -120,14 +120,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 25,
+      ridebikes: 25,
       runs: 30,
     },
   },
   {
     nombre: 'Carmen Rodríguez',
-    firstName: 'Carmen',
-    secondName: '',
+    firstname: 'Carmen',
+    secondname: '',
     apellido1: 'Rodríguez',
     apellido2: 'Díaz',
     residencia: {
@@ -135,14 +135,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 45,
+      ridebikes: 45,
       runs: 25,
     },
   },
   {
     nombre: 'Francisco Martínez',
-    firstName: 'Francisco',
-    secondName: '',
+    firstname: 'Francisco',
+    secondname: '',
     apellido1: 'Martínez',
     apellido2: 'Vázquez',
     residencia: {
@@ -150,14 +150,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 10,
+      ridebikes: 10,
       runs: 40,
     },
   },
   {
     nombre: 'Elena Álvarez',
-    firstName: 'Elena',
-    secondName: '',
+    firstname: 'Elena',
+    secondname: '',
     apellido1: 'Álvarez',
     apellido2: 'Herrero',
     residencia: {
@@ -165,14 +165,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 55,
+      ridebikes: 55,
       runs: 35,
     },
   },
   {
     nombre: 'Miguel Ángel Domínguez',
-    firstName: 'Miguel Ángel',
-    secondName: '',
+    firstname: 'Miguel Ángel',
+    secondname: '',
     apellido1: 'Domínguez',
     apellido2: 'Gil',
     residencia: {
@@ -180,14 +180,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 20,
+      ridebikes: 20,
       runs: 20,
     },
   },
   {
     nombre: 'Patricia Morales',
-    firstName: 'Patricia',
-    secondName: '',
+    firstname: 'Patricia',
+    secondname: '',
     apellido1: 'Morales',
     apellido2: 'Ortega',
     residencia: {
@@ -195,14 +195,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 35,
+      ridebikes: 35,
       runs: 15,
     },
   },
   {
     nombre: 'Raúl Fernández',
-    firstName: 'Raúl',
-    secondName: '',
+    firstname: 'Raúl',
+    secondname: '',
     apellido1: 'Fernández',
     apellido2: 'Vicente',
     residencia: {
@@ -210,14 +210,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 22,
+      ridebikes: 22,
       runs: 48,
     },
   },
   {
     nombre: 'Beatriz Martín',
-    firstName: 'Beatriz',
-    secondName: '',
+    firstname: 'Beatriz',
+    secondname: '',
     apellido1: 'Martín',
     apellido2: 'Romero',
     residencia: {
@@ -225,14 +225,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 60,
+      ridebikes: 60,
       runs: 30,
     },
   },
   {
     nombre: 'Sergio Sánchez',
-    firstName: 'Sergio',
-    secondName: '',
+    firstname: 'Sergio',
+    secondname: '',
     apellido1: 'Sánchez',
     apellido2: 'Bravo',
     residencia: {
@@ -240,14 +240,14 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 10,
+      ridebikes: 10,
       runs: 50,
     },
   },
   {
     nombre: 'Laura García',
-    firstName: 'Laura',
-    secondName: '',
+    firstname: 'Laura',
+    secondname: '',
     apellido1: 'García',
     apellido2: 'Iglesias',
     residencia: {
@@ -255,7 +255,7 @@ export const friendsList: Friend[] = [
       pais: 'España',
     },
     activities: {
-      rideBikes: 45,
+      ridebikes: 45,
       runs: 22,
     },
   },

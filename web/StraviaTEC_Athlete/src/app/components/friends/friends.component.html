@@ -22,7 +22,7 @@
     <div *ngFor="let friend of filteredFriends" class="friend-card">
       <button (click)="saveAndPrintFriend(friend)">Follow</button>
       <h3>
-        {{ friend.firstName }} {{ friend.secondName }} {{ friend.apellido1 }}
+        {{ friend.firstname }} {{ friend.secondname }} {{ friend.apellido1 }}
         {{ friend.apellido2 }}
       </h3>
       <p>
@@ -31,7 +31,7 @@
       </p>
       <p>Actividades:</p>
       <ul>
-        <li>Paseos en Bicicleta: {{ friend.activities.rideBikes }}</li>
+        <li>Paseos en Bicicleta: {{ friend.activities.ridebikes }}</li>
         <li>Carreras: {{ friend.activities.runs }}</li>
       </ul>
     </div>
@@ -53,7 +53,7 @@
         {{ friend.residencia.pais }}
       </p>
       <ul>
-        <li>Paseos en Bicicleta: {{ friend.activities.rideBikes }}</li>
+        <li>Paseos en Bicicleta: {{ friend.activities.ridebikes }}</li>
         <li>Carreras: {{ friend.activities.runs }}</li>
       </ul>
     </div>
