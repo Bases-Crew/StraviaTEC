@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
       title: "StraviaTEC mobile",
       home: MapPage(),
     );
@@ -28,6 +31,7 @@ class _MapPageState extends State<MapPage> {
   LocationData? currentLocation;
   int seconds = 0;
   int minutes = 0;
+  int hours = 0;
   late Timer timer;
 
   @override
@@ -75,7 +79,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                       zoom: 15.0,
                     )
-                  : CameraPosition(
+                  : const CameraPosition(
                       target: LatLng(37.7749, -122.4194),
                       zoom: 15.0,
                     ),
@@ -88,27 +92,82 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
           Container(
-            color: Colors.amber,
+            color: Colors.grey[200],
             child: Column(
               children: [
                 Text(
-                  '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
-                  style: TextStyle(fontSize: 30),
+                  '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+                  style: const TextStyle(fontSize: 30),
                 ),
+                const Divider(thickness: 2),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text("Distancia"),
+                        Text("0 Km"),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text("Velocidad promedio"),
+                        Text("0,0 Km/h"),
+                      ],
+                    ),
+                  ],
+                ),
+                const Divider(thickness: 2),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.deepOrange),
+                      ),
                       onPressed: () {
                         startTimer();
                       },
-                      child: Text("Iniciar"),
+                      child: const Text("Iniciar"),
                     ),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.deepOrange),
+                      ),
                       onPressed: () {
                         stopTimer();
                       },
-                      child: Text("Detener"),
+                      child: const Text("Detener"),
+                    ),
+                    SizedBox(
+                      width: 40.0,
+                      height: 40.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.deepOrange,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            if (currentLocation != null) {
+                              _controller.animateCamera(
+                                CameraUpdate.newLatLng(
+                                  LatLng(
+                                    currentLocation!.latitude!,
+                                    currentLocation!.longitude!,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          icon: Icon(Icons.my_location),
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -135,12 +194,16 @@ class _MapPageState extends State<MapPage> {
   }
 
   void startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         seconds++;
         if (seconds == 60) {
           seconds = 0;
           minutes++;
+          if (minutes == 60) {
+            minutes = 0;
+            hours++;
+          }
         }
       });
     });
