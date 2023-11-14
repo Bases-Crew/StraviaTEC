@@ -10,6 +10,7 @@ import { ExampleRickMortyService } from './services/example-rick-morty.service';
 import { ChallengeService } from './services/challenges.service';
 import { FriendsService } from './services/friends.service';
 import { ProfilesService } from './services/profiles.service';
+import { LoginFormService } from './services/login-form.service';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ExampleRickMortyComponent } from './components/example-rick-morty/example-rick-morty.component';
@@ -47,6 +48,7 @@ import { FooterComponent } from './footer/footer.component';
     ChallengeService,
     FriendsService,
     ProfilesService,
+    LoginFormService,
   ],
   bootstrap: [AppComponent],
 })

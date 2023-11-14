@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class LoginFormService {
   constructor() {}
 
   // Function to validate login credentials

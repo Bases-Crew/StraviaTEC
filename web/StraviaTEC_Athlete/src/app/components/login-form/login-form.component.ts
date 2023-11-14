@@ -1,7 +1,7 @@
 // login-form.component.ts
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LoginService as LoginFormService } from '../../services/login.service'; // Update the path as necessary
+import { LoginFormService as LoginFormService } from '../../services/login-form.service'; // Update the path as necessary
 import { Router } from '@angular/router';
 
 @Component({
