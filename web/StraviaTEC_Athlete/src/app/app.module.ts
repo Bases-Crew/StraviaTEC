@@ -16,6 +16,7 @@ import { FriendsComponent } from './components/friends/friends.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
 import { ChallengeService } from './services/challenges.service';
 import { ProfilesComponent } from './components/profiles/profiles.component';
+import { TrilComponent } from './components/tril/tril.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
@@ -30,6 +31,7 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
     FriendsComponent,
     ChallengesComponent,
     ProfilesComponent,
+    TrilComponent,
   ],
   providers: [
     ExampleRickMortyService, // Asegúrate de incluir tus servicios aquí
