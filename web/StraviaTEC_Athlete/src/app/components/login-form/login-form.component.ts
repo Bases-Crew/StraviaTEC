@@ -27,8 +27,8 @@ export class LoginFormComponent {
         if (result.success) {
           // Handle successful login
           console.log('Login successful');
-          user.email = this.email;
-          user.password = this.password;
+          user.aemail = this.email;
+          user.apassword = this.password;
           // Presumably, redirect to another route upon success
           this.router.navigate(['/display-example']); // Replace '/home' with your desired route
         } else {

@@ -9,8 +9,8 @@ import { User, user } from 'src/app/models/login.module';
 })
 export class HeaderComponent implements OnInit {
   user: User = {
-    email: '',
-    password: '',
+    aemail: '',
+    apassword: '',
   };
 
   currentUrl: string = '';

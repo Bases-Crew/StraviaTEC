@@ -16,7 +16,7 @@ export class LoginFormService {
     password: string
   ): Observable<{ success: boolean; message?: string }> {
     // Simulate checking credentials
-    if (email === exampleUser.email && password === exampleUser.password) {
+    if (email === exampleUser.aemail && password === exampleUser.apassword) {
       // If credentials match, return success
       return of({ success: true });
     } else {
