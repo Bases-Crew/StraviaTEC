@@ -14,7 +14,7 @@ CREATE TABLE ATHLETE
 	Mname			VARCHAR(15),
 	Lname1			VARCHAR(15)		NOT NULL,
 	Lname2			VARCHAR(15)		NOT NULL,
-	Photo			VARCHAR(250),
+	Photo			VARBINARY(MAX),
 	Cno				INT				NOT NULL,
 	Birth_date		DATE			NOT NULL,
 	PRIMARY KEY(Aemail)

@@ -46,7 +46,7 @@ namespace StraviaTECAPISQLS.Controllers
 
         [HttpPost]
         [Route("signup")]
-        public JsonResult Post(Athlete user)
+        public async Task<JsonResult> Post([FromForm]Athlete user)
         {
             string query = @"
                  EXEC sp_NewAthlete @Aemail, @Apassword, @Fname, @Mname, @Lname1, @Lname2, @Photo, @CountryName, @Birth_date
@@ -66,9 +66,21 @@ namespace StraviaTECAPISQLS.Controllers
                     myCommand.Parameters.AddWithValue("@Mname", user.Mname ?? (object)DBNull.Value);
                     myCommand.Parameters.AddWithValue("@Lname1", user.Lname1);
                     myCommand.Parameters.AddWithValue("@Lname2", user.Lname2);
-                    myCommand.Parameters.AddWithValue("@Photo", user.Photo ?? (object)DBNull.Value);
+                    if (user.Photo != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            await user.Photo.CopyToAsync(ms);
+                            myCommand.Parameters.AddWithValue("@Photo", ms.ToArray());
+                        }
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("@Photo", DBNull.Value);
+                    }
                     myCommand.Parameters.AddWithValue("@CountryName", user.CountryName);
-                    myCommand.Parameters.AddWithValue("@Birth_date", user.Birth_date);
+                    DateOnly birthDate = DateOnly.Parse(user.Birth_date);
+                    myCommand.Parameters.AddWithValue("@Birth_date", birthDate);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 

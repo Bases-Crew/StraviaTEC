@@ -8,8 +8,8 @@
         public string? Mname { get; set; }
         public string Lname1 { get; set; } = null!;
         public string Lname2 { get; set; } = null!;
-        public string? Photo { get; set; }
+        public IFormFile? Photo { get; set; }
         public string CountryName { get; set; } = null!;
-        public DateOnly Birth_date { get; set; }
+        public string Birth_date { get; set; } = null!;
     }
 }
