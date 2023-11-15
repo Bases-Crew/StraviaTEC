@@ -32,14 +32,15 @@ class _MapPageState extends State<MapPage> {
   late GoogleMapController _controller;
   LocationData? currentLocation;
   Location location = Location();
-  double totalDistance = 0; 
-  double currentSpeed = 0; 
+  double totalDistance = 0;
+  double currentSpeed = 0;
   int seconds = 0;
   int minutes = 0;
   int hours = 0;
   late Timer timer;
   List<LatLng> routeCoordinates = [];
   bool isTimerActive = false;
+  bool isMapCreated = false;
 
   @override
   void initState() {
@@ -47,8 +48,8 @@ class _MapPageState extends State<MapPage> {
     getCurrentLocation();
   }
 
-  double calculateDistance(
-      double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
+  double calculateDistance(double startLatitude, double startLongitude,
+      double endLatitude, double endLongitude) {
     const double radiusOfEarth = 6371; // Radio de la Tierra en kilómetros
 
     // Convertir grados a radianes
@@ -72,41 +73,50 @@ class _MapPageState extends State<MapPage> {
   }
 
   void getCurrentLocation() async {
-  try {
-    location.onLocationChanged.listen((LocationData newLocation) {
-      setState(() {
-        if (isTimerActive) {
-          // Solo agregar a la ruta cuando el temporizador está activo
-          if (currentLocation != null) {
-            // Calcular la distancia entre las ubicaciones actuales
-            double distance = calculateDistance(
-              currentLocation!.latitude!,
-              currentLocation!.longitude!,
-              newLocation.latitude!,
-              newLocation.longitude!,
-            );
+    try {
+      location.onLocationChanged.listen((LocationData newLocation) {
+        setState(() {
+          if (isTimerActive) {
+            // Solo agregar a la ruta cuando el temporizador está activo
+            if (currentLocation != null) {
+              // Calcular la distancia entre las ubicaciones actuales
+              double distance = calculateDistance(
+                currentLocation!.latitude!,
+                currentLocation!.longitude!,
+                newLocation.latitude!,
+                newLocation.longitude!,
+              );
 
-            totalDistance += distance;
+              totalDistance += distance;
+            }
+
+            // Añadir la nueva ubicación a la ruta
+            routeCoordinates
+                .add(LatLng(newLocation.latitude!, newLocation.longitude!));
           }
 
-          // Añadir la nueva ubicación a la ruta
-          routeCoordinates.add(LatLng(newLocation.latitude!, newLocation.longitude!));
+          currentLocation = newLocation;
+
+          // Calcular la velocidad
+          currentSpeed = newLocation.speed != null
+              ? newLocation.speed! * 3.6 // Convertir de m/s a km/h
+              : 0;
+        });
+
+        _addMarker(LatLng(newLocation.latitude!, newLocation.longitude!));
+
+        // Centrar la cámara en la nueva ubicación del marcador
+        if (isMapCreated) {
+          _controller.animateCamera(
+            CameraUpdate.newLatLng(
+                LatLng(newLocation.latitude!, newLocation.longitude!)),
+          );
         }
-
-        currentLocation = newLocation;
-
-        // Calcular la velocidad
-        currentSpeed = newLocation.speed != null
-            ? newLocation.speed! * 3.6 // Convertir de m/s a km/h
-            : 0;
       });
-
-      _addMarker(LatLng(newLocation.latitude!, newLocation.longitude!));
-    });
-  } catch (e) {
-    print('Error al obtener la ubicación: $e');
+    } catch (e) {
+      print('Error al obtener la ubicación: $e');
+    }
   }
-}
 
   @override
   void dispose() {
@@ -149,6 +159,7 @@ class _MapPageState extends State<MapPage> {
               onMapCreated: (GoogleMapController controller) {
                 setState(() {
                   _controller = controller;
+                  isMapCreated = true;
                 });
               },
             ),
@@ -203,10 +214,24 @@ class _MapPageState extends State<MapPage> {
                       ),
                       onPressed: () {
                         stopTimer();
-                        saveGPXFile(routeCoordinates);
-                        isTimerActive = false;
+                        //saveGPXFile(routeCoordinates);
+                        //isTimerActive = false;
                       },
                       child: const Text("Detener"),
+                    ),
+                      ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.deepOrange),
+                      ),
+                      onPressed: () {
+                        stopTimer();
+                        isTimerActive = false;
+                        saveGPXFile(routeCoordinates);
+                        resetData();
+                        showConfirmationDialog(context);
+                      },
+                      child: const Text("Terminar"),
                     ),
                     SizedBox(
                       width: 40.0,
@@ -242,6 +267,37 @@ class _MapPageState extends State<MapPage> {
         ],
       ),
     );
+  }
+
+  void showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Entrenamiento finalizado"),
+          content: const Text("Ruta guardada exitosamente."),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void resetData() {
+    setState(() {
+      totalDistance = 0;
+      currentSpeed = 0;
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      routeCoordinates.clear();
+    });
   }
 
   void _addMarker(LatLng position) {
