@@ -19,6 +19,7 @@ namespace StraviaTECAPISQLS.Controllers
         }
 
         [HttpGet]
+        [Route("all")]
         public JsonResult Get()
         {
             string query = @"
@@ -33,6 +34,32 @@ namespace StraviaTECAPISQLS.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+        [HttpGet]
+        public JsonResult GetAthlete(string email)
+        {
+            string query = @"
+                EXEC sp_GetAthleteByEmail @Aemail
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@Aemail", email);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -90,6 +117,40 @@ namespace StraviaTECAPISQLS.Controllers
             }
 
             return new JsonResult("Atleta añadido");
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public string PostLogin(Login user)
+        {
+            string query = @"
+                EXEC sp_AthleteLogin @email, @password
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@email", user.Email);
+                    myCommand.Parameters.AddWithValue("@password", user.Password);
+
+                    int isValid = (int)myCommand.ExecuteScalar();
+
+                    if (isValid == 1)
+                    {
+                        return "Sesion Iniciada";
+                    }
+                    else
+                    {
+                        return "Credenciales invalidas";
+                    }
+                }
+            }
+
         }
     }
 }
