@@ -3,6 +3,7 @@ import 'dart:math' show asin, cos, pi, pow, sin, sqrt;
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:stravia_tec_mobile/gpxFile.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,8 +32,8 @@ class _MapPageState extends State<MapPage> {
   late GoogleMapController _controller;
   LocationData? currentLocation;
   Location location = Location();
-  double totalDistance = 0; // Variable para la distancia total
-  double currentSpeed = 0; // Variable para la velocidad actual
+  double totalDistance = 0; 
+  double currentSpeed = 0; 
   int seconds = 0;
   int minutes = 0;
   int hours = 0;
@@ -202,6 +203,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                       onPressed: () {
                         stopTimer();
+                        saveGPXFile(routeCoordinates);
                         isTimerActive = false;
                       },
                       child: const Text("Detener"),
