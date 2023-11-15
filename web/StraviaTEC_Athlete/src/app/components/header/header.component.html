@@ -30,7 +30,7 @@
           class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
         >
           <a
-            href="/"
+            routerLink="/init"
             class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
           >
             <img
@@ -46,22 +46,28 @@
           >
             <li>
               <a
-                href="#"
                 class="nav-link px-2"
-                [class.disabled]="
-                  currentUrl === '/init' || currentUrl === '/home'
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'home')
                 "
-                >Home</a
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'home'
+                "
+                routerLink="/init"
               >
+                Home
+              </a>
             </li>
+
             <li>
-              <a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-2 link-body-emphasis">Customers</a>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-2 link-body-emphasis">Products</a>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="!(currentUrl === 'display-example')"
+                [class.disabled]="currentUrl === 'display-example'"
+                routerLink="/display-example"
+              >
+                Rick and Morty
+              </a>
             </li>
           </ul>
 
