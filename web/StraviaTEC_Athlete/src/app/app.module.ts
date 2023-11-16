@@ -27,7 +27,7 @@ import { BasicBackgroundComponent } from './components/basic-background/basic-ba
 import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
