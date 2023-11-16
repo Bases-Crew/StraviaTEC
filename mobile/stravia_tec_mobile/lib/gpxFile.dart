@@ -28,12 +28,12 @@ void saveGPXFile(List<LatLng> routeCoordinates) async {
 
   final gpxString = gpx.build().toXmlString(pretty: true);
 
-  // Obtener el directorio de documentos de la aplicación
-  final documentsDirectory = await getApplicationDocumentsDirectory();
+  // Obtener el directorio externo
+  final directory = await getExternalStorageDirectory();
 
-  // Crear el archivo en el directorio de documentos
-  final file = File('${documentsDirectory.path}/ruta.gpx');
+  // Crear el archivo en el directorio externo
+  final file = File('${directory!.path}/ruta.gpx');
   file.writeAsStringSync(gpxString);
 
-  print('Archivo GPX guardado en: ${file.path}');
+  //print('Archivo GPX guardado en: ${file.path}');
 }
