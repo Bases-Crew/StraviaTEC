@@ -44,8 +44,9 @@ namespace StraviaTECAPISQLS.Controllers
 
             return new JsonResult(table);
         }
+
         [HttpGet]
-        public JsonResult GetAthlete(string email)
+        public JsonResult GetAthlete(string aemail)
         {
             string query = @"
                 EXEC sp_GetAthleteByEmail @Aemail
@@ -59,7 +60,7 @@ namespace StraviaTECAPISQLS.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@Aemail", email);
+                    myCommand.Parameters.AddWithValue("@Aemail", aemail);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -98,12 +99,12 @@ namespace StraviaTECAPISQLS.Controllers
                         using (MemoryStream ms = new MemoryStream())
                         {
                             await user.Photo.CopyToAsync(ms);
-                            myCommand.Parameters.AddWithValue("@Photo", ms.ToArray());
+                            myCommand.Parameters.Add("@Photo", SqlDbType.VarBinary).Value = ms.ToArray();
                         }
                     }
                     else
                     {
-                        myCommand.Parameters.AddWithValue("@Photo", DBNull.Value);
+                        myCommand.Parameters.Add("@Photo", SqlDbType.VarBinary).Value = DBNull.Value;
                     }
                     myCommand.Parameters.AddWithValue("@CountryName", user.CountryName);
                     DateOnly birthDate = DateOnly.Parse(user.Birth_date);

@@ -39,7 +39,7 @@ CREATE OR ALTER PROCEDURE sp_NewAthlete @Aemail VARCHAR(25),
 							   @Mname	VARCHAR(15), 
 							   @Lname1	VARCHAR(15), 
 							   @Lname2 VARCHAR(15), 
-							   @Photo VARBINARY(MAX), 
+							   @Photo VARBINARY(MAX) = NULL, 
 							   @CountryName VARCHAR(30), 
 							   @Birth_date	DATE
 AS
@@ -61,8 +61,8 @@ GO
 CREATE OR ALTER PROCEDURE sp_GetAthleteByEmail @Email VARCHAR(25)
 AS
 BEGIN
-	SELECT Aemail, Apassword, Fname, Mname, Lname1, Lname2, Photo, Cno, CONVERT(VARCHAR(10), Birth_date, 120) AS Birth_date
-	FROM ATHLETE
-	WHERE Aemail = @Email
+	SELECT A.Aemail, A.Apassword, A.Fname, A.Mname, A.Lname1, A.Lname2, A.Photo, A.Cno, CONVERT(VARCHAR(10), A.Birth_date, 120) AS Birth_date, C.CountryName, C.Flag
+	FROM ATHLETE A JOIN COUNTRY C ON Cno = Cnumber
+	WHERE A.Aemail = @Email
 END;
 GO
