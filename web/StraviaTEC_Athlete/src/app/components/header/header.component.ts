@@ -15,8 +15,9 @@ export class HeaderComponent implements OnInit {
     mname: '',
     lname: '',
     lname2: '',
-    cno: 0,
     birth_date: '',
+    flag: '',
+    countryname: '',
   };
 
   currentUrl: string = '';

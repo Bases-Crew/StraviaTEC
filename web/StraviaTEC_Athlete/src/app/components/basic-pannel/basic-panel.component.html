@@ -1,29 +1,29 @@
 <!-- basic-panel.component.html -->
 
 <div class="center-box">
-  <div class="icon">
-    <img
-      src="https://media.discordapp.net/attachments/599522055746093057/1170680874837221417/icon2.png"
-      alt="icon"
-    />
-  </div>
   <!-- Contenido dentro del cuadro -->
   <!-- Mostrar este div solo si showLoginForm es falso -->
-  <div *ngIf="!showLoginForm">
+  <div *ngIf="!showLoginForm && !showRegisterForm">
+    <div class="icon">
+      <img
+        src="https://media.discordapp.net/attachments/599522055746093057/1170680874837221417/icon2.png"
+        alt="icon"
+      />
+    </div>
     <div class="content">
       <h2 class="h4">Bienvenido</h2>
       <p class="mb-3">Por favor, identifíquese</p>
       <button
         class="btn btn-lg btn-primary btn-block"
         type="button"
-        (click)="signin()"
+        (click)="login()"
       >
         Iniciar Sesión
       </button>
       <button
         class="btn btn-lg btn-secondary btn-block"
         type="button"
-        (click)="signup()"
+        (click)="register()"
       >
         Registrarse
       </button>
@@ -35,5 +35,9 @@
     *ngIf="showLoginForm"
     (back)="backToWelcome()"
   ></app-login-form>
-  <p class="mt-5 mb-3 text-muted">&copy; TEC 2023</p>
+  <app-register-form
+    *ngIf="showRegisterForm"
+    (back)="backToWelcome()"
+  ></app-register-form>
+  <p class="mt-5 mb-3 text-muted">&copy; StraviaTEC 2023</p>
 </div>

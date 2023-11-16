@@ -31,25 +31,40 @@
 .friend-list-container button {
   margin: 0 5px; /* Añade un pequeño margen entre el input y el botón */
 }
-/* Estilos para el botón de búsqueda */
+
+/* Estilos para los botones Follow y Unfollow */
 .friend-list-container button {
-  padding: 10px 20px; /* Espaciado interno para el botón */
-  border-radius: 25px; /* Bordes redondeados para el botón */
-  border: none; /* Sin borde */
-  background-color: #ff7e5f; /* Fondo que combina con las tarjetas */
-  color: #fff; /* Texto blanco para contraste */
-  cursor: pointer; /* Cursor en forma de mano al pasar sobre el botón */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
-  transition: all 0.3s ease; /* Transición suave para el efecto hover */
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-/* Efecto hover para el botón de búsqueda */
+.friend-list-container button.follow {
+  background-color: #ff7e5f; /* Color original para Follow */
+}
+
+.friend-list-container button.unfollow {
+  background-color: #808080; /* Color gris para Unfollow */
+}
+
+/* Efecto hover para los botones */
 .friend-list-container button:hover {
-  background-color: #feb47b; /* Fondo un poco más claro para el efecto hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más prominente para el efecto hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Media queries y otros estilos... */
+/* Para el botón Follow */
+.friend-list-container button.follow:hover {
+  background-color: #feb47b; /* Fondo un poco más claro para el efecto hover en Follow */
+}
+
+/* Para el botón Unfollow */
+.friend-list-container button.unfollow:hover {
+  background-color: #a0a0a0; /* Fondo un poco más claro para el efecto hover en Unfollow */
+}
 
 .friend-card {
   position: relative;

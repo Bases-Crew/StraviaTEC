@@ -33,8 +33,9 @@ export class LoginFormComponent {
           user.mname = exampleUser.mname;
           user.lname = exampleUser.lname;
           user.lname2 = exampleUser.lname2;
-          user.cno = exampleUser.cno;
           user.birth_date = exampleUser.birth_date;
+          user.flag = exampleUser.flag;
+          user.countryname = exampleUser.countryname;
 
           // Presumably, redirect to another route upon success
           this.router.navigate(['/display-example']); // Replace '/home' with your desired route
