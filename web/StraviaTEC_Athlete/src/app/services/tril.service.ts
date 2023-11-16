@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Profile, profilesList } from '../models/tril.module';
+import { Profile, profilesList } from '../models/tril.model';
 
 @Injectable({
   providedIn: 'root',

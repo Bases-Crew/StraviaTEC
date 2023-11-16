@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfilesService } from 'src/app/services/profiles.service';
-import { Profile } from 'src/app/models/profiles.module'; // Asegúrate de que el nombre del archivo del modelo es correcto
+import { Profile } from 'src/app/models/profiles.model'; // Asegúrate de que el nombre del archivo del modelo es correcto
 
 @Component({
   selector: 'app-profiles',

@@ -1,6 +1,6 @@
 // friends.service.ts
 import { Injectable } from '@angular/core';
-import { Friend, friendsList } from 'src/app/models/friends.module'; // Importa la lista de ejemplo
+import { Friend, friendsList } from 'src/app/models/friends.model'; // Importa la lista de ejemplo
 
 @Injectable({
   providedIn: 'root',

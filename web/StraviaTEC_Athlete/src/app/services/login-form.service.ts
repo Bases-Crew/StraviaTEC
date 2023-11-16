@@ -1,7 +1,7 @@
 // services/authentication.service.ts
 
 import { Injectable } from '@angular/core';
-import { User, exampleUser } from '../models/login.module';
+import { User, exampleUser } from '../models/login.model';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

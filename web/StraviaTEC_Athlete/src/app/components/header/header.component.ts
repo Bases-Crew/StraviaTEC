@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { User, user } from 'src/app/models/login.module';
+import { User, user } from 'src/app/models/login.model';
 
 @Component({
   selector: 'app-header',

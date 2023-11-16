@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Group, sampleGroups } from 'src/app/models/group.module'; // Asegúrate de que la ruta al modelo es correcta
+import { Group, sampleGroups } from 'src/app/models/group.model'; // Asegúrate de que la ruta al modelo es correcta
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrilService } from 'src/app/services/tril.service'; // Ajusta la ruta según tu estructura de carpetas
-import { Profile } from 'src/app/models/tril.module'; // Ajusta la ruta según tu estructura de carpetas
+import { Profile } from 'src/app/models/tril.model'; // Ajusta la ruta según tu estructura de carpetas
 
 @Component({
   selector: 'app-tril',

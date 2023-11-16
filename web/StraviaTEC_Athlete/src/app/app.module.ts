@@ -28,6 +28,7 @@ import { InitialStageComponent } from './components/initial-stage/initial-stage.
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ShowActivitiesComponent } from './components/show-activities/show-activities.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -48,6 +49,7 @@ import { FooterComponent } from './components/footer/footer.component';
     InitialStageComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    ShowActivitiesComponent,
   ],
   providers: [
     ExampleRickMortyService,

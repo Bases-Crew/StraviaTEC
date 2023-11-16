@@ -3,7 +3,7 @@ import {
   Character,
   ExampleRickMorty,
   exampleRickMorty,
-} from 'src/app/models/example-rick-morty.module';
+} from 'src/app/models/example-rick-morty.model';
 import { ExampleRickMortyService } from 'src/app/services/example-rick-morty.service';
 
 @Component({

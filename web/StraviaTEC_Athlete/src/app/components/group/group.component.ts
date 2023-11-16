@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from 'src/app/services/group.service';
-import { Group } from 'src/app/models/group.module'; // Asegúrate de que la ruta al modelo es correcta
+import { Group } from 'src/app/models/group.model'; // Asegúrate de que la ruta al modelo es correcta
 
 @Component({
   selector: 'app-group',
