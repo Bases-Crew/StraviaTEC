@@ -9,7 +9,7 @@
           id="inputImage"
           class="form-control d-none"
           (change)="onImageUpload($event)"
-          accept="image/*"
+          accept="image/jpeg"
         />
         <label for="inputImage" id="imageUploadButton">
           <img
@@ -37,7 +37,7 @@
               class="form-control"
               placeholder="Primer Nombre"
               required
-              [(ngModel)]="Fname"
+              [(ngModel)]="fname"
               name="firstName"
             />
           </div>
@@ -47,7 +47,7 @@
               id="inputMiddleName"
               class="form-control"
               placeholder="Segundo Nombre"
-              [(ngModel)]="Mname"
+              [(ngModel)]="mname"
               name="middleName"
             />
           </div>
@@ -63,7 +63,7 @@
               class="form-control"
               placeholder="Apellido"
               required
-              [(ngModel)]="Lname"
+              [(ngModel)]="lname1"
               name="lastName"
             />
           </div>
@@ -73,7 +73,7 @@
               id="inputLastName2"
               class="form-control"
               placeholder="Segundo Apellido"
-              [(ngModel)]="Lname2"
+              [(ngModel)]="lname2"
               name="lastName2"
             />
           </div>
@@ -89,7 +89,7 @@
             class="form-control"
             placeholder="ejemplo@dominio.com"
             required
-            [(ngModel)]="Aemail"
+            [(ngModel)]="aemail"
             name="email"
           />
         </div>
@@ -104,21 +104,27 @@
             class="form-control"
             placeholder="Contraseña"
             required
-            [(ngModel)]="Apassword"
+            [(ngModel)]="apassword"
             name="password"
           />
         </div>
 
         <div class="row">
           <div class="col form-group">
-            <label for="inputID" class="sr-only">ID</label>
-            <input
-              type="tel"
-              id="inputID"
+            <label for="Select Country">ID</label>
+            <select
+              id="country"
               class="form-control"
-              [(ngModel)]="Cno"
-              name="ID"
-            />
+              [(ngModel)]="countryname"
+              name="country"
+            >
+              <option
+                *ngFor="let countryname of countrynamesL"
+                [value]="countryname"
+              >
+                {{ countryname }}
+              </option>
+            </select>
           </div>
           <div class="col form-group">
             <label for="inputBirthDate">Fecha de Nacimiento</label>
@@ -128,7 +134,7 @@
               class="form-control"
               placeholder="YYYY-MM-DD"
               required
-              [(ngModel)]="Birth_date"
+              [(ngModel)]="birth_date"
               name="birthDate"
             />
           </div>
@@ -139,15 +145,15 @@
         </div>
 
         <div class="btn-group d-flex" role="group" style="margin-top: 20px">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Enviar
-          </button>
           <button
             class="btn btn-lg btn-secondary btn-block"
             type="button"
             (click)="goBack()"
           >
             Volver
+          </button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Enviar
           </button>
         </div>
       </form>

@@ -1,32 +1,66 @@
+/* Base styles */
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  /*font-family: Arial, sans-serif; /* Use a standard font for consistency */
 }
 
+/* Center the form on the page and add responsive padding */
 .form-signup {
   width: 100%;
   max-width: 380px;
-  padding: 10px;
+  padding: 5px;
+  margin: auto; /* Center form */
+  box-sizing: border-box; /* Include padding in the width calculation */
 }
 
+/* Style the form headers */
 .form-signup h2 {
   font-weight: bold;
+  text-align: center; /* Center align the headers */
 }
 
-/* Increase spacing around form groups */
+/* Increase spacing around form groups and make it responsive */
 .form-group {
   margin-bottom: 15px; /* Adjust this value as needed for more space */
 }
 
-/* Style the image preview */
+/* Style the image preview with flexible sizing */
 #imagePreview {
-  margin-bottom: 10px;
+  display: block; /* Ensures it takes up the full width available */
+  max-width: 100%; /* Makes the image responsive */
+  height: auto; /* Maintains the aspect ratio */
+  margin: 0 auto 10px; /* Centers the image and adds space below */
 }
 
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
+  .form-signup {
+    padding: 10px;
+  }
+
   #imagePreview {
     max-width: 100px;
     max-height: 100px;
+  }
+
+  /* Reduce font sizes on smaller screens for better readability */
+  .form-signup h2 {
+    font-size: 1.25em; /* Slightly smaller headers on small screens */
+  }
+}
+
+/* Additional responsiveness for very small or large screens */
+@media (max-width: 480px) {
+  .form-signup {
+    max-width: 95%; /* Use more screen width on very small screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .form-signup {
+    max-width: 500px; /* Allow a larger max-width on very large screens */
   }
 }
