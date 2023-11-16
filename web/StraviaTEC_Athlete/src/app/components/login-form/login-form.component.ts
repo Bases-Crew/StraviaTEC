@@ -3,7 +3,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { LoginFormService as LoginFormService } from '../../services/login-form.service'; // Update the path as necessary
 import { Router } from '@angular/router';
-import { user } from 'src/app/models/login.module';
+import { exampleUser, user } from 'src/app/models/login.module';
 
 @Component({
   selector: 'app-login-form',
@@ -29,6 +29,13 @@ export class LoginFormComponent {
           console.log('Login successful');
           user.aemail = this.email;
           user.apassword = this.password;
+          user.fname = exampleUser.fname;
+          user.mname = exampleUser.mname;
+          user.lname = exampleUser.lname;
+          user.lname2 = exampleUser.lname2;
+          user.cno = exampleUser.cno;
+          user.birth_date = exampleUser.birth_date;
+
           // Presumably, redirect to another route upon success
           this.router.navigate(['/display-example']); // Replace '/home' with your desired route
         } else {

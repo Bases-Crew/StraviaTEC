@@ -71,7 +71,10 @@
             </li>
           </ul>
 
-          <div class="dropdown text-end">
+          <div
+            *ngIf="currentUrl !== 'init' && user.fname !== ''"
+            class="dropdown text-end"
+          >
             <a
               href="#"
               class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
