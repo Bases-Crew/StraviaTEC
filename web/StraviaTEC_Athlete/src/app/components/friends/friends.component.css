@@ -1,0 +1,100 @@
+/* friends.component.css */
+
+/* Estilos generales para el contenedor */
+.friend-list-container {
+  display: flex; /* Usa flexbox */
+  flex-direction: column; /* Orienta los elementos en columna */
+  justify-content: center; /* Centra verticalmente los elementos en el contenedor */
+  align-items: center; /* Centra horizontalmente los elementos en el contenedor */
+  padding: 20px;
+  background: #fef8f5;
+  min-height: 100vh; /* Asegúrate de que el contenedor se extienda a todo el alto de la vista */
+}
+
+/* Estilos para el título */
+.friend-list-container h2 {
+  color: #333; /* Color de texto oscuro para el título */
+  margin-bottom: 30px; /* Espacio debajo del título */
+}
+/* Estilos para el input de búsqueda */
+.friend-list-container input {
+  padding: 10px; /* Espaciado interno para la entrada */
+  border-radius: 25px; /* Bordes redondeados para la entrada */
+  border: 2px solid #ff7e5f; /* Borde que combina con las tarjetas */
+  width: 50%; /* Ancho del input */
+  max-width: 300px; /* Máximo ancho para el input */
+  margin-right: 10px; /* Espacio a la derecha del input */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna suave */
+}
+
+.friend-list-container input,
+.friend-list-container button {
+  margin: 0 5px; /* Añade un pequeño margen entre el input y el botón */
+}
+
+/* Estilos para los botones Follow y Unfollow */
+.friend-list-container button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.friend-list-container button.follow {
+  background-color: #ff7e5f; /* Color original para Follow */
+}
+
+.friend-list-container button.unfollow {
+  background-color: #808080; /* Color gris para Unfollow */
+}
+
+/* Efecto hover para los botones */
+.friend-list-container button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Para el botón Follow */
+.friend-list-container button.follow:hover {
+  background-color: #feb47b; /* Fondo un poco más claro para el efecto hover en Follow */
+}
+
+/* Para el botón Unfollow */
+.friend-list-container button.unfollow:hover {
+  background-color: #a0a0a0; /* Fondo un poco más claro para el efecto hover en Unfollow */
+}
+
+.friend-card {
+  position: relative;
+  background: linear-gradient(
+    45deg,
+    #fa6742,
+    #a236b8e0
+  ); /* Gradiente de fondo */
+  color: #4a4a4a; /* Color de texto oscuro para contraste */
+  margin: 15px; /* Espacio alrededor de las tarjetas */
+  padding: 15px; /* Espaciado interno */
+  width: 100%; /* Uso del ancho disponible */
+  max-width: 280px; /* Máximo ancho para que las tarjetas no sean tan grandes */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más prominente para dar profundidad */
+  position: relative; /* Posicionamiento relativo para los elementos absolutos internos */
+  overflow: hidden; /* Asegura que nada se salga de los bordes redondeados */
+}
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .friend-list-container input {
+    width: 70%; /* Aumentar el ancho del input para pantallas más pequeñas */
+    margin-bottom: 10px; /* Espacio debajo del input */
+  }
+
+  .friend-list-container button {
+    /* ...otros estilos... */
+    position: absolute; /* Posición absoluta respecto a su contenedor relativo más cercano, que es .friend-card */
+    bottom: 10px; /* Distancia desde el fondo de la tarjeta */
+    right: 10px; /* Distancia desde el lado derecho de la tarjeta */
+    /* ...otros estilos... */
+  }
+}

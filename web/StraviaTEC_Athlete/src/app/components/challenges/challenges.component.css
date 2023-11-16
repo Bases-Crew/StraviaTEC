@@ -1,0 +1,100 @@
+/* challenges.component.css */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Asigna los colores activos basados en la nueva paleta */
+.filter-buttons button.active {
+  background-color: #ff6543; /* Color coral oscuro */
+  color: #fff19e; /* Contraste claro para el texto, color amarillo claro */
+}
+
+/* Colores del botón por defecto */
+.filter-buttons button {
+  background-color: #ffdc8a; /* Color piel claro */
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover color basado en los tonos más oscuros de la paleta */
+.filter-buttons button:hover {
+  background-color: #b5f4bc; /* Color coral claro para hover */
+}
+
+.card {
+  background-color: #f5dfc7; /* Color amarillo claro de la paleta */
+  border: 1px solid #e1e1e1; /* Puedes cambiar este color si quieres uno de la paleta */
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Estilos de la tarjeta al pasar el ratón */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Más estilos de botones y tarjetas... */
+
+/* Color de fondo para el botón activo */
+.button.active {
+  background-color: #ff6543; /* Color coral oscuro */
+  color: white;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  color: #333333; /* Puedes elegir cualquier color de la paleta que proporcione suficiente contraste */
+}
+
+.card-text {
+  color: #5e5d5d; /* Puedes elegir cualquier color de la paleta que proporcione suficiente contraste */
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: #b5f4bc; /* Color verde claro */
+  color: #333333; /* Asegúrate de que el texto se vea bien sobre el fondo verde claro */
+  font-size: 0.75em;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-muted {
+  color: #636262; /* Este color ya es neutro, pero puedes ajustarlo si lo deseas */
+}
+
+.btn-primary {
+  background-color: #ff6543;
+  color: #fff19e; /* Contraste claro para el texto */
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.9em;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ffba6b; /* Color coral claro para el efecto hover */
+}

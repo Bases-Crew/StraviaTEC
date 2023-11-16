@@ -1,0 +1,70 @@
+<!-- friends.component.html -->
+
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3pV0d6y5qBn0z8mS9nZ7qerrptK0FHjsz9Xdr/P5p0I9W9dmyGp4bE1/J8"
+  crossorigin="anonymous"
+/>
+
+<div class="friend-list-container">
+  <h2>Lista de Amigos</h2>
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    (keyup)="searchFriend()"
+    placeholder="Buscar amigos..."
+  />
+  <!--<button (click)="searchFriend()">Buscar</button>-->
+
+  <div *ngIf="isSearchPerformed && filteredFriends.length > 0">
+    <!-- Solo mostrar esta sección si se ha realizado una búsqueda y hay resultados -->
+    <div *ngFor="let friend of filteredFriends" class="friend-card">
+      <h3>
+        {{ friend.firstname }} {{ friend.secondname }} {{ friend.apellido1 }}
+        {{ friend.apellido2 }}
+      </h3>
+      <p>
+        Ubicación:
+        {{ friend.pais }}
+      </p>
+      <p>Actividades:</p>
+      <ul>
+        <li>Retos: {{ friend.challenges }}</li>
+        <li>Carreras: {{ friend.runs }}</li>
+      </ul>
+      <button
+        (click)="saveAndPrintFriend(friend)"
+        [class.follow]="!friend.following"
+        [class.unfollow]="friend.following"
+      >
+        {{ friend.following ? "Dejar de seguir" : "Seguir" }}
+      </button>
+    </div>
+  </div>
+
+  <p *ngIf="isSearchPerformed && filteredFriends.length === 0">
+    No se encontraron amigos que coincidan con la búsqueda.
+  </p>
+
+  <!-- Sección para mostrar cuando no se ha realizado una búsqueda o el campo está vacío -->
+  <div *ngIf="!isSearchPerformed">
+    <div *ngFor="let friend of filteredFriends" class="friend-card">
+      <h3>
+        {{ friend.nombre }}
+      </h3>
+      <p>Ubicación: {{ friend.pais }}</p>
+      <ul>
+        <li>Retos: {{ friend.challenges }}</li>
+        <li>Carreras: {{ friend.runs }}</li>
+      </ul>
+      <button
+        (click)="saveAndPrintFriend(friend)"
+        [class.follow]="!friend.following"
+        [class.unfollow]="friend.following"
+      >
+        {{ friend.following ? "Dejar de seguir" : "Seguir" }}
+      </button>
+    </div>
+  </div>
+</div>

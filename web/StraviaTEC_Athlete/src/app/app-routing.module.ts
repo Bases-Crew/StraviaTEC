@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DisplayExampleComponent } from './components/display-example/display-example.component';
-import { DisplayInitComponent } from './components/display-init/display-init.component';
 import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
 
 const routes: Routes = [

@@ -1,8 +1,9 @@
 // login-form.component.ts
 
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AuthenticationService } from '../../services/login.service'; // Update the path as necessary
+import { LoginFormService as LoginFormService } from '../../services/login-form.service'; // Update the path as necessary
 import { Router } from '@angular/router';
+import { exampleUser, user } from 'src/app/models/login.module';
 
 @Component({
   selector: 'app-login-form',
@@ -16,16 +17,26 @@ export class LoginFormComponent {
   password: string = '';
   errorMessage: string = '';
   constructor(
-    private authService: AuthenticationService,
+    private loginFormService: LoginFormService,
     private router: Router
   ) {}
 
   login() {
-    this.authService.login(this.email, this.password).subscribe({
+    this.loginFormService.login(this.email, this.password).subscribe({
       next: (result) => {
         if (result.success) {
           // Handle successful login
           console.log('Login successful');
+          user.aemail = this.email;
+          user.apassword = this.password;
+          user.fname = exampleUser.fname;
+          user.mname = exampleUser.mname;
+          user.lname = exampleUser.lname;
+          user.lname2 = exampleUser.lname2;
+          user.birth_date = exampleUser.birth_date;
+          user.flag = exampleUser.flag;
+          user.countryname = exampleUser.countryname;
+
           // Presumably, redirect to another route upon success
           this.router.navigate(['/display-example']); // Replace '/home' with your desired route
         } else {
