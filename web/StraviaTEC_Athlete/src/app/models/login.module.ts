@@ -6,8 +6,9 @@ export interface User {
   mname: string | null;
   lname: string;
   lname2: string;
-  cno: number;
   birth_date: string;
+  flag: string;
+  countryname: string;
 }
 
 export const exampleUser: User = {
@@ -17,8 +18,9 @@ export const exampleUser: User = {
   mname: null,
   lname: 'Gonzalez',
   lname2: 'Gonzalez',
-  cno: 123456789,
   birth_date: '2000-01-01',
+  flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/203px-Bandera_de_Espa%C3%B1a.svg.png',
+  countryname: 'España',
 };
 
 export const user: User = {
@@ -28,6 +30,7 @@ export const user: User = {
   mname: '',
   lname: '',
   lname2: '',
-  cno: 0,
   birth_date: '',
+  flag: '',
+  countryname: '',
 };
