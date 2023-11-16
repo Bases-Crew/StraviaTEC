@@ -20,20 +20,26 @@
   <div *ngIf="isSearchPerformed && filteredFriends.length > 0">
     <!-- Solo mostrar esta sección si se ha realizado una búsqueda y hay resultados -->
     <div *ngFor="let friend of filteredFriends" class="friend-card">
-      <button (click)="saveAndPrintFriend(friend)">Follow</button>
       <h3>
-        {{ friend.firstName }} {{ friend.secondName }} {{ friend.apellido1 }}
+        {{ friend.firstname }} {{ friend.secondname }} {{ friend.apellido1 }}
         {{ friend.apellido2 }}
       </h3>
       <p>
-        Ubicación: {{ friend.residencia.provincia }},
-        {{ friend.residencia.pais }}
+        Ubicación:
+        {{ friend.pais }}
       </p>
       <p>Actividades:</p>
       <ul>
-        <li>Paseos en Bicicleta: {{ friend.activities.rideBikes }}</li>
-        <li>Carreras: {{ friend.activities.runs }}</li>
+        <li>Retos: {{ friend.challenges }}</li>
+        <li>Carreras: {{ friend.runs }}</li>
       </ul>
+      <button
+        (click)="saveAndPrintFriend(friend)"
+        [class.follow]="!friend.following"
+        [class.unfollow]="friend.following"
+      >
+        {{ friend.following ? "Dejar de seguir" : "Seguir" }}
+      </button>
     </div>
   </div>
 
@@ -44,18 +50,21 @@
   <!-- Sección para mostrar cuando no se ha realizado una búsqueda o el campo está vacío -->
   <div *ngIf="!isSearchPerformed">
     <div *ngFor="let friend of filteredFriends" class="friend-card">
-      <button (click)="saveAndPrintFriend(friend)">Follow</button>
       <h3>
         {{ friend.nombre }}
       </h3>
-      <p>
-        Ubicación: {{ friend.residencia.provincia }},
-        {{ friend.residencia.pais }}
-      </p>
+      <p>Ubicación: {{ friend.pais }}</p>
       <ul>
-        <li>Paseos en Bicicleta: {{ friend.activities.rideBikes }}</li>
-        <li>Carreras: {{ friend.activities.runs }}</li>
+        <li>Retos: {{ friend.challenges }}</li>
+        <li>Carreras: {{ friend.runs }}</li>
       </ul>
+      <button
+        (click)="saveAndPrintFriend(friend)"
+        [class.follow]="!friend.following"
+        [class.unfollow]="friend.following"
+      >
+        {{ friend.following ? "Dejar de seguir" : "Seguir" }}
+      </button>
     </div>
   </div>
 </div>

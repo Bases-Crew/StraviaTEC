@@ -1,262 +1,211 @@
 // Definiendo la interfaz Friend
 export interface Friend {
+  aemail: string;
   nombre: string;
-  firstName: string;
-  secondName: string;
+  firstname: string;
+  secondname: string;
   apellido1: string;
   apellido2: string;
-  residencia: {
-    provincia: string;
-    pais: string;
-  };
-  activities: {
-    rideBikes: number;
-    runs: number;
-  };
+  pais: string;
+  challenges: number;
+  runs: number;
+  following: boolean;
 }
 
 // Creando un amigo de ejemplo
 export const friend: Friend = {
+  aemail: 'juan@gmail.com',
   nombre: 'Juan Carlos',
-  firstName: 'Juan',
-  secondName: 'Carlos',
+  firstname: 'Juan',
+  secondname: 'Carlos',
   apellido1: 'González',
   apellido2: 'Fernández',
-  residencia: {
-    provincia: 'Madrid',
-    pais: 'España',
-  },
-  activities: {
-    rideBikes: 50,
-    runs: 20, // Aquí faltaba una llave de cierre
-  },
+  pais: 'España',
+  challenges: 50,
+  runs: 20,
+  following: false,
 };
 
 // Creando una lista de amigos de ejemplo
 export const friendsList: Friend[] = [
   {
+    aemail: 'ana@gmail.com',
     nombre: 'Ana Torres',
-    firstName: 'Ana',
-    secondName: '',
+    firstname: 'Ana',
+    secondname: '',
     apellido1: 'Torres',
     apellido2: 'García',
-    residencia: {
-      provincia: 'Valencia',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 20,
-      runs: 25,
-    },
+    pais: 'España',
+    challenges: 20,
+    runs: 25,
+    following: false,
   },
   {
+    aemail: 'javier@gmail.com',
     nombre: 'Javier Gómez',
-    firstName: 'Javier',
-    secondName: '',
+    firstname: 'Javier',
+    secondname: '',
     apellido1: 'Gómez',
     apellido2: 'Lorenzo',
-    residencia: {
-      provincia: 'Madrid',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 15,
-      runs: 35,
-    },
+    pais: 'España',
+    challenges: 15,
+    runs: 35,
+    following: true,
   },
   {
+    aemail: 'sophia@gmail.com',
     nombre: 'Sofía Navarro',
-    firstName: 'Sofía',
-    secondName: '',
+    firstname: 'Sofía',
+    secondname: '',
     apellido1: 'Navarro',
     apellido2: 'Molina',
-    residencia: {
-      provincia: 'Málaga',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 40,
-      runs: 45,
-    },
+    pais: 'España',
+    challenges: 40,
+    runs: 45,
+    following: true,
   },
   {
+    aemail: 'david@gmail.com',
     nombre: 'David Ruiz',
-    firstName: 'David',
-    secondName: '',
+    firstname: 'David',
+    secondname: '',
     apellido1: 'Ruiz',
     apellido2: 'Moreno',
-    residencia: {
-      provincia: 'Granada',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 35,
-      runs: 20,
-    },
+    pais: 'España',
+    challenges: 35,
+    runs: 20,
+    following: true,
   },
   {
+    aemail: 'lucia@gmail.com',
     nombre: 'Lucía Hernández',
-    firstName: 'Lucía',
-    secondName: '',
+    firstname: 'Lucía',
+    secondname: '',
     apellido1: 'Hernández',
     apellido2: 'Santos',
-    residencia: {
-      provincia: 'Zaragoza',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 50,
-      runs: 50,
-    },
+    pais: 'España',
+    challenges: 50,
+    runs: 50,
+    following: false,
   },
   {
+    aemail: 'daniel@gmail.com',
     nombre: 'Daniel Jiménez',
-    firstName: 'Daniel',
-    secondName: '',
+    firstname: 'Daniel',
+    secondname: '',
     apellido1: 'Jiménez',
     apellido2: 'Gutiérrez',
-    residencia: {
-      provincia: 'Bilbao',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 25,
-      runs: 30,
-    },
+    pais: 'España',
+    challenges: 25,
+    runs: 30,
+    following: false,
   },
   {
+    aemail: 'carmen@gmail.com',
     nombre: 'Carmen Rodríguez',
-    firstName: 'Carmen',
-    secondName: '',
+    firstname: 'Carmen',
+    secondname: '',
     apellido1: 'Rodríguez',
     apellido2: 'Díaz',
-    residencia: {
-      provincia: 'Santander',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 45,
-      runs: 25,
-    },
+    pais: 'España',
+    challenges: 45,
+    runs: 25,
+    following: false,
   },
   {
+    aemail: 'francisco@gmail.com',
     nombre: 'Francisco Martínez',
-    firstName: 'Francisco',
-    secondName: '',
+    firstname: 'Francisco',
+    secondname: '',
     apellido1: 'Martínez',
     apellido2: 'Vázquez',
-    residencia: {
-      provincia: 'A Coruña',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 10,
-      runs: 40,
-    },
+    pais: 'España',
+    challenges: 10,
+    runs: 40,
+    following: false,
   },
   {
+    aemail: 'elena@gmail.com',
     nombre: 'Elena Álvarez',
-    firstName: 'Elena',
-    secondName: '',
+    firstname: 'Elena',
+    secondname: '',
     apellido1: 'Álvarez',
     apellido2: 'Herrero',
-    residencia: {
-      provincia: 'Oviedo',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 55,
-      runs: 35,
-    },
+    pais: 'España',
+    challenges: 55,
+    runs: 35,
+    following: false,
   },
   {
+    aemail: 'miguel@gmail.com',
     nombre: 'Miguel Ángel Domínguez',
-    firstName: 'Miguel Ángel',
-    secondName: '',
+    firstname: 'Miguel Ángel',
+    secondname: '',
     apellido1: 'Domínguez',
     apellido2: 'Gil',
-    residencia: {
-      provincia: 'Valladolid',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 20,
-      runs: 20,
-    },
+    pais: 'España',
+    challenges: 20,
+    runs: 20,
+    following: false,
   },
   {
+    aemail: 'patricia@gmail.com',
     nombre: 'Patricia Morales',
-    firstName: 'Patricia',
-    secondName: '',
+    firstname: 'Patricia',
+    secondname: '',
     apellido1: 'Morales',
     apellido2: 'Ortega',
-    residencia: {
-      provincia: 'Girona',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 35,
-      runs: 15,
-    },
+    pais: 'España',
+    challenges: 35,
+    runs: 15,
+    following: false,
   },
   {
+    aemail: 'raul@gmail.com',
     nombre: 'Raúl Fernández',
-    firstName: 'Raúl',
-    secondName: '',
+    firstname: 'Raúl',
+    secondname: '',
     apellido1: 'Fernández',
     apellido2: 'Vicente',
-    residencia: {
-      provincia: 'León',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 22,
-      runs: 48,
-    },
+    pais: 'España',
+    challenges: 22,
+    runs: 48,
+    following: false,
   },
   {
+    aemail: 'ana@gmail.com',
     nombre: 'Beatriz Martín',
-    firstName: 'Beatriz',
-    secondName: '',
+    firstname: 'Beatriz',
+    secondname: '',
     apellido1: 'Martín',
     apellido2: 'Romero',
-    residencia: {
-      provincia: 'Tarragona',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 60,
-      runs: 30,
-    },
+    pais: 'España',
+    challenges: 60,
+    runs: 30,
+    following: false,
   },
   {
+    aemail: 'javier@gmail.com',
     nombre: 'Sergio Sánchez',
-    firstName: 'Sergio',
-    secondName: '',
+    firstname: 'Sergio',
+    secondname: '',
     apellido1: 'Sánchez',
     apellido2: 'Bravo',
-    residencia: {
-      provincia: 'Cádiz',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 10,
-      runs: 50,
-    },
+    pais: 'España',
+    challenges: 10,
+    runs: 50,
+    following: false,
   },
   {
+    aemail: 'maria@gmail.com',
     nombre: 'Laura García',
-    firstName: 'Laura',
-    secondName: '',
+    firstname: 'Laura',
+    secondname: '',
     apellido1: 'García',
     apellido2: 'Iglesias',
-    residencia: {
-      provincia: 'Toledo',
-      pais: 'España',
-    },
-    activities: {
-      rideBikes: 45,
-      runs: 22,
-    },
+    pais: 'España',
+    challenges: 45,
+    runs: 22,
+    following: false,
   },
 ];
