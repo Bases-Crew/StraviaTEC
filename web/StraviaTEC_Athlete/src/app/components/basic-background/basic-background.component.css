@@ -1,0 +1,17 @@
+/* basic-background.component.css */
+
+.background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.background img {
+  /* Estilos específicos para la imagen de fondo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para asegurarse de que la imagen cubra todo el espacio */
+}
