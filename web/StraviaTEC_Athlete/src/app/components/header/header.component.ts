@@ -8,10 +8,7 @@ import { User, user } from 'src/app/models/login.module';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  user: User = {
-    aemail: '',
-    apassword: '',
-  };
+  user: User | null = null;
 
   currentUrl: string = '';
 
