@@ -11,7 +11,6 @@
     <p><span class="detail-label">Price:</span> ${{ reportDetails.price }}</p>
   </div>
 
-  <h2 class="participants-title">Participants</h2>
   <div class="participants-table">
     <div class="table-header">
       <div>Name</div>
@@ -19,9 +18,10 @@
       <div>Completion Time</div>
     </div>
     <div class="table-row" *ngFor="let athlete of reportDetails.athletes">
-      <div>
+      <div class="name-cell">
         {{ athlete.fname }} {{ athlete.mname }} {{ athlete.lname1 }}
         {{ athlete.lname2 }}
+        <span *ngIf="athlete.isWinner" class="winner-icon">🏆</span>
       </div>
       <div>{{ getCategoryByAge(athlete.edad) }}</div>
       <div>{{ athlete.tiempocompletado }} mins</div>

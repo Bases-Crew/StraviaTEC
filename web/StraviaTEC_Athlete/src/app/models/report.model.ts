@@ -14,6 +14,7 @@ export interface Athlete {
   lname1: string;
   lname2: string;
   edad: number;
+  isWinner?: boolean;
   category: string;
   tiempocompletado?: number;
 }
@@ -24,6 +25,7 @@ export const reportExample: Report = {
   price: 100.0,
   rdate: new Date('2023-11-16'),
   sportname: 'Running',
+
   athletes: [
     {
       aemail: 'junior@example.com',
@@ -74,6 +76,16 @@ export const reportExample: Report = {
       edad: 45,
       category: '',
       tiempocompletado: 135.2,
+    },
+    {
+      aemail: 'runner5@example.com',
+      fname: 'Felip',
+      mname: 'F.',
+      lname1: 'Pérez',
+      lname2: 'Guzma',
+      edad: 45,
+      category: '',
+      tiempocompletado: 133.2,
     },
     {
       aemail: 'perro5@example.com',

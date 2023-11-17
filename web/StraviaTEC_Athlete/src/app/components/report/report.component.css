@@ -7,6 +7,90 @@
   padding: 20px;
 }
 
+/* Nuevos estilos para ganadores */
+.winner-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+.winner-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url("/path/to/trophy-icon.svg"); /* Ajusta la ruta al ícono de trofeo */
+  background-size: cover;
+  margin-right: 10px;
+}
+/* Mejora la visibilidad del ganador con un color de fondo */
+.table-row.winner {
+  background-color: #ffff99; /* Un amarillo suave para destacar */
+}
+
+/* Estilos para la interactividad */
+.export-button:hover,
+.table-row:hover {
+  opacity: 0.9; /* Efecto de opacidad al pasar el mouse */
+  /* Otras transiciones o transformaciones */
+}
+.report-title,
+.participants-title {
+  background: linear-gradient(45deg, #49a6e9, #7f53ac);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+.name-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinea el nombre a la izquierda y el icono a la derecha */
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  align-items: center;
+  /* Asegúrate de que las celdas no se compriman con nombres largos */
+  min-height: 50px; /* O un valor que se ajuste a tu diseño */
+}
+
+/* Modifica los estilos del icono del ganador si es necesario */
+.winner-icon {
+  margin-left: auto; /* Empuja el icono del ganador a la derecha */
+  font-size: 1.5em; /* Ajusta el tamaño del emoji según sea necesario */
+}
+
+/* Estilos para la tabla para manejar nombres largos */
+.table-header div,
+.table-row div {
+  flex: 1;
+  text-align: center;
+  margin: 0 10px; /* Agrega un poco de espacio entre las celdas */
+}
+
+.table-header div:nth-child(1),
+.table-row div:nth-child(1) {
+  text-align: left; /* Alinea los nombres a la izquierda */
+}
+
+.table-header div:nth-child(3),
+.table-row div:nth-child(3) {
+  text-align: right; /* Alinea los tiempos de finalización a la derecha */
+}
+
+.export-button {
+  background: linear-gradient(45deg, #56ab2f, #a8e063);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.export-button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 .report-title,
 .participants-title {
   color: #444;
