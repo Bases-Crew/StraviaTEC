@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Report, Athlete, reportExample } from '../models/report.model';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { TDocumentDefinitions } from 'pdfmake/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class ReportService {
   }
 
   exportReportToPDF(report: Report): void {
-    const docDefinition = {
+    const docDefinition: TDocumentDefinitions = {
       content: [
         { text: report.rname, style: 'header' },
         {
@@ -36,15 +37,15 @@ export class ReportService {
         header: {
           fontSize: 18,
           bold: true,
-          margin: [0, 0, 0, 10] as [number, number, number, number],
+          margin: [0, 0, 0, 10], // Corregido a arreglo de 4 elementos
         },
         subheader: {
           fontSize: 15,
           bold: true,
-          margin: [0, 10, 0, 5] as [number, number, number, number],
+          margin: [0, 10, 0, 5], // Corregido a arreglo de 4 elementos
         },
         tableExample: {
-          margin: [0, 5, 0, 15] as [number, number, number, number],
+          margin: [0, 5, 0, 15], // Corregido a arreglo de 4 elementos
         },
       },
     };
@@ -58,12 +59,13 @@ export class ReportService {
         athlete.lname2
       }`,
       this.getCategoryByAge(athlete.edad),
+      athlete.edad, // Agregado la edad aquí
       `${athlete.tiempocompletado ?? ''} mins`,
     ]);
 
     return {
       table: {
-        body: [['Name', 'Category', 'Completion Time'], ...body],
+        body: [['Name', 'Category', 'Age', 'Completion Time'], ...body], // Incluyendo la columna de edad
       },
     };
   }
