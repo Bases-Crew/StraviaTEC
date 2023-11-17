@@ -8,6 +8,8 @@
     <div class="table-header">
       <div>Name</div>
       <div>Category</div>
+      <div>Age</div>
+      <!-- Nueva columna para la edad -->
       <div>Completion Time</div>
     </div>
 
@@ -24,6 +26,8 @@
           <span *ngIf="athlete.isWinner" class="winner-icon">🏆</span>
         </div>
         <div>{{ getCategoryByAge(athlete.edad) }}</div>
+        <div>{{ athlete.edad }}</div>
+        <!-- Mostrar la edad aquí -->
         <div>{{ athlete.tiempocompletado }} mins</div>
       </div>
     </ng-container>
