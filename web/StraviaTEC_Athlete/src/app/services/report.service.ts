@@ -57,7 +57,7 @@ export class ReportService {
       `${athlete.fname} ${athlete.mname ?? ''} ${athlete.lname1} ${
         athlete.lname2
       }`,
-      this.getCategoryByAge(athlete.edad), // Aquí se utiliza la nueva función
+      this.getCategoryByAge(athlete.edad),
       `${athlete.tiempocompletado ?? ''} mins`,
     ]);
 
@@ -75,6 +75,6 @@ export class ReportService {
     if (age > 30 && age <= 40) return 'Master A';
     if (age > 40 && age <= 50) return 'Master B';
     if (age > 51) return 'Master C';
-    return 'Elite'; // Categoría por defecto para otros casos
+    return 'Elite';
   }
 }
