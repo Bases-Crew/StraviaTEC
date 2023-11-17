@@ -9,9 +9,14 @@
 <body>
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" *ngFor="let activity of activities">
-          <div class="card shadow-sm" (click)="showComments(activity)">
+      <div class="row g-3">
+        <div class="col-12" *ngFor="let activity of activities">
+          <div
+            class="card shadow-sm mx-auto"
+            style="max-width: 540px"
+            (click)="showComments(activity)"
+          >
+            <h5 class="card-title">{{ activity.auser }}</h5>
             <img
               class="card-img-top"
               width="100%"
@@ -19,26 +24,13 @@
               alt="image"
               style="cursor: pointer"
             />
-            <div class="card-body">
-              <p class="card-text">
-                {{ activity.auser }}
-              </p>
+            <div class="card-body text-center">
               <p class="card-text">Duración: {{ activity.aduration }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-body-secondary">
-                  Hora: {{ activity.ahour }}, Dia: {{ activity.adate }}</small
-                >
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-body-secondary"
-                  >Kilometros: {{ activity.millage }} km</small
-                >
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-body-secondary"
-                  >Deporte: {{ activity.sport_name }}</small
-                >
-              </div>
+              <p class="card-text">
+                Hora: {{ activity.ahour }}, Dia: {{ activity.adate }}
+              </p>
+              <p class="card-text">Kilometros: {{ activity.millage }} km</p>
+              <p class="card-text">Deporte: {{ activity.sport_name }}</p>
             </div>
           </div>
         </div>

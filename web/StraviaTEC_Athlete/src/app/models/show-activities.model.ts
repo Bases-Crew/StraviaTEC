@@ -29,4 +29,22 @@ export const activitiesExamples: Activity[] = [
     auser: 'adri@gmail.com',
     sport_name: 'Kayak',
   },
+  {
+    activityid: 3,
+    adate: '2023-11-01',
+    ahour: '20:00',
+    aduration: '2:00',
+    millage: 20,
+    auser: 'jose@gmail.com',
+    sport_name: 'Ride',
+  },
+  {
+    activityid: 4,
+    adate: '2023-12-01',
+    ahour: '15:00',
+    aduration: '3:00',
+    millage: 60,
+    auser: 'maria@gmail.com',
+    sport_name: 'Swim',
+  },
 ];
