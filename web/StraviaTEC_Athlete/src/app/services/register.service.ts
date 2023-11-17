@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Athlete } from '../models/athlete.model';
-import { Country } from '../models/country.module';
+import { Country } from '../models/country.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
