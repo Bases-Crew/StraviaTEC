@@ -37,4 +37,13 @@ export class ReportComponent implements OnInit {
       this.reportService.exportReportToPDF(this.reportDetails);
     }
   }
+  getCategoryByAge(age: number): string {
+    if (age < 15) return 'Junior';
+    if (age >= 15 && age <= 23) return 'Sub-23';
+    if (age >= 24 && age <= 30) return 'Open';
+    if (age > 30 && age <= 40) return 'Master A';
+    if (age > 40 && age <= 50) return 'Master B';
+    if (age > 51) return 'Master C';
+    return 'Elite';
+  }
 }

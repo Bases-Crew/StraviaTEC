@@ -11,6 +11,7 @@
 .participants-title {
   color: #444;
   margin-bottom: 20px;
+  text-align: center; /* Centra el título */
 }
 
 .report-details,
@@ -31,11 +32,13 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+  border-bottom: 1px solid #ddd; /* Agrega una línea de separación entre las filas */
+  align-items: center; /* Alinea verticalmente los elementos en cada fila */
 }
 
 .table-header {
   font-weight: bold;
-  border-bottom: 2px solid #eee;
+  background-color: #f0f0f0; /* Agrega un fondo gris claro a la cabecera de la tabla */
 }
 
 .export-button {
@@ -50,4 +53,5 @@
 
 .export-button:hover {
   background-color: #45a049;
+  transition: background-color 0.3s ease; /* Agrega una transición suave al cambiar el color de fondo al pasar el mouse */
 }

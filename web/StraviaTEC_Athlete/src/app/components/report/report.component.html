@@ -23,7 +23,8 @@
         {{ athlete.fname }} {{ athlete.mname }} {{ athlete.lname1 }}
         {{ athlete.lname2 }}
       </div>
-      <div>{{ athlete.category }}</div>
+      <div>{{ getCategoryByAge(athlete.edad) }}</div>
+      <!-- Cambio aquí -->
       <div>{{ athlete.tiempocompletado }} mins</div>
     </div>
   </div>
