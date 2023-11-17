@@ -97,13 +97,13 @@ export const challengesList: Challenge[] = [
     start_date: new Date('2023-12-01'),
     final_date: new Date('2023-12-31'),
   },
-  // Desafíos de tipo 'Workout'
+  // Desafíos de tipo 'Kayak'
   {
     id: 11,
     challenge_name: 'Reto de Fuerza',
     description:
       'Completa un entrenamiento de fuerza con 50 repeticiones de cada ejercicio.',
-    challenge_type: 'Workout',
+    challenge_type: 'Kayak',
     start_date: new Date('2023-07-01'),
     final_date: new Date('2023-07-31'),
   },
@@ -111,7 +111,7 @@ export const challengesList: Challenge[] = [
     id: 12,
     challenge_name: 'Desafío de Flexibilidad',
     description: 'Practica una rutina de estiramiento diaria durante 30 días.',
-    challenge_type: 'Workout',
+    challenge_type: 'Kayak',
     start_date: new Date('2023-09-01'),
     final_date: new Date('2023-09-30'),
   },
