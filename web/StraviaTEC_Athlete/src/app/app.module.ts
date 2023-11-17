@@ -29,6 +29,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowActivitiesComponent } from './components/show-activities/show-activities.component';
+import { ReportComponent } from './components/report/report.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -50,6 +51,7 @@ import { ShowActivitiesComponent } from './components/show-activities/show-activ
     LoginFormComponent,
     RegisterFormComponent,
     ShowActivitiesComponent,
+    ReportComponent,
   ],
   providers: [
     ExampleRickMortyService,

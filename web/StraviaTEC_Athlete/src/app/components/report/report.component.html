@@ -1,0 +1,32 @@
+<!-- report.component.html -->
+<div *ngIf="reportDetails" id="report-container" class="report-container">
+  <h1 class="report-title">{{ reportDetails.rname }}</h1>
+  <div class="report-details">
+    <p>
+      <span class="detail-label">Date:</span> {{ reportDetails.rdate | date }}
+    </p>
+    <p>
+      <span class="detail-label">Sport:</span> {{ reportDetails.sportname }}
+    </p>
+    <p><span class="detail-label">Price:</span> ${{ reportDetails.price }}</p>
+  </div>
+
+  <h2 class="participants-title">Participants</h2>
+  <div class="participants-table">
+    <div class="table-header">
+      <div>Name</div>
+      <div>Category</div>
+      <div>Completion Time</div>
+    </div>
+    <div class="table-row" *ngFor="let athlete of reportDetails.athletes">
+      <div>
+        {{ athlete.fname }} {{ athlete.mname }} {{ athlete.lname1 }}
+        {{ athlete.lname2 }}
+      </div>
+      <div>{{ athlete.category }}</div>
+      <div>{{ athlete.tiempocompletado }} mins</div>
+    </div>
+  </div>
+
+  <button class="export-button" (click)="onExportToPDF()">Export to PDF</button>
+</div>
