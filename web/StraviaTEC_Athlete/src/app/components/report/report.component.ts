@@ -9,6 +9,15 @@ import { Report, Athlete } from 'src/app/models/report.model';
 })
 export class ReportComponent implements OnInit {
   reportDetails: Report | null = null;
+  categories = [
+    'Junior',
+    'Sub-23',
+    'Open',
+    'Elite',
+    'Master A',
+    'Master B',
+    'Master C',
+  ];
 
   constructor(private reportService: ReportService) {}
 
@@ -20,17 +29,38 @@ export class ReportComponent implements OnInit {
     const details = this.reportService.getReportDetails();
     if (details) {
       this.reportDetails = details;
-      this.sortAthletesByTime();
+      this.sortAthletesByCategoryAndTime();
       this.assignWinners();
     }
   }
 
-  sortAthletesByTime(): void {
-    this.reportDetails?.athletes.sort(
-      (a, b) =>
+  sortAthletesByCategoryAndTime(): void {
+    this.reportDetails?.athletes.sort((a, b) => {
+      const categoryOrder = [
+        'Junior',
+        'Sub-23',
+        'Open',
+        'Elite',
+        'Master A',
+        'Master B',
+        'Master C',
+      ];
+      const categoryIndexA = categoryOrder.indexOf(
+        this.getCategoryByAge(a.edad)
+      );
+      const categoryIndexB = categoryOrder.indexOf(
+        this.getCategoryByAge(b.edad)
+      );
+
+      if (categoryIndexA !== categoryIndexB) {
+        return categoryIndexA - categoryIndexB;
+      }
+
+      return (
         (a.tiempocompletado ?? Number.MAX_VALUE) -
         (b.tiempocompletado ?? Number.MAX_VALUE)
-    );
+      );
+    });
   }
 
   assignWinners(): void {
@@ -63,6 +93,14 @@ export class ReportComponent implements OnInit {
     if (age > 40 && age <= 50) return 'Master B';
     if (age > 51) return 'Master C';
     return 'Elite';
+  }
+
+  getAthletesByCategory(category: string): Athlete[] {
+    return (
+      this.reportDetails?.athletes.filter(
+        (athlete) => this.getCategoryByAge(athlete.edad) === category
+      ) || []
+    );
   }
 
   onExportToPDF(): void {
