@@ -3,6 +3,7 @@ CREATE TABLE COUNTRY
 	Cnumber			INT IDENTITY(1,1)	NOT NULL,
 	CountryName		VARCHAR(30)			NOT NULL,
 	Flag			VARCHAR(250),
+	UNIQUE(CountryName),
 	PRIMARY KEY(Cnumber)
 );
 
@@ -31,6 +32,7 @@ CREATE TABLE SPORT
 (
 	SportID			INT IDENTITY(1,1)	NOT NULL,
 	SportName		VARCHAR(10)			NOT NULL,
+	UNIQUE(SportName),
 	PRIMARY KEY(SportID)
 );
 
@@ -77,6 +79,7 @@ CREATE TABLE CHALLENGE
 	FinalDate		DATE				NOT NULL,
 	Pid				INT					NOT NULL,
 	Sptid			INT					NOT NULL,
+	Mileage			SMALLINT			NOT NULL,
 	PRIMARY KEY(ChallengeID)
 );
 
@@ -108,6 +111,7 @@ CREATE TABLE CATEGORY
 	CategoryID		INT IDENTITY(1,1)	NOT NULL,
 	CategoryName	VARCHAR(8)			NOT NULL,
 	Descr			VARCHAR(35)			NOT NULL,
+	UNIQUE(CategoryName),
 	PRIMARY KEY(CategoryID)
 );
 
@@ -162,6 +166,7 @@ CREATE TABLE SGROUP
 	Gname		VARCHAR(50)			NOT NULL,
 	Ouser		VARCHAR(25)			NOT NULL,
 	Logo		VARCHAR(250),
+	UNIQUE(Gname),
 	PRIMARY KEY(GroupID)
 );
 

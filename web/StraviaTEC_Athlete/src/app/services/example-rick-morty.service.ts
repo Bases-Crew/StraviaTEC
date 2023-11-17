@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/app/environment';
-import { ExampleRickMorty } from 'src/app/models/example-rick-morty.module';
+import { ExampleRickMorty } from 'src/app/models/example-rick-morty.model';
 
 @Injectable({
   providedIn: 'root',

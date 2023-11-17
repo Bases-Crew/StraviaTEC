@@ -20,12 +20,15 @@ import { DisplayFriendsComponent } from './components/display-friends/display-fr
 import { FriendsComponent } from './components/friends/friends.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
 import { ProfilesComponent } from './components/profiles/profiles.component';
+import { TrilComponent } from './components/tril/tril.component';
+import { GroupComponent } from './components/group/group.component';
 import { BasicPanelComponent } from './components/basic-pannel/basic-panel.component';
 import { BasicBackgroundComponent } from './components/basic-background/basic-background.component';
 import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ShowActivitiesComponent } from './components/show-activities/show-activities.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -38,12 +41,15 @@ import { FooterComponent } from './footer/footer.component';
     FriendsComponent,
     ChallengesComponent,
     ProfilesComponent,
+    TrilComponent,
+    GroupComponent,
     FooterComponent,
     BasicPanelComponent,
     BasicBackgroundComponent,
     InitialStageComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    ShowActivitiesComponent,
   ],
   providers: [
     ExampleRickMortyService,

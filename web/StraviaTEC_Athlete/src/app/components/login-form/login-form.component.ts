@@ -3,7 +3,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { LoginFormService as LoginFormService } from '../../services/login-form.service'; // Update the path as necessary
 import { Router } from '@angular/router';
-import { exampleUser, user } from 'src/app/models/login.module';
+import { exampleUser, user } from 'src/app/models/login.model';
 
 @Component({
   selector: 'app-login-form',

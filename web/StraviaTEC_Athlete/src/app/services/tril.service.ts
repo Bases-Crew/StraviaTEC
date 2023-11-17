@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Profile, profilesList } from 'src/app/models/profiles.model';
+import { Profile, profilesList } from '../models/tril.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfilesService {
+export class TrilService {
   constructor() {}
 
   getProfiles(): Profile[] {

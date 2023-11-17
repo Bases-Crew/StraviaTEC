@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Athlete } from '../models/athlete.module';
+import { Athlete } from '../models/athlete.model';
 import { Country } from '../models/country.module';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';

@@ -16,4 +16,20 @@ VALUES('Vietnam', 'https://es.wikipedia.org/wiki/Vietnam#/media/Archivo:Flag_of_
 INSERT INTO ORGANIZER(Oemail, Opassword)
 VALUES('pedrog@gmail.com', '1234');
 
+INSERT INTO SPORT(SportName)
+VALUES('Correr')
 
+INSERT INTO SPORT(SportName)
+VALUES('Nadar')
+
+INSERT INTO SPORT(SportName)
+VALUES('Ciclismo')
+
+INSERT INTO SPORT(SportName)
+VALUES('Senderismo')
+
+INSERT INTO SPORT(SportName)
+VALUES('Kayak')
+
+INSERT INTO SPORT(SportName)
+VALUES('Caminata')

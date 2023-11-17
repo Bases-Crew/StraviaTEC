@@ -1,7 +1,7 @@
 // challenges.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Challenge, challengesList } from 'src/app/models/challenges.module'; // Cambia 'challenges.module' por 'challenges.model'
+import { Challenge, challengesList } from 'src/app/models/challenges.model'; // Cambia 'challenges.module' por 'challenges.model'
 
 @Injectable({
   providedIn: 'root',

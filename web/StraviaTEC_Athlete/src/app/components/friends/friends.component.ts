@@ -1,6 +1,6 @@
 // friends.component.ts
 import { Component } from '@angular/core';
-import { Friend } from 'src/app/models/friends.module';
+import { Friend } from 'src/app/models/friends.model';
 import { FriendsService } from 'src/app/services/friends.service';
 
 @Component({
