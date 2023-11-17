@@ -153,5 +153,33 @@ namespace StraviaTECAPISQLS.Controllers
             }
 
         }
+
+        [HttpDelete]
+        [Route("delete")]
+        public JsonResult GetCompletion(string aemail)
+        {
+            string query = @"
+                EXEC sp_DeleteAthlete @Aemail
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@Aemail", aemail);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Atleta Eliminado");
+        }
     }
 }

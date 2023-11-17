@@ -140,3 +140,121 @@ BEGIN
 END;
 GO
 
+CREATE OR ALTER PROCEDURE sp_GetNotExpiredChallenges
+AS
+BEGIN
+	SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
+	FROM CHALLENGE C
+	JOIN SPORT S ON C.Pid = S.SportID
+	WHERE FinalDate > GETDATE();
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetUnsubscribedChallenges @Aemail VARCHAR(25)
+AS
+BEGIN
+	SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
+	FROM CHALLENGE C
+	JOIN SPORT S ON C.Pid = S.SportID
+	WHERE FinalDate > GETDATE() AND NOT EXISTS (SELECT 1 FROM ATHLETE_CHALLENGE AC WHERE AC.Auser = @Aemail AND AC.Challid = C.ChallengeID);
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_AcceptChallenge @Aemail VARCHAR(25), @challengeID INT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM ATHLETE_CHALLENGE WHERE Auser = @Aemail AND Challid = @challengeID)
+    BEGIN
+        RETURN 0
+    END
+    ELSE
+    BEGIN
+        INSERT INTO ATHLETE_CHALLENGE(Auser, Challid) 
+		VALUES (@Aemail, @challengeID);
+
+		RETURN 1
+    END
+END;
+GO
+
+CREATE OR ALTER FUNCTION dbo.CalculateCompletion (@TotalMileage INT, @ChallengeMileage INT)
+RETURNS DECIMAL(5,2)
+AS
+BEGIN
+    DECLARE @Completion DECIMAL(5,2);
+
+    SET @Completion = 0;
+
+    IF @ChallengeMileage > 0
+    BEGIN
+        SET @Completion = CAST(@TotalMileage AS DECIMAL(5,2)) / @ChallengeMileage * 100;
+    END
+
+    RETURN @Completion;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetAthleteChallengeInfo @Aemail VARCHAR(25)
+AS
+BEGIN
+    SELECT C.ChallengeID AS id,
+		   C.Cname AS challenge_name,
+		   C.Mileage,
+		   C.Ctype AS ChallengeType,
+	       C.StartDate AS 'start_date',
+		   C.FinalDate AS 'final_date',
+		   S.SportName AS Sport_name,
+		   SP.Sname AS sponsor_name,
+		   SP.Logo AS sponsor_logo,
+		   SP.Phone AS sponsor_phone,
+		   SP.Agent AS sponsor_agent,
+		   dbo.CalculateCompletion(COALESCE(SUM(ACT.Mileage), 0), C.Mileage) AS Completion
+    FROM CHALLENGE C
+    JOIN ATHLETE_CHALLENGE AC ON C.ChallengeID = AC.Challid
+    JOIN ATHLETE A ON AC.Auser = A.Aemail
+    LEFT JOIN ACTIVITY ACT ON AC.Auser = ACT.Auser AND AC.Challid = ACT.Challid
+    JOIN SPORT S ON C.Sptid = S.SportID
+    LEFT JOIN CHALLENGE_SPONSOR CS ON C.ChallengeID = CS.Challid
+    LEFT JOIN SPONSOR SP ON CS.Spnid = SP.SponsorID
+    WHERE ACT.Auser = @Aemail AND ACT.Adate BETWEEN C.StartDate AND C.FinalDate
+    GROUP BY C.ChallengeID, C.Cname, C.Mileage, C.Ctype, C.StartDate, C.FinalDate, S.SportName, SP.Sname, SP.Logo, SP.Phone, SP.Agent;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_DeleteAthlete @Aemail VARCHAR(25)
+AS
+BEGIN
+	BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DELETE FROM FOLLOWS
+        WHERE Afollower = @Aemail OR Afollows = @Aemail;
+
+        DELETE FROM COMMENT
+        WHERE Auser = @Aemail
+        AND Actid IN (SELECT ActivityID FROM ACTIVITY WHERE Auser = @Aemail);
+
+        DELETE FROM ACTIVITY
+        WHERE Auser = @Aemail;
+
+        DELETE FROM ATHLETE_CHALLENGE
+        WHERE Auser = @Aemail;
+
+        DELETE FROM ATHLETE_GROUP
+        WHERE Auser = @Aemail;
+
+        DELETE FROM ATHLETE
+        WHERE Aemail = @Aemail;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
+END;
+GO
+
+EXEC sp_DeleteAthlete 'marco@gmail.com'
+
+select * from ATHLETE

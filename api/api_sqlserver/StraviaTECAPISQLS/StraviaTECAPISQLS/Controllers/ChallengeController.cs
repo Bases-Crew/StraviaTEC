@@ -44,6 +44,89 @@ namespace StraviaTECAPISQLS.Controllers
             return new JsonResult(table);
         }
 
+        [HttpGet]
+        [Route("available")]
+        public JsonResult GetNotExpired()
+        {
+            string query = @"
+                EXEC sp_GetNotExpiredChallenges
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [HttpGet]
+        [Route("athlete/unaccepted")]
+        public JsonResult GetUnacceptedChallenges(string aemail)
+        {
+            string query = @"
+                EXEC sp_GetUnsubscribedChallenges @Aemail
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@Aemail", aemail);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [HttpGet]
+        [Route("athlete/info")]
+        public JsonResult GetCompletion(string aemail)
+        {
+            string query = @"
+                EXEC sp_GetAthleteChallengeInfo @Aemail
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@Aemail", aemail);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         [HttpPost]
         [Route("new")]
         public async Task<JsonResult> Post(Challenge user)
@@ -78,6 +161,40 @@ namespace StraviaTECAPISQLS.Controllers
             }
 
             return new JsonResult("Reto añadido");
+        }
+
+        [HttpPost]
+        [Route("join")]
+        public string PostLogin(Athlete_challenge user)
+        {
+            string query = @"
+                EXEC sp_AcceptChallenge @aemail, @challenge_id
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@aemail", user.aemail);
+                    myCommand.Parameters.AddWithValue("@challenge_id", user.challenge_id);
+
+                    int joined = (int)myCommand.ExecuteScalar();
+
+                    if (joined == 1)
+                    {
+                        return "Reto aceptado!";
+                    }
+                    else
+                    {
+                        return "Atleta ya habia aceptado el reto";
+                    }
+                }
+            }
+
         }
 
     }
