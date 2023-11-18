@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/report.service';
-import { ReportParticipantsService } from 'src/app/services/report-participants.service'; // Asegúrate de que la ruta sea correcta
+import { ReportParticipantsService } from 'src/app/services/report-participants.service';
 import { Report, Athlete } from 'src/app/models/report.model';
 
 @Component({
@@ -22,7 +22,7 @@ export class ReportParticipantsComponent implements OnInit {
 
   constructor(
     private reportService: ReportService,
-    private reportParticipantsService: ReportParticipantsService // Añade el servicio de exportación de PDF
+    private reportParticipantsService: ReportParticipantsService
   ) {}
 
   ngOnInit() {
@@ -30,10 +30,7 @@ export class ReportParticipantsComponent implements OnInit {
   }
 
   getReportDetails(): void {
-    const details = this.reportService.getReportDetails();
-    if (details) {
-      this.reportDetails = details;
-    }
+    this.reportDetails = this.reportService.getReportDetails();
   }
 
   getAthletesByCategory(category: string): Athlete[] {
@@ -54,7 +51,6 @@ export class ReportParticipantsComponent implements OnInit {
     return 'Elite';
   }
 
-  // Función para exportar a PDF
   exportToPDF(): void {
     if (this.reportDetails) {
       this.reportParticipantsService.exportReportToPDF(this.reportDetails);

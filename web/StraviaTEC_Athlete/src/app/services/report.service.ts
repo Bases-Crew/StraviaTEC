@@ -35,17 +35,21 @@ export class ReportService {
       ],
       styles: {
         header: {
-          fontSize: 18,
+          fontSize: 22,
           bold: true,
-          margin: [0, 0, 0, 10], // Corregido a arreglo de 4 elementos
+          alignment: 'center',
+          color: '#123456', // Color personalizado para el encabezado
+          margin: [0, 0, 0, 10],
         },
         subheader: {
-          fontSize: 15,
+          fontSize: 16,
           bold: true,
-          margin: [0, 10, 0, 5], // Corregido a arreglo de 4 elementos
+          color: '#654321', // Color diferente para subencabezados
+          margin: [0, 10, 0, 5],
         },
         tableExample: {
-          margin: [0, 5, 0, 15], // Corregido a arreglo de 4 elementos
+          margin: [0, 5, 0, 15],
+          fontSize: 10,
         },
       },
     };
