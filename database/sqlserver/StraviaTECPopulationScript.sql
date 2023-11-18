@@ -33,3 +33,19 @@ VALUES('Kayak')
 
 INSERT INTO SPORT(SportName)
 VALUES('Caminata')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Tecnologico de Costa Rica', '88884444', 'https://es.wikipedia.org/wiki/Tecnológico_de_Costa_Rica#/media/Archivo:Firma_TEC.svg', 'Marco Rivera Meneses')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Intel', '44448888', 'https://es.wikipedia.org/wiki/Intel#/media/Archivo:Intel_logo_2023.svg', 'Pat Gelsinger')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('HP Inc', '22227777', 'https://es.wikipedia.org/wiki/HP_Inc.#/media/Archivo:HP_logo_2012.svg', '	David Packar')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Universidad de Costa Rica', '42002478', 'https://es.wikipedia.org/wiki/Universidad_de_Costa_Rica#/media/Archivo:Logo_de_la_Universidad_de_Costa_Rica.svg', 'Felipe Vargas')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Red Bull', '77779999', 'https://es.wikipedia.org/wiki/Red_Bull#/media/Archivo:Logo_of_Red_bull.svg', 'Chaleo Yoovidhya')
+
