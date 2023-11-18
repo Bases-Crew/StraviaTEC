@@ -132,7 +132,7 @@ namespace StraviaTECAPISQLS.Controllers
         public async Task<JsonResult> Post(Challenge user)
         {
             string query = @"
-                 EXEC sp_NewChallenge @Cname, @Ctype, @StartDate, @FinalDate, @Pid, @SportName, @Mileage
+                 EXEC sp_NewChallenge @Cname, @Ctype, @Mileage, @StartDate, @FinalDate, @Pid, @Patrocinadores, @Grupos, @SportName
             ";
 
             DataTable table = new DataTable();
@@ -151,7 +151,11 @@ namespace StraviaTECAPISQLS.Controllers
                     myCommand.Parameters.AddWithValue("@FinalDate", finalDate);
                     myCommand.Parameters.AddWithValue("@Pid", user.Pid);
                     myCommand.Parameters.AddWithValue("@SportName", user.SportName);
-                    myCommand.Parameters.AddWithValue("@Mileage", user.Mileage);   
+                    myCommand.Parameters.AddWithValue("@Mileage", user.Mileage);
+                    string patrocinadoresString = string.Join(",", user.Patrocinadores);
+                    myCommand.Parameters.AddWithValue("@Patrocinadores", patrocinadoresString);
+                    string gruposString = string.Join(",", user.Grupos);
+                    myCommand.Parameters.AddWithValue("@Grupos", gruposString);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 

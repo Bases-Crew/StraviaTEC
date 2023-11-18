@@ -76,24 +76,62 @@ BEGIN
 END;
 GO
 
-CREATE OR ALTER PROCEDURE sp_NewChallenge @Cname VARCHAR(50),
-										  @Ctype VARCHAR(8),
-										  @StartDate DATE,
-										  @FinalDate DATE,
-										  @Pid	INT,
-										  @SportName VARCHAR(10),
-									      @Mileage SMALLINT
+CREATE OR ALTER PROCEDURE sp_NewChallenge
+    @Nombre VARCHAR(50),
+    @ctype VARCHAR(8),
+    @kilometraje SMALLINT,
+    @inicial DATE,
+    @final DATE,
+    @Privacidad INT,
+    @Patrocinadores VARCHAR(MAX),
+    @Grupos VARCHAR(MAX),
+    @SportName VARCHAR(10)
 AS
 BEGIN
-	INSERT INTO CHALLENGE(Cname, Ctype, StartDate, FinalDate, Pid, Sptid, Mileage)
-	VALUES(@Cname, @Ctype, @StartDate, @FinalDate, @Pid, (SELECT SportID FROM SPORT WHERE SportName = @SportName), @Mileage)
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DECLARE @Challid INT;
+
+        INSERT INTO CHALLENGE (Cname, Ctype, StartDate, FinalDate, Pid, Sptid, Mileage)
+        VALUES (@Nombre, @ctype, @inicial, @final, 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName), @kilometraje);
+
+        SET @Challid = SCOPE_IDENTITY();
+
+        IF @Privacidad <> 0
+        BEGIN
+            INSERT INTO PRIVACY DEFAULT VALUES;
+
+            DECLARE @PrivacyID INT = SCOPE_IDENTITY();
+
+            INSERT INTO GROUP_PRIVACY (Gid, Pid)
+            SELECT GroupID, @PrivacyID
+            FROM SGROUP
+            WHERE Gname IN (SELECT value FROM STRING_SPLIT(@Grupos, ','));
+
+            UPDATE CHALLENGE
+            SET Pid = @PrivacyID
+            WHERE ChallengeID = @Challid;
+        END
+
+        INSERT INTO CHALLENGE_SPONSOR (Challid, Spnid)
+        SELECT @Challid, SponsorID
+        FROM SPONSOR
+        WHERE Sname IN (SELECT value FROM STRING_SPLIT(@Patrocinadores, ','));
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
 END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_GetChallenges
 AS
 BEGIN
-	SELECT ChallengeID AS id , Cname AS challenge_name, Mileage AS 'description', Ctype AS challenge_type, StartDate AS 'start_date', FinalDate AS 'final_date' 
+	SELECT ChallengeID AS id , Cname AS challenge_name, Mileage AS 'description', Ctype AS challenge_type, CONVERT(VARCHAR(10), StartDate, 120) AS 'start_date', CONVERT(VARCHAR(10), FinalDate, 120) AS 'final_date' 
 	FROM CHALLENGE
 END;
 GO
@@ -255,6 +293,98 @@ BEGIN
 END;
 GO
 
-EXEC sp_DeleteAthlete 'marco@gmail.com'
+CREATE OR ALTER PROCEDURE sp_NewRace
+    @RaceName VARCHAR(50),
+    @Price DECIMAL(7, 2),
+    @Date DATE,
+    @Route XML, 
+    @Privacy INT,
+    @Sponsors VARCHAR(MAX),
+    @Categories VARCHAR(MAX),
+    @BankAccounts VARCHAR(MAX), 
+    @SportName VARCHAR(10),
+    @Groups VARCHAR(MAX) 
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-select * from ATHLETE
+        DECLARE @RaceID INT;
+
+        INSERT INTO RACE (Rname, Price, Rdate, Rroute, Pid, Sptid)
+        VALUES (@RaceName, @Price, @Date, @Route, 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName));
+
+        SET @RaceID = SCOPE_IDENTITY();
+
+        INSERT INTO RACE_SPONSOR (Rid, Spnid)
+        SELECT @RaceID, SponsorID
+        FROM SPONSOR
+        WHERE Sname IN (SELECT value FROM STRING_SPLIT(@Sponsors, ','));
+
+        INSERT INTO RACE_CATEGORY (Rid, Catid)
+        SELECT @RaceID, CategoryID
+        FROM CATEGORY
+        WHERE CategoryName IN (SELECT value FROM STRING_SPLIT(@Categories, ','));
+
+        INSERT INTO RACE_BANKACCS (Rid, Account)
+        SELECT @RaceID, CONVERT(INT, value)
+        FROM STRING_SPLIT(@BankAccounts, ',');
+
+        IF @Groups IS NOT NULL
+        BEGIN
+            IF @Privacy <> 0
+            BEGIN
+                INSERT INTO PRIVACY DEFAULT VALUES;
+
+                DECLARE @PrivacyID INT = SCOPE_IDENTITY();
+
+                INSERT INTO GROUP_PRIVACY (Gid, Pid)
+                SELECT GroupID, @PrivacyID
+                FROM SGROUP
+                WHERE Gname IN (SELECT value FROM STRING_SPLIT(@Groups, ','));
+
+                UPDATE RACE
+                SET Pid = @PrivacyID
+                WHERE RaceID = @RaceID;
+            END
+        END
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetGroups
+AS
+BEGIN
+	SELECT Gname, Logo
+	FROM SGROUP
+	ORDER BY Gname
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_NewGroup
+    @GroupName VARCHAR(50),
+    @OrganizerEmail VARCHAR(25),
+    @Logo VARCHAR(250)
+AS
+BEGIN
+	INSERT INTO SGROUP (Gname, Ouser, Logo)
+	VALUES (@GroupName, @OrganizerEmail, @Logo);
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetSponsors
+AS
+BEGIN
+	SELECT Sname
+	FROM SPONSOR
+	ORDER BY Sname
+END;
+GO
+
+
