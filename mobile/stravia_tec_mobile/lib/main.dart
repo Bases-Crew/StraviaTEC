@@ -5,10 +5,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:stravia_tec_mobile/gpxFile.dart';
 
+/// The main function runs the MyApp widget.
 void main() {
   runApp(MyApp());
 }
 
+/// The `MyApp` class is a StatelessWidget that returns a MaterialApp widget with a custom theme and a
+/// MapPage as the home page.
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// The MapPage class is a StatefulWidget in Dart.
 class MapPage extends StatefulWidget {
   @override
   _MapPageState createState() => _MapPageState();
 }
 
+/// The `_MapPageState` class is a stateful widget that displays a Google Map along with various buttons
+/// and information related to a timer and GPS coordinates.
 class _MapPageState extends State<MapPage> {
   final Set<Marker> _markers = Set();
   late GoogleMapController _controller;
@@ -48,6 +54,18 @@ class _MapPageState extends State<MapPage> {
     getCurrentLocation();
   }
 
+ /// The function calculates the distance between two points on Earth using the Haversine formula.
+ /// 
+ /// Args:
+ ///   startLatitude (double): The start latitude is the latitude of the starting point in degrees.
+ ///   startLongitude (double): The startLongitude parameter represents the longitude of the starting
+ /// point in degrees.
+ ///   endLatitude (double): The endLatitude parameter represents the latitude of the destination point
+ /// in degrees.
+ ///   endLongitude (double): The endLongitude parameter represents the longitude of the end location.
+ /// 
+ /// Returns:
+ ///   the calculated distance between two points on the Earth's surface in kilometers.
   double calculateDistance(double startLatitude, double startLongitude,
       double endLatitude, double endLongitude) {
     const double radiusOfEarth = 6371; // Radio de la Tierra en kilómetros
@@ -72,6 +90,9 @@ class _MapPageState extends State<MapPage> {
     return distance;
   }
 
+/// The function `getCurrentLocation` listens for location changes and updates the current location,
+/// calculates distance and speed, adds the new location to the route, adds a marker to the map, and
+/// centers the camera on the new location.
   void getCurrentLocation() async {
     try {
       location.onLocationChanged.listen((LocationData newLocation) {
@@ -118,12 +139,25 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+/// The dispose function cancels a timer and calls the super.dispose() method.
   @override
   void dispose() {
     timer.cancel();
     super.dispose();
   }
 
+/// This function builds a Flutter widget that displays a Google Map along with various buttons and
+/// information related to a timer and GPS coordinates.
+/// 
+/// Args:
+///   context (BuildContext): The `context` parameter is a reference to the current build context. It is
+/// typically used to access the theme, localization, and other contextual information within the widget
+/// tree.
+/// 
+/// Returns:
+///   The code is returning a `Scaffold` widget with an `AppBar` and a `Column` as its body. The
+/// `Column` contains an `Expanded` widget with a `GoogleMap` widget, and a `Container` widget with a
+/// column of text and buttons.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -214,8 +248,6 @@ class _MapPageState extends State<MapPage> {
                       ),
                       onPressed: () {
                         stopTimer();
-                        //saveGPXFile(routeCoordinates);
-                        //isTimerActive = false;
                       },
                       child: const Text("Detener"),
                     ),
@@ -269,6 +301,16 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+/// The function `showConfirmationDialog` displays an AlertDialog with a title, content, and an OK
+/// button, and pops the dialog when the button is pressed.
+/// 
+/// Args:
+///   context (BuildContext): The `BuildContext` object represents the location in the widget tree where
+/// the dialog should be shown. It is typically obtained from the `BuildContext` parameter of the
+/// enclosing widget's build method.
+/// 
+/// Returns:
+///   The `showConfirmationDialog` function returns an `AlertDialog` widget.
   void showConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -289,6 +331,7 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+/// The function `resetData` resets various variables and clears a list in Dart.
   void resetData() {
     setState(() {
       totalDistance = 0;
@@ -300,6 +343,11 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+/// The `_addMarker` function adds a marker to a map at a specified position.
+/// 
+/// Args:
+///   position (LatLng): The position parameter is a LatLng object that represents the latitude and
+/// longitude coordinates of the marker's position on the map.
   void _addMarker(LatLng position) {
     final Marker marker = Marker(
       markerId: MarkerId(position.toString()),
@@ -315,6 +363,7 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+/// The function starts a timer that increments the seconds, minutes, and hours variables every second.
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
@@ -331,6 +380,7 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+/// The function "stopTimer" cancels a timer.
   void stopTimer() {
     timer.cancel();
   }
