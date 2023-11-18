@@ -1,0 +1,38 @@
+<div>
+  <!-- Buttons for switching windows and go back -->
+  <div class="d-flex justify-content-between mb-3">
+    <div class="btn-group" role="group">
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{
+          'btn-primary': isCreateVisible,
+          'btn-secondary': !isCreateVisible
+        }"
+        (click)="showCreate()"
+      >
+        Crear
+      </button>
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{
+          'btn-primary': isEditVisible,
+          'btn-secondary': !isEditVisible
+        }"
+        (click)="showEdit()"
+      >
+        Editar
+      </button>
+    </div>
+  </div>
+
+  <!-- Window content -->
+  <div>
+    <!-- Create Race Window -->
+    <app-manager-create-race *ngIf="isCreateVisible"></app-manager-create-race>
+
+    <!-- Edit Race Window -->
+    <app-manager-edit-race *ngIf="isEditVisible"></app-manager-edit-race>
+  </div>
+</div>

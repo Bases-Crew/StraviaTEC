@@ -1,0 +1,35 @@
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="height: 100vh"
+>
+  <div class="panel">
+    <!-- Header and buttons -->
+    <div *ngIf="!showManageRace && !showManageGroup && !showManageChallenge">
+      <h2 class="text-center">Seleccione una categoría</h2>
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-primary btn-lg m-2" (click)="Race()">
+          Carreras
+        </button>
+        <button class="btn btn-primary btn-lg m-2" (click)="Group()">
+          Grupos
+        </button>
+        <button class="btn btn-primary btn-lg m-2" (click)="Challenge()">
+          Retos
+        </button>
+      </div>
+    </div>
+
+    <!-- Dynamic content -->
+    <ng-container *ngIf="showManageRace">
+      <app-manager-race></app-manager-race>
+    </ng-container>
+
+    <ng-container *ngIf="showManageGroup">
+      <app-manager-group></app-manager-group>
+    </ng-container>
+
+    <ng-container *ngIf="showManageChallenge">
+      <app-manager-challenge></app-manager-challenge>
+    </ng-container>
+  </div>
+</div>

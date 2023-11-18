@@ -29,6 +29,13 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowActivitiesComponent } from './components/show-activities/show-activities.component';
+import { ManagerComponent } from './components/manager/manager.component';
+import { ManagerPanelComponent } from './components/manager-panel/manager-panel.component';
+import { ManagerRaceComponent } from './components/manager-race/manager-race.component';
+import { ManagerGroupComponent } from './components/manager-group/manager-group.component';
+import { ManagerChallengeComponent } from './components/manager-challenge/manager-challenge.component';
+import { ManagerCreateRaceComponent } from './components/manager-create-race/manager-create-race.component';
+import { ManagerEditRaceComponent } from './components/manager-edit-race/manager-edit-race.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -50,6 +57,13 @@ import { ShowActivitiesComponent } from './components/show-activities/show-activ
     LoginFormComponent,
     RegisterFormComponent,
     ShowActivitiesComponent,
+    ManagerComponent,
+    ManagerPanelComponent,
+    ManagerRaceComponent,
+    ManagerGroupComponent,
+    ManagerChallengeComponent,
+    ManagerCreateRaceComponent,
+    ManagerEditRaceComponent,
   ],
   providers: [
     ExampleRickMortyService,

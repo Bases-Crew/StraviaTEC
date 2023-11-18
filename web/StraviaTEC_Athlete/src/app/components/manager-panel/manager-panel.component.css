@@ -1,0 +1,26 @@
+.panel {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  overflow-y: auto;
+}
+
+.button-group button {
+  width: 150px;
+  height: 150px;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+.panel .btn-lg {
+  width: 150px; /* Adjust as needed */
+  height: 110px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -4,6 +4,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoginFormService as LoginFormService } from '../../services/login-form.service'; // Update the path as necessary
 import { Router } from '@angular/router';
 import { exampleUser, user } from 'src/app/models/login.model';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-login-form',
@@ -18,13 +19,17 @@ export class LoginFormComponent {
   errorMessage: string = '';
   constructor(
     private loginFormService: LoginFormService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
 
   login() {
     this.loginFormService.login(this.email, this.password).subscribe({
       next: (result) => {
         if (result.success) {
+          // Esto es para definir un email para otras componentes.
+          this.sharedService.setEmail(user.aemail);
+
           // Handle successful login
           console.log('Login successful');
           user.aemail = this.email;
