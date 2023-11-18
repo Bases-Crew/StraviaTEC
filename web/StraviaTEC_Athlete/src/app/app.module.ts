@@ -30,6 +30,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowActivitiesComponent } from './components/show-activities/show-activities.component';
 import { ReportComponent } from './components/report/report.component';
+import { ReportParticipantsComponent } from './components/report-participants/report-participants.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -52,6 +53,7 @@ import { ReportComponent } from './components/report/report.component';
     RegisterFormComponent,
     ShowActivitiesComponent,
     ReportComponent,
+    ReportParticipantsComponent,
   ],
   providers: [
     ExampleRickMortyService,
