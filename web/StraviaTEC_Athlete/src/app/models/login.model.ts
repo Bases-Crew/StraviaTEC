@@ -9,6 +9,7 @@ export interface User {
   birth_date: string;
   flag: string;
   countryname: string;
+  image?: string;
 }
 
 export const exampleUser: User = {

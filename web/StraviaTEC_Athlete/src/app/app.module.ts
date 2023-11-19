@@ -36,6 +36,14 @@ import { ManagerGroupComponent } from './components/manager-group/manager-group.
 import { ManagerChallengeComponent } from './components/manager-challenge/manager-challenge.component';
 import { ManagerCreateRaceComponent } from './components/manager-create-race/manager-create-race.component';
 import { ManagerEditRaceComponent } from './components/manager-edit-race/manager-edit-race.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { DisplayChallengeComponent } from './components/display-challenge/display-challenge.component';
+import { DisplayRunsComponent } from './components/display-runs/display-runs.component';
+import { DisplayProfileComponent } from './components/display-profile/display-profile.component';
+import { DisplayTrilComponent } from './components/display-tril/display-tril.component';
+import { MapComponent } from './components/map/map.component';
+import { ReportComponent } from './components/report/report.component';
+import { ReportParticipantsComponent } from './components/report-participants/report-participants.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -64,6 +72,14 @@ import { ManagerEditRaceComponent } from './components/manager-edit-race/manager
     ManagerChallengeComponent,
     ManagerCreateRaceComponent,
     ManagerEditRaceComponent,
+    HomepageComponent,
+    DisplayChallengeComponent,
+    DisplayRunsComponent,
+    DisplayProfileComponent,
+    DisplayTrilComponent,
+    MapComponent,
+    ReportComponent,
+    ReportParticipantsComponent,
   ],
   providers: [
     ExampleRickMortyService,

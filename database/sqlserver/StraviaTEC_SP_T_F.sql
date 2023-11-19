@@ -76,24 +76,62 @@ BEGIN
 END;
 GO
 
-CREATE OR ALTER PROCEDURE sp_NewChallenge @Cname VARCHAR(50),
-										  @Ctype VARCHAR(8),
-										  @StartDate DATE,
-										  @FinalDate DATE,
-										  @Pid	INT,
-										  @SportName VARCHAR(10),
-									      @Mileage SMALLINT
+CREATE OR ALTER PROCEDURE sp_NewChallenge
+    @Nombre VARCHAR(50),
+    @ctype VARCHAR(8),
+    @kilometraje SMALLINT,
+    @inicial DATE,
+    @final DATE,
+    @Privacidad INT,
+    @Patrocinadores VARCHAR(MAX),
+    @Grupos VARCHAR(MAX),
+    @SportName VARCHAR(10)
 AS
 BEGIN
-	INSERT INTO CHALLENGE(Cname, Ctype, StartDate, FinalDate, Pid, Sptid, Mileage)
-	VALUES(@Cname, @Ctype, @StartDate, @FinalDate, @Pid, (SELECT SportID FROM SPORT WHERE SportName = @SportName), @Mileage)
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DECLARE @Challid INT;
+
+        INSERT INTO CHALLENGE (Cname, Ctype, StartDate, FinalDate, Pid, Sptid, Mileage)
+        VALUES (@Nombre, @ctype, @inicial, @final, 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName), @kilometraje);
+
+        SET @Challid = SCOPE_IDENTITY();
+
+        IF @Privacidad <> 0
+        BEGIN
+            INSERT INTO PRIVACY DEFAULT VALUES;
+
+            DECLARE @PrivacyID INT = SCOPE_IDENTITY();
+
+            INSERT INTO GROUP_PRIVACY (Gid, Pid)
+            SELECT GroupID, @PrivacyID
+            FROM SGROUP
+            WHERE Gname IN (SELECT value FROM STRING_SPLIT(@Grupos, ','));
+
+            UPDATE CHALLENGE
+            SET Pid = @PrivacyID
+            WHERE ChallengeID = @Challid;
+        END
+
+        INSERT INTO CHALLENGE_SPONSOR (Challid, Spnid)
+        SELECT @Challid, SponsorID
+        FROM SPONSOR
+        WHERE Sname IN (SELECT value FROM STRING_SPLIT(@Patrocinadores, ','));
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
 END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_GetChallenges
 AS
 BEGIN
-	SELECT ChallengeID AS id , Cname AS challenge_name, Mileage AS 'description', Ctype AS challenge_type, StartDate AS 'start_date', FinalDate AS 'final_date' 
+	SELECT ChallengeID AS id , Cname AS challenge_name, Mileage AS 'description', Ctype AS challenge_type, CONVERT(VARCHAR(10), StartDate, 120) AS 'start_date', CONVERT(VARCHAR(10), FinalDate, 120) AS 'final_date' 
 	FROM CHALLENGE
 END;
 GO
@@ -139,4 +177,222 @@ BEGIN
 	EXEC sp_GetAthleteInformation @followerEmail;
 END;
 GO
+
+CREATE OR ALTER PROCEDURE sp_GetNotExpiredChallenges
+AS
+BEGIN
+	SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
+	FROM CHALLENGE C
+	JOIN SPORT S ON C.Pid = S.SportID
+	WHERE FinalDate > GETDATE();
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetUnsubscribedChallenges @Aemail VARCHAR(25)
+AS
+BEGIN
+	SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
+	FROM CHALLENGE C
+	JOIN SPORT S ON C.Pid = S.SportID
+	WHERE FinalDate > GETDATE() AND NOT EXISTS (SELECT 1 FROM ATHLETE_CHALLENGE AC WHERE AC.Auser = @Aemail AND AC.Challid = C.ChallengeID);
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_AcceptChallenge @Aemail VARCHAR(25), @challengeID INT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM ATHLETE_CHALLENGE WHERE Auser = @Aemail AND Challid = @challengeID)
+    BEGIN
+        RETURN 0
+    END
+    ELSE
+    BEGIN
+        INSERT INTO ATHLETE_CHALLENGE(Auser, Challid) 
+		VALUES (@Aemail, @challengeID);
+
+		RETURN 1
+    END
+END;
+GO
+
+CREATE OR ALTER FUNCTION dbo.CalculateCompletion (@TotalMileage INT, @ChallengeMileage INT)
+RETURNS DECIMAL(5,2)
+AS
+BEGIN
+    DECLARE @Completion DECIMAL(5,2);
+
+    SET @Completion = 0;
+
+    IF @ChallengeMileage > 0
+    BEGIN
+        SET @Completion = CAST(@TotalMileage AS DECIMAL(5,2)) / @ChallengeMileage * 100;
+    END
+
+    RETURN @Completion;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetAthleteChallengeInfo @Aemail VARCHAR(25)
+AS
+BEGIN
+    SELECT C.ChallengeID AS id,
+		   C.Cname AS challenge_name,
+		   C.Mileage,
+		   C.Ctype AS ChallengeType,
+	       C.StartDate AS 'start_date',
+		   C.FinalDate AS 'final_date',
+		   S.SportName AS Sport_name,
+		   SP.Sname AS sponsor_name,
+		   SP.Logo AS sponsor_logo,
+		   SP.Phone AS sponsor_phone,
+		   SP.Agent AS sponsor_agent,
+		   dbo.CalculateCompletion(COALESCE(SUM(ACT.Mileage), 0), C.Mileage) AS Completion
+    FROM CHALLENGE C
+    JOIN ATHLETE_CHALLENGE AC ON C.ChallengeID = AC.Challid
+    JOIN ATHLETE A ON AC.Auser = A.Aemail
+    LEFT JOIN ACTIVITY ACT ON AC.Auser = ACT.Auser AND AC.Challid = ACT.Challid
+    JOIN SPORT S ON C.Sptid = S.SportID
+    LEFT JOIN CHALLENGE_SPONSOR CS ON C.ChallengeID = CS.Challid
+    LEFT JOIN SPONSOR SP ON CS.Spnid = SP.SponsorID
+    WHERE ACT.Auser = @Aemail AND ACT.Adate BETWEEN C.StartDate AND C.FinalDate
+    GROUP BY C.ChallengeID, C.Cname, C.Mileage, C.Ctype, C.StartDate, C.FinalDate, S.SportName, SP.Sname, SP.Logo, SP.Phone, SP.Agent;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_DeleteAthlete @Aemail VARCHAR(25)
+AS
+BEGIN
+	BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DELETE FROM FOLLOWS
+        WHERE Afollower = @Aemail OR Afollows = @Aemail;
+
+        DELETE FROM COMMENT
+        WHERE Auser = @Aemail
+        AND Actid IN (SELECT ActivityID FROM ACTIVITY WHERE Auser = @Aemail);
+
+        DELETE FROM ACTIVITY
+        WHERE Auser = @Aemail;
+
+        DELETE FROM ATHLETE_CHALLENGE
+        WHERE Auser = @Aemail;
+
+        DELETE FROM ATHLETE_GROUP
+        WHERE Auser = @Aemail;
+
+        DELETE FROM ATHLETE
+        WHERE Aemail = @Aemail;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_NewRace
+    @RaceName VARCHAR(50),
+    @Price DECIMAL(7, 2),
+    @Date DATE,
+    @Route XML, 
+    @Privacy INT,
+    @Sponsors VARCHAR(MAX),
+    @Categories VARCHAR(MAX),
+    @BankAccounts VARCHAR(MAX), 
+    @SportName VARCHAR(10),
+    @Groups VARCHAR(MAX) 
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DECLARE @RaceID INT;
+
+        INSERT INTO RACE (Rname, Price, Rdate, Rroute, Pid, Sptid)
+        VALUES (@RaceName, @Price, @Date, @Route, 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName));
+
+        SET @RaceID = SCOPE_IDENTITY();
+
+        INSERT INTO RACE_SPONSOR (Rid, Spnid)
+        SELECT @RaceID, SponsorID
+        FROM SPONSOR
+        WHERE Sname IN (SELECT value FROM STRING_SPLIT(@Sponsors, ','));
+
+        INSERT INTO RACE_CATEGORY (Rid, Catid)
+        SELECT @RaceID, CategoryID
+        FROM CATEGORY
+        WHERE CategoryName IN (SELECT value FROM STRING_SPLIT(@Categories, ','));
+
+        INSERT INTO RACE_BANKACCS (Rid, Account)
+        SELECT @RaceID, CONVERT(INT, value)
+        FROM STRING_SPLIT(@BankAccounts, ',');
+
+        IF @Groups IS NOT NULL
+        BEGIN
+            IF @Privacy <> 0
+            BEGIN
+                INSERT INTO PRIVACY DEFAULT VALUES;
+
+                DECLARE @PrivacyID INT = SCOPE_IDENTITY();
+
+                INSERT INTO GROUP_PRIVACY (Gid, Pid)
+                SELECT GroupID, @PrivacyID
+                FROM SGROUP
+                WHERE Gname IN (SELECT value FROM STRING_SPLIT(@Groups, ','));
+
+                UPDATE RACE
+                SET Pid = @PrivacyID
+                WHERE RaceID = @RaceID;
+            END
+        END
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetGroups
+AS
+BEGIN
+	SELECT Gname, Logo
+	FROM SGROUP
+	ORDER BY Gname
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_NewGroup
+    @GroupName VARCHAR(50),
+    @OrganizerEmail VARCHAR(25),
+    @Logo VARCHAR(250)
+AS
+BEGIN
+	INSERT INTO SGROUP (Gname, Ouser, Logo)
+	VALUES (@GroupName, @OrganizerEmail, @Logo);
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetSponsors
+AS
+BEGIN
+	SELECT Sname
+	FROM SPONSOR
+	ORDER BY Sname
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetCategories
+AS
+BEGIN
+	SELECT CategoryName, Descr
+	FROM CATEGORY
+END;
+GO
+
 

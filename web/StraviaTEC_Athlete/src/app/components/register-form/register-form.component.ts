@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { RegisterService } from '../../services/register.service'; // Update the path as necessary
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BasicPanelComponent } from '../basic-pannel/basic-panel.component';
 
 @Component({
   selector: 'app-register-form',
@@ -23,6 +24,8 @@ export class RegisterFormComponent {
   countrynamesL: string[] = [];
   errorMessage: string | null = null;
   imageSrc: string | ArrayBuffer | null = null;
+
+  successFull: boolean = false;
 
   constructor(
     private registerService: RegisterService,
@@ -71,7 +74,8 @@ export class RegisterFormComponent {
 
     this.registerService.registerUser(formData).subscribe(
       (response) => {
-        this.router.navigate(['/display-example']);
+        console.log('Registration successful');
+        this.successFull = true;
       },
       (error) => {
         this.errorMessage = 'Registration failed';

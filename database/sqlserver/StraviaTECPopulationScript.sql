@@ -17,19 +17,55 @@ INSERT INTO ORGANIZER(Oemail, Opassword)
 VALUES('pedrog@gmail.com', '1234');
 
 INSERT INTO SPORT(SportName)
-VALUES('Correr')
+VALUES('Run')
 
 INSERT INTO SPORT(SportName)
-VALUES('Nadar')
+VALUES('Ride')
 
 INSERT INTO SPORT(SportName)
-VALUES('Ciclismo')
+VALUES('Swim')
 
 INSERT INTO SPORT(SportName)
-VALUES('Senderismo')
+VALUES('Walk')
+
+INSERT INTO SPORT(SportName)
+VALUES('Hike')
 
 INSERT INTO SPORT(SportName)
 VALUES('Kayak')
 
-INSERT INTO SPORT(SportName)
-VALUES('Caminata')
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Tecnologico de Costa Rica', '88884444', 'https://es.wikipedia.org/wiki/Tecnol�gico_de_Costa_Rica#/media/Archivo:Firma_TEC.svg', 'Marco Rivera Meneses')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Intel', '44448888', 'https://es.wikipedia.org/wiki/Intel#/media/Archivo:Intel_logo_2023.svg', 'Pat Gelsinger')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('HP Inc', '22227777', 'https://es.wikipedia.org/wiki/HP_Inc.#/media/Archivo:HP_logo_2012.svg', '	David Packar')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Universidad de Costa Rica', '42002478', 'https://es.wikipedia.org/wiki/Universidad_de_Costa_Rica#/media/Archivo:Logo_de_la_Universidad_de_Costa_Rica.svg', 'Felipe Vargas')
+
+INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
+VALUES('Red Bull', '77779999', 'https://es.wikipedia.org/wiki/Red_Bull#/media/Archivo:Logo_of_Red_bull.svg', 'Chaleo Yoovidhya')
+
+INSERT INTO CATEGORY (CategoryName, Descr)
+VALUES ('Junior', 'Menor de 15 a�os')
+
+INSERT INTO CATEGORY (CategoryName, Descr)
+VALUES ('Sub-23', 'De 15 a 23 a�os')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Open', 'De 24 a 30 a�os')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Elite', 'Cualquiera que quiera inscribirse')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Master A', 'De 30 a 40 a�os')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Master B', 'De 41 a 50 a�os')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Master C', 'M�s de 51 a�os')
