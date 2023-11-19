@@ -3,7 +3,8 @@ export interface Challenge {
   id: number;
   challenge_name: string;
   description: string;
-  challenge_type: string;
+  challenge_type: 'Run' | 'Ride' | 'Swim' | 'Walk' | 'Hike' | 'Kayak';
+  millage: number;
   start_date: Date;
   final_date: Date;
 }
@@ -18,6 +19,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Run',
     start_date: new Date('2023-07-01'),
     final_date: new Date('2023-07-31'),
+    millage: 42,
   },
   {
     id: 2,
@@ -27,6 +29,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Run',
     start_date: new Date('2023-09-01'),
     final_date: new Date('2023-09-30'),
+    millage: 4,
   },
   // Desafíos de tipo 'Ride'
   {
@@ -36,6 +39,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Ride',
     start_date: new Date('2023-08-01'),
     final_date: new Date('2023-08-31'),
+    millage: 32,
   },
   {
     id: 4,
@@ -44,6 +48,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Ride',
     start_date: new Date('2023-10-01'),
     final_date: new Date('2023-10-31'),
+    millage: 20,
   },
   // Desafíos de tipo 'Swim'
   {
@@ -53,6 +58,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Swim',
     start_date: new Date('2023-06-01'),
     final_date: new Date('2023-06-30'),
+    millage: 5,
   },
   {
     id: 6,
@@ -61,6 +67,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Swim',
     start_date: new Date('2023-11-01'),
     final_date: new Date('2023-11-30'),
+    millage: 10,
   },
   // Desafíos de tipo 'Walk'
   {
@@ -70,6 +77,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Walk',
     start_date: new Date('2023-07-15'),
     final_date: new Date('2023-08-15'),
+    millage: 5,
   },
   {
     id: 8,
@@ -78,6 +86,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Walk',
     start_date: new Date('2023-09-16'),
     final_date: new Date('2023-10-16'),
+    millage: 64,
   },
   // Desafíos de tipo 'Hike'
   {
@@ -88,6 +97,7 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Hike',
     start_date: new Date('2023-08-01'),
     final_date: new Date('2023-08-31'),
+    millage: 15,
   },
   {
     id: 10,
@@ -96,24 +106,27 @@ export const challengesList: Challenge[] = [
     challenge_type: 'Hike',
     start_date: new Date('2023-12-01'),
     final_date: new Date('2023-12-31'),
+    millage: 23,
   },
-  // Desafíos de tipo 'Workout'
+  // Desafíos de tipo 'Kayak'
   {
     id: 11,
     challenge_name: 'Reto de Fuerza',
     description:
       'Completa un entrenamiento de fuerza con 50 repeticiones de cada ejercicio.',
-    challenge_type: 'Workout',
+    challenge_type: 'Kayak',
     start_date: new Date('2023-07-01'),
     final_date: new Date('2023-07-31'),
+    millage: 6,
   },
   {
     id: 12,
     challenge_name: 'Desafío de Flexibilidad',
     description: 'Practica una rutina de estiramiento diaria durante 30 días.',
-    challenge_type: 'Workout',
+    challenge_type: 'Kayak',
     start_date: new Date('2023-09-01'),
     final_date: new Date('2023-09-30'),
+    millage: 9,
   },
   // Añadir más challenges según sea necesario
 ];

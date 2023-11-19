@@ -11,10 +11,9 @@ export interface Profile {
 export const profilesList: Profile[] = [
   {
     id: 1,
-    profile_name: 'Campeonato Internacional de Natación Tiburón',
-    description:
-      'Competencia de natación de 4.5 km en aguas abiertas, celebrada en la costa de Barcelona.',
-    activity_type: 'Natación',
+    profile_name: 'Campeonato Internacional de Escalada Tiburón',
+    description: 'Competencia de escalda de 4.5 km , celebrada en Barcelona.',
+    activity_type: 'Hike',
     start_date: new Date('2023-07-01'),
     end_date: new Date('2023-07-23'),
     completion: 53, // Este campo podría referirse al porcentaje de competidores que completaron el evento

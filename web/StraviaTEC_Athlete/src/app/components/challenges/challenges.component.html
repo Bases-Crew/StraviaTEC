@@ -37,10 +37,11 @@
       <i class="fas fa-hiking"></i> Hike
     </button>
     <button
-      (click)="toggleType('Workout')"
-      [ngClass]="{ active: selectedTypes.includes('Workout') }"
+      (click)="toggleType('Kayak')"
+      [ngClass]="{ active: selectedTypes.includes('Kayak') }"
     >
-      <i class="fas fa-dumbbell"></i> Workout
+      <i class="fa-solid fa-water"></i>
+      <i class="fa-solid fa-spoon"></i> Kayak
     </button>
   </div>
 
@@ -50,7 +51,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ challenge.challenge_name }}</h5>
           <p class="card-text">{{ challenge.description }}</p>
-
+          <p class="card-text">Kilometros o Altura: {{ challenge.millage }}</p>
           <div class="badge bg-secondary">{{ challenge.challenge_type }}</div>
           <div class="d-flex justify-content-between align-items-center">
             <small class="text-muted"
