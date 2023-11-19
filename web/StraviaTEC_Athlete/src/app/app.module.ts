@@ -34,8 +34,6 @@ import { ManagerPanelComponent } from './components/manager-panel/manager-panel.
 import { ManagerRaceComponent } from './components/manager-race/manager-race.component';
 import { ManagerGroupComponent } from './components/manager-group/manager-group.component';
 import { ManagerChallengeComponent } from './components/manager-challenge/manager-challenge.component';
-import { ManagerCreateRaceComponent } from './components/manager-create-race/manager-create-race.component';
-import { ManagerEditRaceComponent } from './components/manager-edit-race/manager-edit-race.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { DisplayChallengeComponent } from './components/display-challenge/display-challenge.component';
 import { DisplayRunsComponent } from './components/display-runs/display-runs.component';
@@ -70,8 +68,6 @@ import { ReportParticipantsComponent } from './components/report-participants/re
     ManagerRaceComponent,
     ManagerGroupComponent,
     ManagerChallengeComponent,
-    ManagerCreateRaceComponent,
-    ManagerEditRaceComponent,
     HomepageComponent,
     DisplayChallengeComponent,
     DisplayRunsComponent,

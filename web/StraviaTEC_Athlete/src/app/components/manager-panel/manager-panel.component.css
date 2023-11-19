@@ -1,10 +1,11 @@
 .panel {
   background-color: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 800px;
   overflow-y: auto;
 }
 

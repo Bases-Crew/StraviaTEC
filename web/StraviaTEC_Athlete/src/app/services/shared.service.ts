@@ -11,6 +11,9 @@ export class SharedService {
   }
 
   getEmail(): string | null {
+    if (!this.userEmail) {
+      return 'pedrog@gmail.com';
+    }
     return this.userEmail;
   }
 }
