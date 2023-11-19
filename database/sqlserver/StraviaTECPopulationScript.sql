@@ -49,3 +49,23 @@ VALUES('Universidad de Costa Rica', '42002478', 'https://es.wikipedia.org/wiki/U
 INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
 VALUES('Red Bull', '77779999', 'https://es.wikipedia.org/wiki/Red_Bull#/media/Archivo:Logo_of_Red_bull.svg', 'Chaleo Yoovidhya')
 
+INSERT INTO CATEGORY (CategoryName, Descr)
+VALUES ('Junior', 'Menor de 15 años')
+
+INSERT INTO CATEGORY (CategoryName, Descr)
+VALUES ('Sub-23', 'De 15 a 23 años')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Open', 'De 24 a 30 años')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Elite', 'Cualquiera que quiera inscribirse')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Master A', 'De 30 a 40 años')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Master B', 'De 41 a 50 años')
+
+INSERT INTO CATEGORY (CategoryName, Descr) 
+VALUES ('Master C', 'Más de 51 años')
