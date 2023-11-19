@@ -17,25 +17,25 @@ INSERT INTO ORGANIZER(Oemail, Opassword)
 VALUES('pedrog@gmail.com', '1234');
 
 INSERT INTO SPORT(SportName)
-VALUES('Correr')
+VALUES('Run')
 
 INSERT INTO SPORT(SportName)
-VALUES('Nadar')
+VALUES('Ride')
 
 INSERT INTO SPORT(SportName)
-VALUES('Ciclismo')
+VALUES('Swim')
 
 INSERT INTO SPORT(SportName)
-VALUES('Senderismo')
+VALUES('Walk')
+
+INSERT INTO SPORT(SportName)
+VALUES('Hike')
 
 INSERT INTO SPORT(SportName)
 VALUES('Kayak')
 
-INSERT INTO SPORT(SportName)
-VALUES('Caminata')
-
 INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
-VALUES('Tecnologico de Costa Rica', '88884444', 'https://es.wikipedia.org/wiki/Tecnológico_de_Costa_Rica#/media/Archivo:Firma_TEC.svg', 'Marco Rivera Meneses')
+VALUES('Tecnologico de Costa Rica', '88884444', 'https://es.wikipedia.org/wiki/Tecnolï¿½gico_de_Costa_Rica#/media/Archivo:Firma_TEC.svg', 'Marco Rivera Meneses')
 
 INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
 VALUES('Intel', '44448888', 'https://es.wikipedia.org/wiki/Intel#/media/Archivo:Intel_logo_2023.svg', 'Pat Gelsinger')
@@ -50,22 +50,22 @@ INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
 VALUES('Red Bull', '77779999', 'https://es.wikipedia.org/wiki/Red_Bull#/media/Archivo:Logo_of_Red_bull.svg', 'Chaleo Yoovidhya')
 
 INSERT INTO CATEGORY (CategoryName, Descr)
-VALUES ('Junior', 'Menor de 15 años')
+VALUES ('Junior', 'Menor de 15 aï¿½os')
 
 INSERT INTO CATEGORY (CategoryName, Descr)
-VALUES ('Sub-23', 'De 15 a 23 años')
+VALUES ('Sub-23', 'De 15 a 23 aï¿½os')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Open', 'De 24 a 30 años')
+VALUES ('Open', 'De 24 a 30 aï¿½os')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
 VALUES ('Elite', 'Cualquiera que quiera inscribirse')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Master A', 'De 30 a 40 años')
+VALUES ('Master A', 'De 30 a 40 aï¿½os')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Master B', 'De 41 a 50 años')
+VALUES ('Master B', 'De 41 a 50 aï¿½os')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Master C', 'Más de 51 años')
+VALUES ('Master C', 'Mï¿½s de 51 aï¿½os')

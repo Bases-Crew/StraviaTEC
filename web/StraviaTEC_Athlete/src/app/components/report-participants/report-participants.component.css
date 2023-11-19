@@ -1,0 +1,102 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+#report-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.report-title {
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.participants-table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.table-header {
+  background-color: #007bff;
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 18px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+.name-cell {
+  font-weight: bold;
+}
+
+.table-category-header {
+  padding: 10px 0;
+  background-color: #e7f1ff;
+  font-size: 16px;
+  font-weight: bold;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button-container {
+  text-align: center; /* Centra el contenido del contenedor */
+  padding: 20px 0; /* Espaciado superior e inferior para el botón */
+}
+
+.export-button {
+  display: inline-block; /* Asegura que el botón se pueda centrar con text-align */
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background-color: #218838;
+  transform: scale(1.05); /* Ligeramente más grande al pasar el ratón */
+}
+
+.button:active {
+  transform: scale(0.95); /* Se encoge ligeramente al hacer clic */
+}
+@media (max-width: 600px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr;
+  }
+}
