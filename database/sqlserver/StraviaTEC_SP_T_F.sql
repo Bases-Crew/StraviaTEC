@@ -387,4 +387,12 @@ BEGIN
 END;
 GO
 
+CREATE OR ALTER PROCEDURE sp_GetCategories
+AS
+BEGIN
+	SELECT CategoryName, Descr
+	FROM CATEGORY
+END;
+GO
+
 
