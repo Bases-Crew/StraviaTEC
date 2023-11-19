@@ -10,6 +10,7 @@ import { DisplayRunsComponent } from './components/display-runs/display-runs.com
 import { DisplayProfileComponent } from './components/display-profile/display-profile.component';
 import { DisplayTrilComponent } from './components/display-tril/display-tril.component';
 import { MapComponent } from './components/map/map.component';
+import { DisplayGroupComponent } from './components/display-group/display-group.component';
 
 const routes: Routes = [
   { path: 'init', component: InitialStageComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'display-runs', component: DisplayRunsComponent },
   { path: 'display-profile', component: DisplayProfileComponent },
   { path: 'display-tril', component: DisplayTrilComponent },
+  { path: 'display-group', component: DisplayGroupComponent },
   { path: '', redirectTo: 'init', pathMatch: 'full' },
   { path: '**', redirectTo: 'init' },
 ];
