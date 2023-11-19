@@ -50,22 +50,22 @@ INSERT INTO SPONSOR(Sname, Phone, Logo, Agent)
 VALUES('Red Bull', '77779999', 'https://es.wikipedia.org/wiki/Red_Bull#/media/Archivo:Logo_of_Red_bull.svg', 'Chaleo Yoovidhya')
 
 INSERT INTO CATEGORY (CategoryName, Descr)
-VALUES ('Junior', 'Menor de 15 a�os')
+VALUES ('Junior', 'Menor de 15 anyos')
 
 INSERT INTO CATEGORY (CategoryName, Descr)
-VALUES ('Sub-23', 'De 15 a 23 a�os')
+VALUES ('Sub-23', 'De 15 a 23 anyos')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Open', 'De 24 a 30 a�os')
+VALUES ('Open', 'De 24 a 30 anyos')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
 VALUES ('Elite', 'Cualquiera que quiera inscribirse')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Master A', 'De 30 a 40 a�os')
+VALUES ('Master A', 'De 30 a 40 anyos')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Master B', 'De 41 a 50 a�os')
+VALUES ('Master B', 'De 41 a 50 anyos')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
-VALUES ('Master C', 'M�s de 51 a�os')
+VALUES ('Master C', 'Mas de 51 anyos')
