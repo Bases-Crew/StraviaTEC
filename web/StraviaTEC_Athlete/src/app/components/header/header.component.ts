@@ -27,12 +27,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = user;
-    if (this.user.aemail == 'pedrog@gmail.com') {
-      this.user.image = '../..../assets/profile.jpg';
-    }
-    if (this.user.aemail == 'ana@gmail.com') {
-      this.user.image = '../..../assets/kawai.jpg';
-    }
 
     let urlSegments = this.route.snapshot.url; // array of segments
     this.currentUrl = urlSegments.map((segment) => segment.path).join('/');

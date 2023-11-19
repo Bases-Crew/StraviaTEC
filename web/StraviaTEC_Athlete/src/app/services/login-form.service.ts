@@ -20,6 +20,12 @@ export class LoginFormService {
       user.aemail = exampleUser.aemail;
       user.apassword = exampleUser.apassword;
       user.birth_date = exampleUser.birth_date;
+      user.fname = exampleUser.fname;
+      user.lname = exampleUser.lname;
+      user.lname2 = exampleUser.lname2;
+      user.image = exampleUser.image;
+      user.countryname = exampleUser.countryname;
+      user.flag = exampleUser.flag;
       // If credentials match, return success
       return of({ success: true });
     } else if (email === 'ana@gmail.com' && password === '1234') {
@@ -30,7 +36,8 @@ export class LoginFormService {
       user.fname = 'Ana';
       user.lname = 'Lopez';
       user.lname2 = 'Solano';
-      user.image = '../..../assets/kawai.jpg';
+      user.image =
+        'https://medicine.vumc.org/sites/default/files/persons/4125.jpg';
       user.countryname = 'Estados Unidos';
       user.flag =
         'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/203px-Flag_of_the_United_States.svg.png';
