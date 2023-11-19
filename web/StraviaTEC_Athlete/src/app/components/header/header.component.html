@@ -122,6 +122,20 @@
               <a
                 class="nav-link px-2"
                 [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-group')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-group'
+                "
+                routerLink="/display-group"
+              >
+                Ver Grupos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
                   !(currentUrl === 'init' || currentUrl === 'display-profile')
                 "
                 [class.disabled]="
