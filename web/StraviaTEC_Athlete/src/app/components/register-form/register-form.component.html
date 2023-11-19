@@ -4,139 +4,140 @@
   <form class="form-signup" (ngSubmit)="register()">
     <div class="text-center">
       <form class="form-signup" (ngSubmit)="register()">
-        <input
-          type="file"
-          id="inputImage"
-          class="form-control d-none"
-          (change)="onImageUpload($event)"
-          accept="image/jpeg"
-        />
-        <label for="inputImage" id="imageUploadButton">
-          <img
-            id="imagePreview"
-            [src]="
-              imageSrc ||
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Grey_user_add_icon_%28Wikiproject_icons%29.svg/640px-Grey_user_add_icon_%28Wikiproject_icons%29.svg.png'
-            "
-            alt="Upload Image"
-            style="
-              max-width: 150px;
-              max-height: 150px;
-              width: auto;
-              height: auto;
-            "
-          />
-        </label>
-        <!-- Name Fields in Row -->
-        <div class="text">Nombre</div>
-        <div class="row">
-          <div class="col form-group">
-            <input
-              type="text"
-              id="inputFirstName"
-              class="form-control"
-              placeholder="Primer Nombre"
-              required
-              [(ngModel)]="fname"
-              name="firstName"
-            />
-          </div>
-          <div class="col form-group">
-            <input
-              type="text"
-              id="inputMiddleName"
-              class="form-control"
-              placeholder="Segundo Nombre"
-              [(ngModel)]="mname"
-              name="middleName"
-            />
-          </div>
-        </div>
-
-        <!-- Last Name Fields in Row -->
-        <div class="text-center">Apellidos</div>
-        <div class="row">
-          <div class="col form-group">
-            <input
-              type="text"
-              id="inputLastName"
-              class="form-control"
-              placeholder="Apellido"
-              required
-              [(ngModel)]="lname1"
-              name="lastName"
-            />
-          </div>
-          <div class="col form-group">
-            <input
-              type="text"
-              id="inputLastName2"
-              class="form-control"
-              placeholder="Segundo Apellido"
-              [(ngModel)]="lname2"
-              name="lastName2"
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputEmail" class="sr-only" style="text-align: center"
-            >Correo</label
-          >
+        <div *ngIf="!successFull">
           <input
-            type="email"
-            id="inputEmail"
-            class="form-control"
-            placeholder="ejemplo@dominio.com"
-            required
-            [(ngModel)]="aemail"
-            name="email"
+            type="file"
+            id="inputImage"
+            class="form-control d-none"
+            (change)="onImageUpload($event)"
+            accept="image/jpeg"
           />
-        </div>
-
-        <div class="form-group">
-          <label for="inputPassword" class="sr-only" style="text-align: center"
-            >Contraseña</label
-          >
-          <input
-            type="password"
-            id="inputPassword"
-            class="form-control"
-            placeholder="Contraseña"
-            required
-            [(ngModel)]="apassword"
-            name="password"
-          />
-        </div>
-
-        <div class="row">
-          <div class="col form-group">
-            <label for="Select Country">ID</label>
-            <select
-              id="country"
-              class="form-control"
-              [(ngModel)]="countryname"
-              name="country"
+          <label for="inputImage" id="imageUploadButton">
+            <img
+              id="imagePreview"
+              [src]="
+                imageSrc ||
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Grey_user_add_icon_%28Wikiproject_icons%29.svg/640px-Grey_user_add_icon_%28Wikiproject_icons%29.svg.png'
+              "
+              alt="Upload Image"
+              style="
+                max-width: 150px;
+                max-height: 150px;
+                width: auto;
+                height: auto;
+              "
+            />
+          </label>
+          <!-- Name Fields in Row -->
+          <div class="text">Nombre</div>
+          <div class="row">
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputFirstName"
+                class="form-control"
+                placeholder="Primer Nombre"
+                required
+                [(ngModel)]="fname"
+                name="firstName"
+              />
+            </div>
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputMiddleName"
+                class="form-control"
+                placeholder="Segundo Nombre"
+                [(ngModel)]="mname"
+                name="middleName"
+              />
+            </div>
+          </div>
+          <!-- Last Name Fields in Row -->
+          <div class="text-center">Apellidos</div>
+          <div class="row">
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputLastName"
+                class="form-control"
+                placeholder="Apellido"
+                required
+                [(ngModel)]="lname1"
+                name="lastName"
+              />
+            </div>
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputLastName2"
+                class="form-control"
+                placeholder="Segundo Apellido"
+                [(ngModel)]="lname2"
+                name="lastName2"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail" class="sr-only" style="text-align: center"
+              >Correo</label
             >
-              <option
-                *ngFor="let countryname of countrynamesL"
-                [value]="countryname"
-              >
-                {{ countryname }}
-              </option>
-            </select>
-          </div>
-          <div class="col form-group">
-            <label for="inputBirthDate">Fecha de Nacimiento</label>
             <input
-              type="date"
-              id="inputBirthDate"
+              type="email"
+              id="inputEmail"
               class="form-control"
-              placeholder="YYYY-MM-DD"
+              placeholder="ejemplo@dominio.com"
               required
-              [(ngModel)]="birth_date"
-              name="birthDate"
+              [(ngModel)]="aemail"
+              name="email"
             />
+          </div>
+          <div class="form-group">
+            <label
+              for="inputPassword"
+              class="sr-only"
+              style="text-align: center"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              id="inputPassword"
+              class="form-control"
+              placeholder="Contraseña"
+              required
+              [(ngModel)]="apassword"
+              name="password"
+            />
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <label for="Select Country">ID</label>
+              <select
+                id="country"
+                class="form-control"
+                [(ngModel)]="countryname"
+                name="country"
+              >
+                <option
+                  *ngFor="let countryname of countrynamesL"
+                  [value]="countryname"
+                >
+                  {{ countryname }}
+                </option>
+              </select>
+            </div>
+            <div class="col form-group">
+              <label for="inputBirthDate">Fecha de Nacimiento</label>
+              <input
+                type="date"
+                id="inputBirthDate"
+                class="form-control"
+                placeholder="YYYY-MM-DD"
+                required
+                [(ngModel)]="birth_date"
+                name="birthDate"
+              />
+            </div>
           </div>
         </div>
 
@@ -152,7 +153,11 @@
           >
             Volver
           </button>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
+          <button
+            *ngIf="!successFull"
+            class="btn btn-lg btn-primary btn-block"
+            type="submit"
+          >
             Enviar
           </button>
         </div>

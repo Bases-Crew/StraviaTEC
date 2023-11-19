@@ -55,18 +55,77 @@
                 "
                 routerLink="/init"
               >
-                Home
+                Inicio
               </a>
             </li>
-
             <li>
               <a
                 class="nav-link px-2"
-                [class.link-body-emphasis]="!(currentUrl === 'display-example')"
-                [class.disabled]="currentUrl === 'display-example'"
-                routerLink="/display-example"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-friends')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-friends'
+                "
+                routerLink="/display-friends"
               >
-                Rick and Morty
+                Buscar Amigos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-challenge')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-challenge'
+                "
+                routerLink="/display-challenge"
+              >
+                Ver Retos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-runs')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-runs'
+                "
+                routerLink="/display-runs"
+              >
+                Ver Carreras
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-profile')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-profile'
+                "
+                routerLink="/display-profile"
+              >
+                Mis Retos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-tril')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-tril'
+                "
+                routerLink="/display-tril"
+              >
+                Mis Carreras
               </a>
             </li>
           </ul>
@@ -82,7 +141,7 @@
               aria-expanded="false"
             >
               <img
-                src="https://github.com/mdo.png"
+                src="../../../assets/profile.jpg"
                 alt="mdo"
                 width="32"
                 height="32"

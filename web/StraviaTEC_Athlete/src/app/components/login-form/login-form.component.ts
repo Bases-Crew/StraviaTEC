@@ -38,7 +38,7 @@ export class LoginFormComponent {
           user.countryname = exampleUser.countryname;
 
           // Presumably, redirect to another route upon success
-          this.router.navigate(['/display-example']); // Replace '/home' with your desired route
+          this.router.navigate(['/homepage']); // Replace '/home' with your desired route
         } else {
           // Handle login error
           // Provide a default message if result.message is undefined
