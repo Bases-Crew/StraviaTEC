@@ -395,4 +395,79 @@ BEGIN
 END;
 GO
 
+CREATE OR ALTER TRIGGER tgr_CheckBirthDate
+ON ATHLETE
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    IF EXISTS (SELECT * FROM inserted WHERE Birth_date = CAST(GETDATE() AS DATE))
+    BEGIN
+        RAISERROR ('La fecha de cumpleaños no puede ser la fecha actual', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+
+CREATE OR ALTER TRIGGER tgr_CheckNegativeMileage
+ON ACTIVITY
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verifica si hay alguna fila insertada o actualizada con un millaje negativo
+    IF EXISTS (SELECT * FROM inserted WHERE Mileage < 0)
+    BEGIN
+        RAISERROR ('El millaje no puede ser un valor negativo', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END
+GO 
+
+CREATE OR ALTER TRIGGER tgr_CheckNegativeMileageInChallenge
+ON CHALLENGE
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verifica si hay alguna fila insertada o actualizada con un millaje negativo
+    IF EXISTS (SELECT * FROM inserted WHERE Mileage < 0)
+    BEGIN
+        RAISERROR ('El millaje en un desafío no puede ser un valor negativo', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+
+CREATE OR ALTER FUNCTION fn_GetAllCountries()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT Cnumber, CountryName, Flag
+    FROM COUNTRY
+);
+GO
+
+CREATE OR ALTER FUNCTION fn_GetAllAthletes()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT Aemail, Apassword, Fname, Mname, Lname1, Lname2, Photo, Cno, Birth_date
+    FROM ATHLETE
+);
+GO
+
+CREATE OR ALTER FUNCTION fn_GetAllSports()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT SportID, SportName
+    FROM SPORT
+);
+GO

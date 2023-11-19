@@ -38,6 +38,8 @@ import { MapComponent } from './components/map/map.component';
 import { ReportComponent } from './components/report/report.component';
 import { ReportParticipantsComponent } from './components/report-participants/report-participants.component';
 import { DisplayGroupComponent } from './components/display-group/display-group.component';
+import { PublishActivityComponent } from './components/publish-activity/publish-activity.component';
+import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -68,6 +70,8 @@ import { DisplayGroupComponent } from './components/display-group/display-group.
     ReportComponent,
     ReportParticipantsComponent,
     DisplayGroupComponent,
+    PublishActivityComponent,
+    DisplayPublishActivityComponent,
   ],
   providers: [
     ExampleRickMortyService,

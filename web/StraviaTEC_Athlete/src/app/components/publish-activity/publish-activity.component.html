@@ -1,0 +1,81 @@
+<div class="container">
+  <h2 class="form-title">Registrar Actividad</h2>
+  <form (ngSubmit)="submitForm()" #activityForm="ngForm" class="activity-form">
+    <div class="form-group">
+      <label for="fechaHora">Fecha y Hora</label>
+      <input
+        type="datetime-local"
+        id="fechaHora"
+        name="fechaHora"
+        [(ngModel)]="activity.fechaHora"
+        required
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="duracion">Duración (en minutos)</label>
+      <input
+        type="number"
+        id="duracion"
+        name="duracion"
+        [(ngModel)]="activity.duracion"
+        required
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="tipoActividad">Tipo de Actividad</label>
+      <select
+        id="tipoActividad"
+        name="tipoActividad"
+        [(ngModel)]="activity.tipoActividad"
+        required
+        class="form-control"
+      >
+        <option value="Run">Run (Correr)</option>
+        <option value="Ride">Ride (Ciclismo)</option>
+        <option value="Walk">Walk (Caminata)</option>
+        <option value="Swim">Swim (Nadar)</option>
+        <option value="Hike">Hike (Escalar)</option>
+        <option value="Kayak">Kayak</option>
+
+        <!-- Agrega más opciones según tus necesidades -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="kilometraje">Kilometraje</label>
+      <input
+        type="number"
+        id="kilometraje"
+        name="kilometraje"
+        [(ngModel)]="activity.kilometraje"
+        required
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="recorrido">Recorrido (archivo .gpx)</label>
+      <input
+        type="file"
+        id="recorrido"
+        name="recorrido"
+        (change)="onFileSelected($event)"
+        required
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="esCompletitud"
+        >¿Es la completitud de un reto o carrera?</label
+      >
+      <input
+        type="checkbox"
+        id="esCompletitud"
+        name="esCompletitud"
+        [(ngModel)]="activity.esCompletitud"
+        class="form-checkbox"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+  </form>
+</div>
