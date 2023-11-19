@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="row row-map">
   <div class="col-md-9">
     <h2 class="heading">Map</h2>
@@ -21,9 +22,34 @@
       <p class="data-entry">{{ activityDistance }} miles</p>
       <hr />
 
-      <div class="data-heading">Comments:</div>
-      <p class="data-entry">{{ activityComments }}</p>
+      <div class="data-heading">Duración:</div>
+      <p class="data-entry">{{ activityDuration }}</p>
+      <hr />
+
+      <div class="data-heading">Comentarios:</div>
+      <div *ngFor="let comment of activityComments">
+        <p class="data-entry">{{ comment.aemail }}: {{ comment.content }}</p>
+      </div>
       <hr />
     </div>
   </div>
+
+  <div class="col-md-3 info-container">
+    <!-- ... otros elementos ... -->
+
+    <div class="data-heading">Agregar comentario:</div>
+    <textarea
+      class="form-control comment-box"
+      [(ngModel)]="newComment"
+      rows="3"
+    ></textarea>
+    <button
+      class="btn btn-primary comment-submit-btn mt-2"
+      (click)="submitComment()"
+    >
+      Subir
+    </button>
+    <hr />
+  </div>
 </div>
+<app-footer></app-footer>
