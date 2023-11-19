@@ -17,19 +17,19 @@ INSERT INTO ORGANIZER(Oemail, Opassword)
 VALUES('pedrog@gmail.com', '1234');
 
 INSERT INTO SPORT(SportName)
-VALUES('Correr')
+VALUES('Run')
 
 INSERT INTO SPORT(SportName)
-VALUES('Nadar')
+VALUES('Ride')
 
 INSERT INTO SPORT(SportName)
-VALUES('Ciclismo')
+VALUES('Swim')
 
 INSERT INTO SPORT(SportName)
-VALUES('Senderismo')
+VALUES('Walk')
+
+INSERT INTO SPORT(SportName)
+VALUES('Hike')
 
 INSERT INTO SPORT(SportName)
 VALUES('Kayak')
-
-INSERT INTO SPORT(SportName)
-VALUES('Caminata')

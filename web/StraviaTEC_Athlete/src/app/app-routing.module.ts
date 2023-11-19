@@ -9,11 +9,13 @@ import { DisplayChallengeComponent } from './components/display-challenge/displa
 import { DisplayRunsComponent } from './components/display-runs/display-runs.component';
 import { DisplayProfileComponent } from './components/display-profile/display-profile.component';
 import { DisplayTrilComponent } from './components/display-tril/display-tril.component';
+import { MapComponent } from './components/map/map.component';
 
 const routes: Routes = [
   { path: 'init', component: InitialStageComponent },
   { path: 'display-example', component: DisplayExampleComponent },
   { path: 'homepage', component: HomepageComponent },
+  { path: 'map/:id', component: MapComponent },
   { path: 'display-friends', component: FriendsComponent },
   { path: 'display-challenge', component: DisplayChallengeComponent },
   { path: 'display-runs', component: DisplayRunsComponent },

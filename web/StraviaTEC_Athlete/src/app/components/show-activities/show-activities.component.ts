@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { user } from 'src/app/models/login.model';
 import {
   Activity,
   activitiesExamples,
@@ -13,13 +15,16 @@ import { ShowActivitiesService } from 'src/app/services/show-activities.service'
 export class ShowActivitiesComponent {
   activities: Activity[] = [];
 
-  constructor(private showActivitiesService: ShowActivitiesService) {}
+  constructor(
+    private showActivitiesService: ShowActivitiesService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.fetchGetActivities();
   }
 
   fetchGetActivities() {
-    this.showActivitiesService.getActivities().subscribe({
+    this.showActivitiesService.getActivities(user.aemail).subscribe({
       next: (data) => {
         this.activities = data;
       },
@@ -31,6 +36,7 @@ export class ShowActivitiesComponent {
   }
 
   showComments(activity: Activity) {
-    console.log(JSON.stringify(activity));
+    // console.log(JSON.stringify(activity));
+    this.router.navigate(['/map', activity.activityid]);
   }
 }
