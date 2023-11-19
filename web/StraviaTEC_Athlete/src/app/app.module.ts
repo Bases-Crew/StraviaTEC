@@ -35,6 +35,8 @@ import { DisplayRunsComponent } from './components/display-runs/display-runs.com
 import { DisplayProfileComponent } from './components/display-profile/display-profile.component';
 import { DisplayTrilComponent } from './components/display-tril/display-tril.component';
 import { MapComponent } from './components/map/map.component';
+import { ReportComponent } from './components/report/report.component';
+import { ReportParticipantsComponent } from './components/report-participants/report-participants.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -62,6 +64,8 @@ import { MapComponent } from './components/map/map.component';
     DisplayProfileComponent,
     DisplayTrilComponent,
     MapComponent,
+    ReportComponent,
+    ReportParticipantsComponent,
   ],
   providers: [
     ExampleRickMortyService,
