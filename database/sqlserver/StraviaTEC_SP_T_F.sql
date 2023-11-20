@@ -93,6 +93,11 @@ BEGIN
 
         DECLARE @Challid INT;
 
+		IF NOT EXISTS (SELECT 1 FROM PRIVACY WHERE PrivacyID = 1)
+            BEGIN
+                INSERT INTO PRIVACY DEFAULT VALUES;
+            END
+
         INSERT INTO CHALLENGE (Cname, Ctype, StartDate, FinalDate, Pid, Sptid, Mileage)
         VALUES (@Nombre, @ctype, @inicial, @final, 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName), @kilometraje);
 
@@ -297,7 +302,7 @@ CREATE OR ALTER PROCEDURE sp_NewRace
     @RaceName VARCHAR(50),
     @Price DECIMAL(7, 2),
     @Date DATE,
-    @Route XML, 
+    @Route VARCHAR(MAX), 
     @Privacy INT,
     @Sponsors VARCHAR(MAX),
     @Categories VARCHAR(MAX),
@@ -311,8 +316,13 @@ BEGIN
 
         DECLARE @RaceID INT;
 
+		IF NOT EXISTS (SELECT 1 FROM PRIVACY WHERE PrivacyID = 1)
+            BEGIN
+                INSERT INTO PRIVACY DEFAULT VALUES;
+            END
+
         INSERT INTO RACE (Rname, Price, Rdate, Rroute, Pid, Sptid)
-        VALUES (@RaceName, @Price, @Date, @Route, 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName));
+        VALUES (@RaceName, @Price, @Date, CAST(@Route AS XML), 1, (SELECT SportID FROM SPORT WHERE SportName = @SportName));
 
         SET @RaceID = SCOPE_IDENTITY();
 
@@ -330,8 +340,7 @@ BEGIN
         SELECT @RaceID, CONVERT(INT, value)
         FROM STRING_SPLIT(@BankAccounts, ',');
 
-        IF @Groups IS NOT NULL
-        BEGIN
+       
             IF @Privacy <> 0
             BEGIN
                 INSERT INTO PRIVACY DEFAULT VALUES;
@@ -347,7 +356,7 @@ BEGIN
                 SET Pid = @PrivacyID
                 WHERE RaceID = @RaceID;
             END
-        END
+    
 
         COMMIT;
     END TRY
@@ -395,4 +404,79 @@ BEGIN
 END;
 GO
 
+CREATE OR ALTER TRIGGER tgr_CheckBirthDate
+ON ATHLETE
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    IF EXISTS (SELECT * FROM inserted WHERE Birth_date = CAST(GETDATE() AS DATE))
+    BEGIN
+        RAISERROR ('La fecha de cumpleaños no puede ser la fecha actual', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+
+CREATE OR ALTER TRIGGER tgr_CheckNegativeMileage
+ON ACTIVITY
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verifica si hay alguna fila insertada o actualizada con un millaje negativo
+    IF EXISTS (SELECT * FROM inserted WHERE Mileage < 0)
+    BEGIN
+        RAISERROR ('El millaje no puede ser un valor negativo', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END
+GO 
+
+CREATE OR ALTER TRIGGER tgr_CheckNegativeMileageInChallenge
+ON CHALLENGE
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verifica si hay alguna fila insertada o actualizada con un millaje negativo
+    IF EXISTS (SELECT * FROM inserted WHERE Mileage < 0)
+    BEGIN
+        RAISERROR ('El millaje en un desafío no puede ser un valor negativo', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+
+CREATE OR ALTER FUNCTION fn_GetAllCountries()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT Cnumber, CountryName, Flag
+    FROM COUNTRY
+);
+GO
+
+CREATE OR ALTER FUNCTION fn_GetAllAthletes()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT Aemail, Apassword, Fname, Mname, Lname1, Lname2, Photo, Cno, Birth_date
+    FROM ATHLETE
+);
+GO
+
+CREATE OR ALTER FUNCTION fn_GetAllSports()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT SportID, SportName
+    FROM SPORT
+);
+GO

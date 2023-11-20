@@ -57,7 +57,7 @@ CREATE TABLE RACE
 CREATE TABLE RACE_BANKACCS
 (
 	Rid			INT				NOT NULL,
-	Account		TINYINT			NOT NULL,
+	Account		INT			NOT NULL,
 	PRIMARY KEY(Rid, Account)
 );
 
@@ -319,3 +319,20 @@ ALTER TABLE GROUP_PRIVACY
 ADD CONSTRAINT GROUP_PRIVACY_PRIVACY_FK
 FOREIGN KEY (Pid) REFERENCES PRIVACY(PrivacyID)
 ON DELETE CASCADE;
+GO
+CREATE VIEW ActivitySportView AS
+SELECT 
+    A.ActivityID,
+    A.Adate,
+    A.Ahour,
+    A.Aduration,
+    A.Mileage,
+    A.Aroute,
+    A.Auser,
+    A.Rid,
+    A.Challid,
+    A.Sptid,
+    S.SportID,
+    S.SportName
+FROM ACTIVITY A
+JOIN SPORT S ON A.Sptid = S.SportID;

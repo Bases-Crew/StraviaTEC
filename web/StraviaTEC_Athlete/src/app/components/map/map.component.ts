@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Comments } from 'src/app/models/comments.model';
 import { user } from 'src/app/models/login.model';
 import {
   Activity,
@@ -22,9 +23,11 @@ export class MapComponent implements OnInit {
   activities: Activity[] = [];
   activity: Activity | undefined;
   activityName: string = '';
-  activityComments: string = '';
+  activityDuration: string = '';
   activityDate: Date = new Date();
   activityDistance: number = 0;
+  activityComments: Comments[] = [];
+  newComment: string = '';
 
   ngOnInit() {
     this.showActivitiesService.getActivities(user.aemail).subscribe({
@@ -36,6 +39,18 @@ export class MapComponent implements OnInit {
         console.error('Error fetching activities:', error);
         this.activities = activitiesExamples;
         this.initMap();
+      },
+    });
+  }
+
+  fetchComments(id: number) {
+    this._mapService.getActivityComments(id).subscribe({
+      next: (data) => {
+        this.activityComments = data;
+      },
+      error: (error) => {
+        console.error('Error fetching comments:', error);
+        this.activityComments = [];
       },
     });
   }
@@ -59,7 +74,26 @@ export class MapComponent implements OnInit {
       console.error('Activity or route is undefined');
     }
     this.activityName = this.activity.auser;
-    this.activityComments = this.activity.aduration;
+    this.activityDuration = this.activity.aduration;
     this.activityDistance = this.activity.millage;
+    this.fetchComments(this.activity.activityid);
+  }
+
+  submitComment() {
+    if (!this.newComment.trim()) {
+      console.error('Comment is empty');
+      return;
+    }
+
+    this._mapService.postComment(user.aemail, this.newComment).subscribe({
+      next: (data: Comments[]) => {
+        console.log(data);
+        // this.activityComments = data;
+        this.activityComments = this.activityComments.concat(data);
+      },
+      error: (error) => {
+        console.error('Error posting comment:', error);
+      },
+    });
   }
 }
