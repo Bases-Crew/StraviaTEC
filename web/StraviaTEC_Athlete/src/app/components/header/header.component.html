@@ -48,10 +48,10 @@
               <a
                 class="nav-link px-2"
                 [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'home')
+                  !(currentUrl === 'init' || currentUrl === 'homepage')
                 "
                 [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'home'
+                  currentUrl === 'init' || currentUrl === 'homepage'
                 "
                 routerLink="/init"
               >
@@ -64,14 +64,14 @@
                 [class.link-body-emphasis]="
                   !(
                     currentUrl === 'init' ||
-                    currentUrl === 'display-create-activity'
+                    currentUrl === 'display-publish-activity'
                   )
                 "
                 [class.disabled]="
                   currentUrl === 'init' ||
-                  currentUrl === 'display-create-activity'
+                  currentUrl === 'display-publish-activity'
                 "
-                routerLink="/display-create-activity"
+                routerLink="/display-publish-activity"
               >
                 Publicar Actividad
               </a>

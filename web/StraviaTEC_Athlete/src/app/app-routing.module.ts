@@ -11,6 +11,7 @@ import { DisplayProfileComponent } from './components/display-profile/display-pr
 import { DisplayTrilComponent } from './components/display-tril/display-tril.component';
 import { MapComponent } from './components/map/map.component';
 import { DisplayGroupComponent } from './components/display-group/display-group.component';
+import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
 
 const routes: Routes = [
   { path: 'init', component: InitialStageComponent },
@@ -23,6 +24,10 @@ const routes: Routes = [
   { path: 'display-profile', component: DisplayProfileComponent },
   { path: 'display-tril', component: DisplayTrilComponent },
   { path: 'display-group', component: DisplayGroupComponent },
+  {
+    path: 'display-publish-activity',
+    component: DisplayPublishActivityComponent,
+  },
   { path: '', redirectTo: 'init', pathMatch: 'full' },
   { path: '**', redirectTo: 'init' },
 ];
