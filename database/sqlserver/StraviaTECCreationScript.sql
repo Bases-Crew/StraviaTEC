@@ -320,19 +320,4 @@ ADD CONSTRAINT GROUP_PRIVACY_PRIVACY_FK
 FOREIGN KEY (Pid) REFERENCES PRIVACY(PrivacyID)
 ON DELETE CASCADE;
 GO
-CREATE VIEW ActivitySportView AS
-SELECT 
-    A.ActivityID,
-    A.Adate,
-    A.Ahour,
-    A.Aduration,
-    A.Mileage,
-    A.Aroute,
-    A.Auser,
-    A.Rid,
-    A.Challid,
-    A.Sptid,
-    S.SportID,
-    S.SportName
-FROM ACTIVITY A
-JOIN SPORT S ON A.Sptid = S.SportID;
+

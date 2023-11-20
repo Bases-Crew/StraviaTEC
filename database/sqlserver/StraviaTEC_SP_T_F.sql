@@ -225,23 +225,34 @@ BEGIN
 END;
 GO
 
-CREATE OR ALTER PROCEDURE sp_GetNotExpiredChallenges
-AS
-BEGIN
-	SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
+CREATE OR ALTER VIEW NotExpiredChallengesView AS
+SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
 	FROM CHALLENGE C
 	JOIN SPORT S ON C.Pid = S.SportID
 	WHERE FinalDate > GETDATE();
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetNotExpiredChallenges
+AS
+BEGIN
+	SELECT *
+	FROM NotExpiredChallengesView
 END;
+GO
+
+CREATE OR ALTER VIEW UnsubscribedChallengesView AS
+SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
+	FROM CHALLENGE C
+	JOIN SPORT S ON C.Pid = S.SportID
+	WHERE FinalDate > GETDATE();
 GO
 
 CREATE OR ALTER PROCEDURE sp_GetUnsubscribedChallenges @Aemail VARCHAR(25)
 AS
 BEGIN
-	SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
-	FROM CHALLENGE C
-	JOIN SPORT S ON C.Pid = S.SportID
-	WHERE FinalDate > GETDATE() AND NOT EXISTS (SELECT 1 FROM ATHLETE_CHALLENGE AC WHERE AC.Auser = @Aemail AND AC.Challid = C.ChallengeID);
+	SELECT *
+	FROM UnsubscribedChallengesView
+	WHERE NOT EXISTS (SELECT 1 FROM ATHLETE_CHALLENGE AC WHERE AC.Auser = @Aemail AND AC.Challid = id);
 END;
 GO
 
@@ -279,10 +290,8 @@ BEGIN
 END;
 GO
 
-CREATE OR ALTER PROCEDURE sp_GetAthleteChallengeInfo @Aemail VARCHAR(25)
-AS
-BEGIN
-    SELECT C.ChallengeID AS id,
+CREATE OR ALTER VIEW AthleteChallengeView AS
+SELECT C.ChallengeID AS id,
 		   C.Cname AS challenge_name,
 		   C.Mileage,
 		   C.Ctype AS ChallengeType,
@@ -293,7 +302,8 @@ BEGIN
 		   SP.Logo AS sponsor_logo,
 		   SP.Phone AS sponsor_phone,
 		   SP.Agent AS sponsor_agent,
-		   dbo.CalculateCompletion(COALESCE(SUM(ACT.Mileage), 0), C.Mileage) AS Completion
+		   dbo.CalculateCompletion(COALESCE(SUM(ACT.Mileage), 0), C.Mileage) AS Completion,
+		   ACT.Auser
     FROM CHALLENGE C
     JOIN ATHLETE_CHALLENGE AC ON C.ChallengeID = AC.Challid
     JOIN ATHLETE A ON AC.Auser = A.Aemail
@@ -301,8 +311,27 @@ BEGIN
     JOIN SPORT S ON C.Sptid = S.SportID
     LEFT JOIN CHALLENGE_SPONSOR CS ON C.ChallengeID = CS.Challid
     LEFT JOIN SPONSOR SP ON CS.Spnid = SP.SponsorID
-    WHERE ACT.Auser = @Aemail AND ACT.Adate BETWEEN C.StartDate AND C.FinalDate
-    GROUP BY C.ChallengeID, C.Cname, C.Mileage, C.Ctype, C.StartDate, C.FinalDate, S.SportName, SP.Sname, SP.Logo, SP.Phone, SP.Agent;
+	WHERE ACT.Adate BETWEEN C.StartDate AND C.FinalDate
+    GROUP BY C.ChallengeID, C.Cname, C.Mileage, C.Ctype, C.StartDate, C.FinalDate, S.SportName, SP.Sname, SP.Logo, SP.Phone, SP.Agent, ACT.Auser;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetAthleteChallengeInfo @Aemail VARCHAR(25)
+AS
+BEGIN
+    SELECT id,
+		   challenge_name,
+		   Mileage,
+		   ChallengeType,
+	       'start_date',
+		   'final_date',
+		   Sport_name,
+		   sponsor_name,
+		   sponsor_logo,
+		   sponsor_phone,
+		   sponsor_agent,
+		   Completion
+    FROM AthleteChallengeView
+    WHERE Auser = @Aemail
 END;
 GO
 
@@ -559,3 +588,43 @@ RETURN
     FROM SPORT
 );
 GO
+
+CREATE OR ALTER TRIGGER trg_PreventPastStartDate
+ON CHALLENGE
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @CurrentDate DATE = GETDATE();
+
+    IF EXISTS (
+        SELECT 1
+        FROM inserted
+        WHERE StartDate < @CurrentDate
+    )
+    BEGIN
+        RAISERROR ('No se pueden insertar retos con StartDate en el pasado.', 16, 1);
+    END
+END;
+GO
+
+CREATE VIEW ActivitySportView AS
+SELECT 
+    A.ActivityID,
+    A.Adate,
+    A.Ahour,
+    A.Aduration,
+    A.Mileage,
+    A.Aroute,
+    A.Auser,
+    A.Rid,
+    A.Challid,
+    A.Sptid,
+    S.SportID,
+    S.SportName
+FROM ACTIVITY A
+JOIN SPORT S ON A.Sptid = S.SportID;
+GO
+
+
