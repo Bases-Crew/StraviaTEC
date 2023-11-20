@@ -18,6 +18,53 @@ namespace StraviaTECAPISQLS.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet]
+        [Route("allinfo")]
+        public JsonResult GetRaceInfo()
+        {
+            string query = @"
+        EXEC sp_GetRacesInfo
+    ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            // Transformar la tabla en una lista de objetos anónimos
+            var racesInfo = table.AsEnumerable()
+                .Select(row => new
+                {
+                    RaceID = row.Field<int>("RaceID"),
+                    raceName = row.Field<string>("raceName"),
+                    Price = row.Field<decimal>("Price"),
+                    date = ((DateTime)row["date"]).ToString("yyyy-MM-dd"),
+                    route = row.Field<string>("route"),
+                    Privacy = row.Field<int>("Privacy"),
+                    Sponsors = row.Field<string>("Sponsors").Split(", "),
+                    Categories = row.Field<string>("Categories").Split(", "),
+                    BankAccounts = row.Field<string>("BankAccounts").Split(", ")
+                        .Select(account => Convert.ToInt32(account))
+                        .ToList(),
+                    SportName = row.Field<string>("SportName"),
+                    Groups = row.Field<string>("Groups").Split(", ")
+                })
+                .ToList();
+
+            return new JsonResult(racesInfo);
+        }
+
         [HttpPost]
         [Route("new")]
         public async Task<JsonResult> Post(Race user)
@@ -38,9 +85,16 @@ namespace StraviaTECAPISQLS.Controllers
                     myCommand.Parameters.AddWithValue("@Price", user.Price);
                     DateOnly startDate = DateOnly.Parse(user.Date);
                     myCommand.Parameters.AddWithValue("@Date", startDate);
-                    string receivedXmlString = user.Route; 
-                    XElement receivedXmlData = XElement.Parse(receivedXmlString);
-                    myCommand.Parameters.AddWithValue("@Route", receivedXmlData.ToString());
+                    if (user.Route != null)
+                    {
+                        string receivedXmlString = user.Route;
+                        XElement receivedXmlData = XElement.Parse(receivedXmlString);
+                        myCommand.Parameters.AddWithValue("@Route", receivedXmlData.ToString());
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("@Route", DBNull.Value);
+                    }
                     myCommand.Parameters.AddWithValue("@Pid", user.Privacy);
                     myCommand.Parameters.AddWithValue("@SportName", user.SportName);
                     string categoriesString = string.Join(",", user.Categories);

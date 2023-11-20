@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/StraviaTECAPISQLS/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsStraviaTEC_7D165E28F3",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/straviatecdbsql/databases/StraviaTEC",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:StraviaTEC",
+      "dynamicId": null
+    }
+  }
+}

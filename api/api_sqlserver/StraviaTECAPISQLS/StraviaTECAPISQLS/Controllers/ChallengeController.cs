@@ -45,6 +45,56 @@ namespace StraviaTECAPISQLS.Controllers
         }
 
         [HttpGet]
+        [Route("allinfo")]
+        public JsonResult GetInfo()
+        {
+            string query = @"
+                EXEC sp_GetChallengesInfo
+            ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            foreach (DataRow dr in table.Rows)
+            {
+                Dictionary<string, object> row = new Dictionary<string, object>();
+                foreach (DataColumn col in table.Columns)
+                {
+                    if (col.ColumnName == "StartDate" || col.ColumnName == "FinalDate")
+                    {
+                        // Cambiar el formato de fecha
+                        row[col.ColumnName] = ((DateTime)dr[col]).ToString("yyyy-MM-dd");
+                    }
+                    else if (col.ColumnName == "Patrocinadores" || col.ColumnName == "Grupos")
+                    {
+                        // Convertir la cadena CSV a una lista
+                        row[col.ColumnName] = ((string)dr[col]).Split(',').Select(s => s.Trim()).ToList();
+                    }
+                    else
+                    {
+                        row[col.ColumnName] = dr[col];
+                    }
+                }
+                rows.Add(row);
+            }
+
+            return new JsonResult(rows);
+        }
+
+        [HttpGet]
         [Route("available")]
         public JsonResult GetNotExpired()
         {

@@ -48,7 +48,7 @@ CREATE TABLE RACE
 	Rname		VARCHAR(50)				NOT NULL,
 	Price		DECIMAL(7,2)			NOT NULL,
 	Rdate		DATE					NOT NULL,
-	Rroute		XML						NOT NULL,
+	Rroute		XML,
 	Pid			INT						NOT NULL,
 	Sptid		INT						NOT NULL,
 	PRIMARY KEY(RaceID)

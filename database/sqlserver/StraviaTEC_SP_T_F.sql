@@ -141,6 +141,48 @@ BEGIN
 END;
 GO
 
+CREATE OR ALTER PROCEDURE sp_GetChallengesInfo
+AS
+BEGIN
+    SELECT
+        CH.ChallengeID,
+        CH.Cname,
+        CH.Ctype,
+		CH.Mileage,
+        CH.StartDate,
+        CH.FinalDate,
+        CH.Pid,
+		COALESCE(STRING_AGG(SP.Sname, ', '), '') AS Patrocinadores,
+        COALESCE(STRING_AGG(G.Gname, ', '), '') AS Grupos,
+        S.SportName
+    FROM
+        CHALLENGE CH
+    LEFT JOIN
+        PRIVACY P ON CH.Pid = P.PrivacyID
+    LEFT JOIN
+        SPORT S ON CH.Sptid = S.SportID
+    LEFT JOIN
+        CHALLENGE_SPONSOR CS ON CH.ChallengeID = CS.Challid
+    LEFT JOIN
+        SPONSOR SP ON CS.Spnid = SP.SponsorID
+	LEFT JOIN
+        GROUP_PRIVACY GP ON CH.Pid = GP.Pid
+    LEFT JOIN
+        SGROUP G ON GP.Gid = G.GroupID
+	GROUP BY
+        CH.ChallengeID,
+        CH.Cname,
+        CH.Ctype,
+        CH.StartDate,
+        CH.FinalDate,
+        CH.Pid,
+        CH.Sptid,
+        S.SportName,
+        CH.Mileage;
+END;
+GO
+
+
 CREATE OR ALTER PROCEDURE sp_GetAthleteInformation @Aemail VARCHAR(25)
 AS
 BEGIN
@@ -364,6 +406,43 @@ BEGIN
         ROLLBACK;
         THROW;
     END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE sp_GetRacesInfo
+AS
+BEGIN
+    SELECT
+        R.RaceID,
+        R.Rname AS 'raceName',
+        R.Price,
+        R.Rdate AS 'date',
+        CAST(R.Rroute AS VARCHAR(MAX)) AS 'route',
+        R.Pid AS Privacy,
+        ISNULL(
+            (SELECT STRING_AGG(Sp.Sname, ', ') 
+             FROM RACE_SPONSOR RS
+             JOIN SPONSOR Sp ON RS.Spnid = Sp.SponsorID
+             WHERE RS.Rid = R.RaceID), '') AS Sponsors,
+        ISNULL(
+            (SELECT STRING_AGG(Cat.CategoryName, ', ')
+             FROM RACE_CATEGORY RC
+             JOIN CATEGORY Cat ON RC.Catid = Cat.CategoryID
+             WHERE RC.Rid = R.RaceID), '') AS Categories,
+        ISNULL(
+            (SELECT STRING_AGG(CONVERT(VARCHAR, RBA.Account), ', ')
+             FROM RACE_BANKACCS RBA
+             WHERE RBA.Rid = R.RaceID), '') AS BankAccounts,
+		S.SportName,
+		ISNULL(P.GroupNames, '') AS Groups
+    FROM RACE R
+    JOIN SPORT S ON R.Sptid = S.SportID
+    OUTER APPLY (
+        SELECT STRING_AGG(G.Gname, ', ') AS GroupNames
+        FROM GROUP_PRIVACY GP
+        JOIN SGROUP G ON GP.Gid = G.GroupID
+        WHERE GP.Pid = R.Pid
+    ) P
 END;
 GO
 
