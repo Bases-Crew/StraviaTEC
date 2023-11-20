@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using StraviaTECAPISQLS.Models;
 using System.Data;
+using System.Xml.Linq;
 
 namespace StraviaTECAPISQLS.Controllers
 {
@@ -37,7 +38,9 @@ namespace StraviaTECAPISQLS.Controllers
                     myCommand.Parameters.AddWithValue("@Price", user.Price);
                     DateOnly startDate = DateOnly.Parse(user.Date);
                     myCommand.Parameters.AddWithValue("@Date", startDate);
-                    myCommand.Parameters.AddWithValue("@Route", user.Route);
+                    string receivedXmlString = user.Route; 
+                    XElement receivedXmlData = XElement.Parse(receivedXmlString);
+                    myCommand.Parameters.AddWithValue("@Route", receivedXmlData.ToString());
                     myCommand.Parameters.AddWithValue("@Pid", user.Privacy);
                     myCommand.Parameters.AddWithValue("@SportName", user.SportName);
                     string categoriesString = string.Join(",", user.Categories);

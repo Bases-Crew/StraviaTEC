@@ -16,12 +16,14 @@ export const exampleUser: User = {
   aemail: 'pedrog@gmail.com',
   apassword: '1234',
   fname: 'Pedro',
-  mname: null,
+  mname: 'Pepe',
   lname: 'Gonzalez',
   lname2: 'Gonzalez',
   birth_date: '2000-01-01',
   flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/203px-Bandera_de_Espa%C3%B1a.svg.png',
   countryname: 'España',
+  image:
+    'https://cdn.britannica.com/41/240741-004-756B41D3/Pedro-Pascal-attends-premiere-The-Last-of-US-January-2023.jpg',
 };
 
 export const user: User = {
@@ -34,4 +36,5 @@ export const user: User = {
   birth_date: '',
   flag: '',
   countryname: '',
+  image: '',
 };
