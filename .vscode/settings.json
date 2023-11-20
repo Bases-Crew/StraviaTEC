@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/29ac6eb5-4a8f-4df4-9d92-7ff1e897acd7/resourceGroups/StraviaTECAtlethe_group/providers/Microsoft.Web/sites/StraviaTECAtlethe",
+  "appService.deploySubpath": "web\\StraviaTEC_Athlete\\dist\\stravia-tec-athlete"
+}

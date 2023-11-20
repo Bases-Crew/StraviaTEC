@@ -1,6 +1,7 @@
 export interface Comments {
   aemail: string;
   content: string;
+  actid?: number;
 }
 
 export interface ActivityComments {
