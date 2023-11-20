@@ -2,6 +2,9 @@ INSERT INTO COUNTRY(CountryName, Flag)
 VALUES('Costa Rica', 'https://es.wikipedia.org/wiki/Costa_Rica#/media/Archivo:Flag_of_Costa_Rica.svg');
 
 INSERT INTO COUNTRY(CountryName, Flag)
+VALUES('España', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/203px-Bandera_de_Espa%C3%B1a.svg.png');
+
+INSERT INTO COUNTRY(CountryName, Flag)
 VALUES('Estados Unidos', 'https://es.wikipedia.org/wiki/Estados_Unidos#/media/Archivo:Flag_of_the_United_States.svg');
 
 INSERT INTO COUNTRY(CountryName, Flag)
