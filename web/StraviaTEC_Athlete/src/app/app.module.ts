@@ -45,6 +45,7 @@ import { ReportParticipantsComponent } from './components/report-participants/re
 import { DisplayGroupComponent } from './components/display-group/display-group.component';
 import { PublishActivityComponent } from './components/publish-activity/publish-activity.component';
 import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -82,6 +83,7 @@ import { DisplayPublishActivityComponent } from './components/display-publish-ac
     DisplayGroupComponent,
     PublishActivityComponent,
     DisplayPublishActivityComponent,
+    InscriptionComponent,
   ],
   providers: [
     ExampleRickMortyService,
