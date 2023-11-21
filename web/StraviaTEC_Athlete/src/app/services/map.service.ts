@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Activity } from '../models/show-activities.model';
-import { HttpClient } from '@angular/common/http';
-import {
-  Comments,
-  comments1Example,
-  comments2Example,
-} from '../models/comments.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Comments, COMMENTS } from '../models/comments.model';
 import { Observable, of } from 'rxjs';
 import { environment } from '../environment';
 
@@ -19,7 +15,6 @@ const defaultZoom: number = 8;
   providedIn: 'root',
 })
 export class MapService {
-  url: string = environment.apiUrlSqlServer;
   /**
    * The constructor function initializes a private http property of type HttpClient.
    * @param {HttpClient} http - The `http` parameter is of type `HttpClient`. It is a dependency injection that allows you to make HTTP requests in your code. It provides methods for making GET, POST, PUT, DELETE, and other types of HTTP requests to a server.
@@ -59,18 +54,23 @@ export class MapService {
       .addTo(map);
   }
 
-  getActivityComments(id: number): Observable<Comments[]> {
-    // return this.http.get<Comments[]>(this.url + 'api/character');
-    if (id == 1) {
-      return of(comments1Example.comments);
-    } else if (id == 2) {
-      return of(comments2Example.comments);
-    } else {
-      return of([]);
-    }
+  getActivityComments(): Observable<Comments[]> {
+    return this.http.get<Comments[]>(environment.apiURLMongoDB + '/comment');
   }
 
-  postComment(aemail: string, content: string): Observable<Comments[]> {
-    return of([{ aemail, content }]);
+  postComment(auser: string, content: string, actid: number): Observable<any> {
+    const body = { auser: auser, actid: actid, content: content };
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'my-auth-token',
+      }),
+      responseType: 'text' as 'json',
+    };
+    return this.http.post<any>(
+      environment.apiURLMongoDB + '/comment',
+      body,
+      options
+    );
   }
 }
