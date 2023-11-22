@@ -15,6 +15,12 @@ import { ShowActivitiesService } from 'src/app/services/show-activities.service'
 export class ShowActivitiesComponent {
   activities: Activity[] = [];
 
+  /**
+   * Constructor for the class.
+   *
+   * @param {ShowActivitiesService} showActivitiesService - The show activities service.
+   * @param {Router} router - The router.
+   */
   constructor(
     private showActivitiesService: ShowActivitiesService,
     private router: Router
@@ -23,6 +29,11 @@ export class ShowActivitiesComponent {
     this.fetchGetActivities();
   }
 
+  /**
+   * Fetches activities using the showActivitiesService.
+   *
+   * @return {void}
+   */
   fetchGetActivities() {
     this.showActivitiesService.getActivities(user.aemail).subscribe({
       next: (data) => {
@@ -35,6 +46,12 @@ export class ShowActivitiesComponent {
     });
   }
 
+  /**
+   * Shows the comments for an activity.
+   *
+   * @param {Activity} activity - The activity object.
+   * @return {void} Navigates to the map page for the specified activity.
+   */
   showComments(activity: Activity) {
     // console.log(JSON.stringify(activity));
     this.router.navigate(['/map', activity.activityid]);

@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-initial-stage',
   templateUrl: './initial-stage.component.html',
-  styleUrls: ['./initial-stage.component.css']
+  styleUrls: ['./initial-stage.component.css'],
 })
-export class InitialStageComponent {
-
-}
+/**
+ * This class represents the lazy loaded InitialStageComponent.
+ */
+export class InitialStageComponent {}

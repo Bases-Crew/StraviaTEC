@@ -25,6 +25,11 @@ export class ExampleRickMortyService {
    */
   constructor(private http: HttpClient) {}
 
+  /**
+   * Retrieves the API data for the ExampleRickMorty entity.
+   *
+   * @return {Observable<ExampleRickMorty>} The API data for the ExampleRickMorty entity.
+   */
   getApi(): Observable<ExampleRickMorty> {
     return this.http.get<ExampleRickMorty>(this.url + 'api/character');
   }

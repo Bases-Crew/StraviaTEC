@@ -29,6 +29,12 @@ export class MapComponent implements OnInit {
   activityComments: Comments[] = [];
   newComment: string = '';
 
+  /**
+   * Initializes the component by fetching activities for the user's email and
+   * setting up the activities and map.
+   *
+   * @param {string} aemail - The user's email.
+   */
   ngOnInit() {
     this.showActivitiesService.getActivities(user.aemail).subscribe({
       next: (data) => {
@@ -43,6 +49,11 @@ export class MapComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetches comments and assigns them to activityComments property.
+   *
+   * @return {void} - This function does not return anything.
+   */
   fetchComments() {
     this._mapService.getActivityComments().subscribe({
       next: (data) => {
@@ -57,6 +68,11 @@ export class MapComponent implements OnInit {
     });
   }
 
+  /**
+   * Initializes the map and performs various operations related to the activity.
+   *
+   * @return {void}
+   */
   initMap() {
     this.activity = this.activities
       .slice(0)
@@ -81,6 +97,11 @@ export class MapComponent implements OnInit {
     this.fetchComments();
   }
 
+  /**
+   * Submits a comment.
+   *
+   * @return {void}
+   */
   submitComment() {
     if (!this.newComment.trim()) {
       console.error('Comment is empty');

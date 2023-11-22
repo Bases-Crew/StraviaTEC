@@ -54,10 +54,23 @@ export class MapService {
       .addTo(map);
   }
 
+  /**
+   * Retrieves the activity comments from the server.
+   *
+   * @return {Observable<Comments[]>} An observable that emits an array of comments.
+   */
   getActivityComments(): Observable<Comments[]> {
     return this.http.get<Comments[]>(environment.apiURLMongoDB + '/comment');
   }
 
+  /**
+   * Sends a comment from a user.
+   *
+   * @param {string} auser - The username of the user sending the comment.
+   * @param {string} content - The content of the comment.
+   * @param {number} actid - The ID of the activity associated with the comment.
+   * @return {Observable<any>} An observable that emits the response from the server.
+   */
   postComment(auser: string, content: string, actid: number): Observable<any> {
     const body = { auser: auser, actid: actid, content: content };
     const options = {

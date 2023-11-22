@@ -8,14 +8,31 @@ import { TDocumentDefinitions } from 'pdfmake/interfaces';
   providedIn: 'root',
 })
 export class ReportService {
+  /**
+   * Initializes the constructor.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   constructor() {
     (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
   }
 
+  /**
+   * Retrieves the details of the report.
+   *
+   * @return {Report} The details of the report.
+   */
   getReportDetails(): Report {
     return reportExample;
   }
 
+  /**
+   * Export the given report to a PDF file.
+   *
+   * @param {Report} report - The report object to export.
+   * @return {void} This function does not return anything.
+   */
   exportReportToPDF(report: Report): void {
     const docDefinition: TDocumentDefinitions = {
       content: [
@@ -57,6 +74,12 @@ export class ReportService {
     pdfMake.createPdf(docDefinition).download('report.pdf');
   }
 
+  /**
+   * Generates the participants table based on the given array of athletes.
+   *
+   * @param {Athlete[]} athletes - The array of athletes.
+   * @return {any} - The participants table object.
+   */
   private getParticipantsTable(athletes: Athlete[]): any {
     const body = athletes.map((athlete) => [
       `${athlete.fname} ${athlete.mname ?? ''} ${athlete.lname1} ${
@@ -74,6 +97,12 @@ export class ReportService {
     };
   }
 
+  /**
+   * Returns the category based on the given age.
+   *
+   * @param {number} age - The age to determine the category for.
+   * @return {string} The category for the given age.
+   */
   private getCategoryByAge(age: number): string {
     if (age < 15) return 'Junior';
     if (age >= 15 && age <= 23) return 'Sub-23';

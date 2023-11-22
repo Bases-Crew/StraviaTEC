@@ -10,6 +10,12 @@ import { environment } from '../environment';
   providedIn: 'root',
 })
 export class RegisterService {
+  /**
+   * Registers a user with the provided form data.
+   *
+   * @param {FormData} formData - The form data for user registration.
+   * @return {Observable<any>} - An observable that emits the response from the registration API call.
+   */
   registerUser(formData: FormData): Observable<any> {
     return this.http
       .post<any>(`${environment.apiUrlSqlServer}/athlete/signup`, formData)
@@ -22,6 +28,11 @@ export class RegisterService {
   }
   constructor(private http: HttpClient) {}
 
+  /**
+   * Retrieves a list of countries as an Observable of strings.
+   *
+   * @return {Observable<string[]>} An Observable that emits an array of strings representing country names.
+   */
   getCountries(): Observable<string[]> {
     return this.http
       .get<Country[]>(`${environment.apiUrlSqlServer}/country`)

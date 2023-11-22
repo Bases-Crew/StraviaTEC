@@ -14,6 +14,12 @@ import {
 export class ShowActivitiesService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Retrieves a list of activities for a given email address.
+   *
+   * @param {string} aemeail - The email address of the user.
+   * @return {Observable<Activity[]>} An observable of an array of activities.
+   */
   getActivities(aemeail: string): Observable<Activity[]> {
     // return this.http.get<Activity[]>(
     //   `${environment.apiUrlSqlServer}/activities`

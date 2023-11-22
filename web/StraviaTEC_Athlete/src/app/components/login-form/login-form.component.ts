@@ -24,6 +24,11 @@ export class LoginFormComponent {
     private sharedService: SharedService
   ) {}
 
+  /**
+   * Logs in the user.
+   *
+   * @return {void}
+   */
   login() {
     this.loginFormService.login(this.email, this.password).subscribe({
       next: (result) => {
@@ -78,10 +83,21 @@ export class LoginFormComponent {
     });
   }
 
+  /**
+   * A function to go back.
+   *
+   * @return {void} No return value.
+   */
   goBack() {
     this.back.emit();
   }
 
+  /**
+   * Retrieves information about a user based on their email.
+   *
+   * @param {string} aemail - The email of the user.
+   * @return {void} Does not return a value.
+   */
   getInfoUser(aemail: string) {
     this.loginFormService.getInfoUser(aemail).subscribe({
       next: (result) => {
@@ -104,6 +120,12 @@ export class LoginFormComponent {
     });
   }
 
+  /**
+   * Retrieves the country information based on the given country number.
+   *
+   * @param {number} cno - The country number to search for
+   * @return {void} This function does not return a value
+   */
   getCountry(cno: number) {
     this.sharedService.getCountry().subscribe({
       next: (result: Country[]) => {

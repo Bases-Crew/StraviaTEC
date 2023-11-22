@@ -24,6 +24,13 @@ export class LoginOrgComponent {
     private sharedService: SharedService
   ) {}
 
+  /**
+   * Logs in the user.
+   *
+   * This function sends a login request to the server using the provided email and password. It subscribes to the response and handles the next and error callbacks accordingly.
+   *
+   * @return {void} This function does not return anything.
+   */
   login() {
     this.loginFormService.login(this.email, this.password).subscribe({
       next: (result) => {
@@ -78,10 +85,21 @@ export class LoginOrgComponent {
     });
   }
 
+  /**
+   * A description of the entire function.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   goBack() {
     this.back.emit();
   }
 
+  /**
+   * Retrieves information about the user based on the provided email.
+   *
+   * @param {string} aemail - The email of the user.
+   */
   getInfoUser(aemail: string) {
     this.loginFormService.getInfoUser(aemail).subscribe({
       next: (result) => {
@@ -104,6 +122,12 @@ export class LoginOrgComponent {
     });
   }
 
+  /**
+   * Retrieves the country information based on the given country number.
+   *
+   * @param {number} cno - The country number.
+   * @return {void} This function does not return a value.
+   */
   getCountry(cno: number) {
     this.sharedService.getCountry().subscribe({
       next: (result: Country[]) => {

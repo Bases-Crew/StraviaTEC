@@ -13,15 +13,34 @@ export class ManagerGroupComponent {
   groups: Group[] = [];
   mode: 'create' | 'edit' = 'create';
 
+  /**
+   * A constructor function that initializes the GroupService and SharedService instances.
+   *
+   * @param {GroupService} groupService - An instance of the GroupService class.
+   * @param {SharedService} sharedService - An instance of the SharedService class.
+   */
   constructor(
     private groupService: GroupService,
     private sharedService: SharedService
   ) {}
 
+  /**
+   * Initializes the component and loads the groups.
+   *
+   * No parameters.
+   *
+   * No return value.
+   */
   ngOnInit() {
     this.loadGroups();
   }
 
+  /**
+   * Loads the groups by making a request to the group service API.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   loadGroups() {
     this.groupService.getGroups().subscribe(
       (groups) => (this.groups = groups),
@@ -29,6 +48,12 @@ export class ManagerGroupComponent {
     );
   }
 
+  /**
+   * Sets the mode of the function.
+   *
+   * @param {string} mode - The mode to set. Must be either 'create' or 'edit'.
+   * @return {void} This function does not return anything.
+   */
   setMode(mode: 'create' | 'edit') {
     this.mode = mode;
     if (mode === 'create') {
@@ -36,6 +61,11 @@ export class ManagerGroupComponent {
     }
   }
 
+  /**
+   * Handles the submit event.
+   *
+   * @return {void}
+   */
   onSubmit() {
     if (this.mode === 'create') {
       this.currentGroup.ouser = this.sharedService.getEmail() || undefined;
@@ -57,6 +87,11 @@ export class ManagerGroupComponent {
     }
   }
 
+  /**
+   * Selects a group for editing.
+   *
+   * @param {Group} group - The group to be edited.
+   */
   selectGroupForEdit(group: Group) {
     this.currentGroup = group;
     this.setMode('edit');

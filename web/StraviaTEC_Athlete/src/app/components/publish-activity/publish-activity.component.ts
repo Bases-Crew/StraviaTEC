@@ -16,11 +16,21 @@ export class PublishActivityComponent {
     esCompletitud: false,
   };
 
+  /**
+   * Submits the form.
+   *
+   * @return {void} - No return value
+   */
   submitForm() {
     // Aquí puedes enviar la actividad al servidor o realizar las acciones necesarias
     console.log(this.activity);
   }
 
+  /**
+   * A function that is called when a file is selected.
+   *
+   * @param {Event} event - The event object triggered by the file selection.
+   */
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {

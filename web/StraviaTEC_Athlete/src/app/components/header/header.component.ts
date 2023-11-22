@@ -27,6 +27,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
+  /**
+   * Initializes the component and assigns the user.
+   *
+   * @param {any} user - The user object to assign.
+   */
   ngOnInit() {
     this.user = user;
 

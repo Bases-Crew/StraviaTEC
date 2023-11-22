@@ -22,6 +22,12 @@ export class ManagerRaceComponent {
   selectedSponsor: string = '';
   selectedGroup: string = '';
   selectedCategory: string = '';
+  /**
+   * Adds a bank account to the current race's list of bank accounts.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   addBankAccount() {
     if (
       this.newBankAccount !== null &&
@@ -32,10 +38,22 @@ export class ManagerRaceComponent {
     }
   }
 
+  /**
+   * Removes a bank account from the current race's bankAccounts array.
+   *
+   * @param {number} index - The index of the bank account to remove.
+   * @return {void} This function does not return a value.
+   */
   removeBankAccount(index: number) {
     this.currentRace.bankAccounts.splice(index, 1);
   }
 
+  /**
+   * Adds the selected category to the current race's categories array.
+   *
+   * @param {none} - No parameters are needed for this function.
+   * @return {none} - This function does not return anything.
+   */
   addCategory() {
     if (
       this.selectedCategory &&
@@ -46,10 +64,23 @@ export class ManagerRaceComponent {
     }
   }
 
+  /**
+   * Removes a category from the current race at the specified index.
+   *
+   * @param {number} index - The index of the category to be removed.
+   * @return {void}
+   */
   removeCategory(index: number) {
     this.currentRace.categories.splice(index, 1); // Remove the category at the specified index
   }
 
+  /**
+   * Adds the selected sponsor to the current race's sponsors array if it's not already included.
+   * Resets the dropdown value after adding the sponsor.
+   *
+   * @param {void} - No parameters
+   * @return {void} - No return value
+   */
   addSponsor() {
     if (
       this.selectedSponsor &&
@@ -60,10 +91,23 @@ export class ManagerRaceComponent {
     }
   }
 
+  /**
+   * Removes a sponsor from the current race.
+   *
+   * @param {number} index - The index of the sponsor to remove.
+   */
   removeSponsor(index: number) {
     this.currentRace.sponsors.splice(index, 1);
   }
 
+  /**
+   * Adds the selected group to the current race's list of groups.
+   * If the selected group is not already in the list, it is added.
+   * Finally, the selected group is reset to an empty string.
+   *
+   * @param {void} None
+   * @return {void} None
+   */
   addGroup() {
     if (
       this.selectedGroup &&
@@ -74,10 +118,21 @@ export class ManagerRaceComponent {
     }
   }
 
+  /**
+   * Removes a group from the current race at the specified index.
+   *
+   * @param {number} index - The index of the group to remove.
+   * @return {void} This function does not return anything.
+   */
   removeGroup(index: number) {
     this.currentRace.groups.splice(index, 1);
   }
 
+  /**
+   * Loads a race.
+   *
+   * @param {Race} race - The race object to be loaded.
+   */
   loadRace(race: Race) {
     this.currentRace = race;
     /*
@@ -88,6 +143,11 @@ export class ManagerRaceComponent {
     */
   }
 
+  /**
+   * Toggles the display of groups based on the privacy level of the current race.
+   *
+   * @return {void}
+   */
   toggleGroupsDisplay() {
     this.showGroups = this.currentRace.privacy > 0;
   }
@@ -100,6 +160,12 @@ export class ManagerRaceComponent {
 
   constructor(private raceService: RaceService) {}
 
+  /**
+   * Initializes the component and loads the necessary data.
+   *
+   * @param {none} - No parameters.
+   * @return {none} - No return value.
+   */
   ngOnInit() {
     this.loadSports();
     this.loadSponsors();
@@ -108,6 +174,11 @@ export class ManagerRaceComponent {
     this.loadCategories();
   }
 
+  /**
+   * Loads the sports by calling the race service's getSports method and subscribing to the result.
+   *
+   * @return {void}
+   */
   loadSports() {
     this.raceService.getSports().subscribe({
       next: (data) => {
@@ -122,6 +193,11 @@ export class ManagerRaceComponent {
     });
   }
 
+  /**
+   * Loads the categories by making an API call to fetch categories.
+   *
+   * @return {void} - This function does not return anything.
+   */
   loadCategories() {
     // Replace with actual API call to fetch categories
     this.raceService.getCategories().subscribe(
@@ -132,6 +208,11 @@ export class ManagerRaceComponent {
     );
   }
 
+  /**
+   * Loads sponsors by subscribing to the getSponsors() Observable.
+   *
+   * @return {void} - No return value
+   */
   loadSponsors() {
     // Assume getSponsors() returns an Observable<string[]>
     this.raceService.getSponsors().subscribe(
@@ -140,6 +221,11 @@ export class ManagerRaceComponent {
     );
   }
 
+  /**
+   * Loads the groups by making a request to the race service.
+   *
+   * @return {void} This function does not return anything.
+   */
   loadGroups() {
     // Assume getGroups() returns an Observable<string[]>
     this.raceService.getGroups().subscribe(
@@ -148,6 +234,12 @@ export class ManagerRaceComponent {
     );
   }
 
+  /**
+   * Sets the mode of the function.
+   *
+   * @param {('create' | 'edit')} mode - The mode to set.
+   * @return {void} This function does not return anything.
+   */
   setMode(mode: 'create' | 'edit') {
     this.mode = mode;
     if (mode === 'create') {
@@ -157,6 +249,11 @@ export class ManagerRaceComponent {
     }
   }
 
+  /**
+   * Returns an empty Race object.
+   *
+   * @return {Race} An empty Race object with all properties set to their default values.
+   */
   getEmptyRace(): Race {
     return {
       raceName: '',
@@ -172,6 +269,11 @@ export class ManagerRaceComponent {
     };
   }
 
+  /**
+   * Loads the races by making a request to the race service.
+   *
+   * @return {void} No return value.
+   */
   loadRaces() {
     this.raceService.getRaces().subscribe(
       (races) => ((this.races = races), console.log(races)),
@@ -179,6 +281,12 @@ export class ManagerRaceComponent {
     );
   }
 
+  /**
+   * Submits the form data.
+   *
+   * @param {} - No parameters.
+   * @return {} - No return value.
+   */
   onSubmit() {
     if (this.currentRace.route == '') {
       delete this.currentRace.route;
@@ -190,6 +298,12 @@ export class ManagerRaceComponent {
     }
   }
 
+  /**
+   * Deletes a race.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   deleteRace() {
     // Make sure to have an identifier for deletion
     // this.raceService.deleteRace(this.currentRace.id).subscribe(/* ... */);

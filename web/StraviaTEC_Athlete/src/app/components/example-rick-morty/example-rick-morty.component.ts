@@ -20,6 +20,11 @@ export class ExampleRickMortyComponent implements OnInit {
     this.fetchCharacters();
   }
 
+  /**
+   * Fetches characters from the API and stores them in the 'characters' property.
+   *
+   * @return {void} This function does not return anything.
+   */
   fetchCharacters() {
     this.exampleRickMortyService.getApi().subscribe({
       next: (data: ExampleRickMorty) => {

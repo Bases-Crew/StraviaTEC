@@ -8,6 +8,11 @@ import { Router } from '@angular/router';
 })
 export class NextPageExampleComponent {
   constructor(private router: Router) {}
+  /**
+   * Navigate to the next page.
+   *
+   * @return {void}
+   */
   nextPage() {
     this.router.navigate(['/display-example']);
   }

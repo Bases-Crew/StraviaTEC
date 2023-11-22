@@ -12,6 +12,11 @@ export class TrilComponent implements OnInit {
 
   constructor(private trilService: TrilService) {}
 
+  /**
+   * Initializes the component and assigns the profiles retrieved from the trilService.
+   *
+   * @return {void}
+   */
   ngOnInit(): void {
     this.profiles = this.trilService.getProfiles();
   }

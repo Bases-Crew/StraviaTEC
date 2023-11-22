@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-display-tril',
   templateUrl: './display-tril.component.html',
-  styleUrls: ['./display-tril.component.css']
+  styleUrls: ['./display-tril.component.css'],
 })
-export class DisplayTrilComponent {
-
-}
+/**
+ * This class represents the lazy loaded DisplayTrilComponent.
+ */
+export class DisplayTrilComponent {}

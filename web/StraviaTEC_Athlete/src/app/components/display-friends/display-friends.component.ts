@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-display-friends',
   templateUrl: './display-friends.component.html',
-  styleUrls: ['./display-friends.component.css']
+  styleUrls: ['./display-friends.component.css'],
 })
-export class DisplayFriendsComponent {
-
-}
+/**
+ * This class represents the lazy loaded DisplayFriendsComponent.
+ */
+export class DisplayFriendsComponent {}

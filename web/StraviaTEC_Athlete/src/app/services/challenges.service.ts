@@ -11,6 +11,11 @@ export class ChallengeService {
 
   constructor() {}
 
+  /**
+   * Retrieves the challenges.
+   *
+   * @return {Observable<Challenge[]>} Observable that emits an array of Challenge objects.
+   */
   getChallenges(): Observable<Challenge[]> {
     return of(this.challenges);
   }

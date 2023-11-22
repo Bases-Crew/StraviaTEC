@@ -20,6 +20,12 @@ export class ManagerChallengeComponent {
   selectedSponsor: string = '';
   selectedGroup: string = '';
 
+  /**
+   * Adds the selected sponsor to the current challenge's list of sponsors.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   addSponsor() {
     if (
       this.selectedSponsor &&
@@ -30,10 +36,23 @@ export class ManagerChallengeComponent {
     }
   }
 
+  /**
+   * Removes a sponsor from the current challenge.
+   *
+   * @param {number} index - The index of the sponsor to be removed.
+   * @return {void} This function does not return a value.
+   */
   removeSponsor(index: number) {
     this.currentChallenge.patrocinadores.splice(index, 1);
   }
 
+  /**
+   * Adds the selected group to the current challenge if it is not already included.
+   * Resets the dropdown selection afterwards.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   addGroup() {
     if (
       this.selectedGroup &&
@@ -44,14 +63,31 @@ export class ManagerChallengeComponent {
     }
   }
 
+  /**
+   * Removes a group at the specified index from the current challenge's grupos array.
+   *
+   * @param {number} index - The index of the group to be removed.
+   * @return {void}
+   */
   removeGroup(index: number) {
     this.currentChallenge.grupos.splice(index, 1);
   }
 
+  /**
+   * Loads a challenge.
+   *
+   * @param {Challenge} challenge - The challenge to be loaded.
+   */
   loadChallenge(challenge: Challenge) {
     this.currentChallenge = challenge;
   }
 
+  /**
+   * Toggles the display of groups.
+   *
+   * @param {}
+   * @return {}
+   */
   toggleGroupsDisplay() {
     this.showGroups = this.currentChallenge.pid > 0;
   }
@@ -64,6 +100,12 @@ export class ManagerChallengeComponent {
 
   constructor(private challengeService: ChallengeService) {}
 
+  /**
+   * Initializes the component and loads the necessary data.
+   *
+   * @param None
+   * @return None
+   */
   ngOnInit() {
     this.loadSports();
     this.loadSponsors();
@@ -71,6 +113,11 @@ export class ManagerChallengeComponent {
     this.loadChallenges();
   }
 
+  /**
+   * Load the sports data by making an API call.
+   *
+   * @return {void} This function does not return anything.
+   */
   loadSports() {
     this.challengeService.getSports().subscribe({
       next: (data) => {
@@ -85,6 +132,12 @@ export class ManagerChallengeComponent {
     });
   }
 
+  /**
+   * Load sponsors by subscribing to the getSponsors Observable.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   loadSponsors() {
     // Assume getSponsors() returns an Observable<string[]>
     this.challengeService.getSponsors().subscribe(
@@ -93,6 +146,12 @@ export class ManagerChallengeComponent {
     );
   }
 
+  /**
+   * Loads the groups by subscribing to the getGroups() Observable.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   loadGroups() {
     // Assume getGroups() returns an Observable<string[]>
     this.challengeService.getGroups().subscribe(
@@ -101,6 +160,11 @@ export class ManagerChallengeComponent {
     );
   }
 
+  /**
+   * Set the mode of the function.
+   *
+   * @param {('create' | 'edit')} mode - The mode to set.
+   */
   setMode(mode: 'create' | 'edit') {
     this.mode = mode;
     if (mode === 'create') {
@@ -110,6 +174,11 @@ export class ManagerChallengeComponent {
     }
   }
 
+  /**
+   * Returns an empty Challenge object.
+   *
+   * @return {Challenge} An empty Challenge object with default values for all properties.
+   */
   getEmptyChallenge(): Challenge {
     return {
       cname: '',
@@ -124,6 +193,12 @@ export class ManagerChallengeComponent {
     };
   }
 
+  /**
+   * Loads the challenges by making a GET request to the challenge service.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   loadChallenges() {
     this.challengeService.getChallenges().subscribe({
       next: (data) => {
@@ -139,6 +214,11 @@ export class ManagerChallengeComponent {
     });
   }
 
+  /**
+   * Submits the form data based on the mode.
+   *
+   * @return {void} This function does not return anything.
+   */
   onSubmit() {
     if (this.mode === 'create') {
       this.challengeService
@@ -151,6 +231,12 @@ export class ManagerChallengeComponent {
     }
   }
 
+  /**
+   * Deletes the challenge.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   deleteChallenge() {
     // Make sure to have an identifier for deletion
     // this.raceService.deleteRace(this.currentRace.id).subscribe(/* ... */);

@@ -12,6 +12,11 @@ export class ProfilesComponent implements OnInit {
 
   constructor(private profilesService: ProfilesService) {}
 
+  /**
+   * Initializes the component and loads all profiles.
+   *
+   * @return {void}
+   */
   ngOnInit(): void {
     this.profiles = this.profilesService.getProfiles(); // Cargamos todos los perfiles
   }

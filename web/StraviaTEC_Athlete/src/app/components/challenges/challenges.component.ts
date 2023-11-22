@@ -18,6 +18,11 @@ export class ChallengesComponent implements OnInit {
     this.getChallenges();
   }
 
+  /**
+   * Retrieves challenges from the challenge service and assigns them to this.challenges.
+   * Filters the challenges immediately after assignment.
+   * Handles errors by logging them to the console.
+   */
   getChallenges(): void {
     this.challengeService.getChallenges().subscribe(
       (challenges) => {
@@ -31,6 +36,12 @@ export class ChallengesComponent implements OnInit {
     );
   }
 
+  /**
+   * Toggles the specified type.
+   *
+   * @param {string} type - The type to toggle.
+   * @return {void} No return value.
+   */
   toggleType(type: string): void {
     const index = this.selectedTypes.indexOf(type);
     if (index === -1) {
@@ -41,6 +52,11 @@ export class ChallengesComponent implements OnInit {
     this.filterChallenges();
   }
 
+  /**
+   * Filters the challenges based on the selected types.
+   *
+   * @return {void} Does not return anything.
+   */
   filterChallenges(): void {
     if (this.selectedTypes.length > 0) {
       this.filteredChallenges = this.challenges.filter((challenge) =>
@@ -50,6 +66,14 @@ export class ChallengesComponent implements OnInit {
       this.filteredChallenges = [...this.challenges]; // Utiliza una copia de la lista original si no hay tipos seleccionados
     }
   }
+
+  /**
+   * Joins a challenge to an event.
+   *
+   * @param {Challenge} challenge - The challenge to join.
+   * @param {Event} event - The event where the challenge is being joined.
+   * @return {void} This function does not return anything.
+   */
   joinChallenge(challenge: Challenge, event: Event): void {
     event.preventDefault();
     console.log('Unido a:', challenge);

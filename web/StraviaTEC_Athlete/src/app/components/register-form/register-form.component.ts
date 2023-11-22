@@ -32,12 +32,23 @@ export class RegisterFormComponent {
     private router: Router
   ) {}
 
+  /**
+   * Initializes the component and retrieves the list of countries from the register service.
+   *
+   * @return {void}
+   */
   ngOnInit() {
     this.registerService.getCountries().subscribe((countries) => {
       this.countrynamesL = countries;
     });
   }
 
+  /**
+   * Handles the event of image upload.
+   *
+   * @param {Event} event - The event object for the image upload.
+   * @return {void} This function does not return anything.
+   */
   onImageUpload(event: Event) {
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
@@ -53,7 +64,11 @@ export class RegisterFormComponent {
     }
   }
 
-  // Define the registration function
+  /**
+   * Registers a new user.
+   *
+   * @return {void} This function does not return anything.
+   */
   register() {
     const formData = new FormData();
     formData.append('fname', this.fname);

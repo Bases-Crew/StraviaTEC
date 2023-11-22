@@ -20,19 +20,40 @@ export class ReportParticipantsComponent implements OnInit {
     'Master C',
   ];
 
+  /**
+   * Constructs a new instance of the class.
+   *
+   * @param {ReportService} reportService - The report service.
+   * @param {ReportParticipantsService} reportParticipantsService - The report participants service.
+   */
   constructor(
     private reportService: ReportService,
     private reportParticipantsService: ReportParticipantsService
   ) {}
 
+  /**
+   * Initializes the component and calls the getReportDetails function.
+   *
+   */
   ngOnInit() {
     this.getReportDetails();
   }
 
+  /**
+   * Retrieves the report details from the report service.
+   *
+   * @return {void} This function does not return a value.
+   */
   getReportDetails(): void {
     this.reportDetails = this.reportService.getReportDetails();
   }
 
+  /**
+   * Retrieves an array of athletes filtered by category.
+   *
+   * @param {string} category - The category to filter by.
+   * @return {Athlete[]} - An array of athletes filtered by category.
+   */
   getAthletesByCategory(category: string): Athlete[] {
     return (
       this.reportDetails?.athletes.filter(
@@ -41,6 +62,12 @@ export class ReportParticipantsComponent implements OnInit {
     );
   }
 
+  /**
+   * Returns the category based on the given age.
+   *
+   * @param {number} age - The age used to determine the category.
+   * @return {string} The category based on the age.
+   */
   getCategoryByAge(age: number): string {
     if (age < 15) return 'Junior';
     if (age >= 15 && age <= 23) return 'Sub-23';
@@ -51,6 +78,11 @@ export class ReportParticipantsComponent implements OnInit {
     return 'Elite';
   }
 
+  /**
+   * Export the report to PDF.
+   *
+   * @return {void}
+   */
   exportToPDF(): void {
     if (this.reportDetails) {
       this.reportParticipantsService.exportReportToPDF(this.reportDetails);

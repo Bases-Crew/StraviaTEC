@@ -12,10 +12,23 @@ export class GroupComponent implements OnInit {
 
   constructor(private groupService: GroupService) {}
 
+  /**
+   * Initializes the component and assigns the result of the `getGroups()` method
+   * from the `groupService` to the `groups` variable.
+   *
+   * @param {void} - No parameters
+   * @return {void} - No return value
+   */
   ngOnInit(): void {
     this.groups = this.groupService.getGroups();
   }
 
+  /**
+   * Executes the necessary actions when a user joins or leaves a group.
+   *
+   * @param {Group} group - The group object representing the group being joined or left.
+   * @return {void} This function does not return anything.
+   */
   onJoinLeave(group: Group): void {
     if (group.joined) {
       this.groupService.leaveGroup(group.id);
