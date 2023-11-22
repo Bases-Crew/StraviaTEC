@@ -35,10 +35,10 @@
       </ul>
       <button
         (click)="saveAndPrintFriend(friend)"
-        [class.follow]="!friend.following"
-        [class.unfollow]="friend.following"
+        [class.follow]="!friend.arefriends"
+        [class.unfollow]="friend.arefriends"
       >
-        {{ friend.following ? "Dejar de seguir" : "Seguir" }}
+        {{ friend.arefriends ? "Dejar de seguir" : "Seguir" }}
       </button>
     </div>
   </div>
@@ -60,10 +60,10 @@
       </ul>
       <button
         (click)="saveAndPrintFriend(friend)"
-        [class.follow]="!friend.following"
-        [class.unfollow]="friend.following"
+        [class.follow]="!friend.arefriends"
+        [class.unfollow]="friend.arefriends"
       >
-        {{ friend.following ? "Dejar de seguir" : "Seguir" }}
+        {{ friend.arefriends ? "Dejar de seguir" : "Seguir" }}
       </button>
     </div>
   </div>
