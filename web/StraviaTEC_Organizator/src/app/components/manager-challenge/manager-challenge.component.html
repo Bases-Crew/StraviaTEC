@@ -1,0 +1,232 @@
+<div class="container-fluid">
+  <!-- Buttons for switching modes -->
+  <div class="btn-group mb-3" role="group">
+    <button type="button" class="btn btn-primary" (click)="setMode('create')">
+      Crear
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="setMode('edit')">
+      Editar
+    </button>
+  </div>
+
+  <div class="row">
+    <!-- Challenge Selection List (Edit Mode) - Left Side -->
+    <div *ngIf="mode === 'edit'" class="col-md-4">
+      <div class="challenge-list" style="max-height: 600px; overflow-y: auto">
+        <ul class="list-group">
+          <li
+            class="list-group-item group-item"
+            *ngFor="let challenge of challenges"
+            (click)="loadChallenge(challenge)"
+          >
+            {{ challenge.cname }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right Side: Challenge Form -->
+    <div class="col-md-8">
+      <form (ngSubmit)="onSubmit()">
+        <!-- Challenge Name -->
+        <div class="form-group">
+          <label for="cname">Nombre del Reto</label>
+          <input
+            type="text"
+            id="cname"
+            [(ngModel)]="currentChallenge.cname"
+            class="form-control"
+            name="cname"
+          />
+        </div>
+
+        <!-- Challenge Type -->
+        <div class="form-group">
+          <label for="ctype">Tipo de Reto</label>
+          <select
+            id="ctype"
+            [(ngModel)]="currentChallenge.ctype"
+            class="form-control"
+            name="ctype"
+          >
+            <option value="fondo">Fondo</option>
+            <option value="altura">Altura</option>
+          </select>
+        </div>
+
+        <!-- Mileage -->
+        <div class="form-group">
+          <label for="mileage">Distancia (km)</label>
+          <input
+            type="number"
+            id="mileage"
+            [(ngModel)]="currentChallenge.mileage"
+            class="form-control"
+            name="mileage"
+          />
+        </div>
+
+        <!-- Start Date -->
+        <div class="form-group">
+          <label for="startDate">Fecha de Inicio</label>
+          <input
+            type="date"
+            id="startDate"
+            [(ngModel)]="currentChallenge.startDate"
+            class="form-control"
+            name="startDate"
+          />
+        </div>
+
+        <!-- Final Date -->
+        <div class="form-group">
+          <label for="finalDate">Fecha Final</label>
+          <input
+            type="date"
+            id="finalDate"
+            [(ngModel)]="currentChallenge.finalDate"
+            class="form-control"
+            name="finalDate"
+          />
+        </div>
+
+        <!-- Privacy Toggle -->
+        <div class="form-group form-check">
+          <input
+            type="checkbox"
+            id="pid"
+            [(ngModel)]="currentChallenge.pid"
+            class="form-check-input"
+            name="pid"
+            (change)="toggleGroupsDisplay()"
+          />
+          <label for="pid" class="form-check-label">Evento Privado</label>
+        </div>
+
+        <!-- Sport Type Dropdown -->
+        <div class="form-group">
+          <label for="sportName">Deporte</label>
+          <select
+            id="sportName"
+            [(ngModel)]="currentChallenge.sportName"
+            class="form-control"
+            name="sportName"
+          >
+            <option
+              *ngFor="let sport of availableSports"
+              [value]="sport.SportName"
+            >
+              {{ sport.SportName }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Sponsors -->
+        <div class="form-group">
+          <label for="patrocinadores">Patrocinadores</label>
+          <div
+            *ngFor="
+              let sponsor of currentChallenge.patrocinadores;
+              let i = index
+            "
+            class="d-flex align-items-center mb-2"
+          >
+            <span class="mr-2">{{ sponsor }}</span>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="removeSponsor(i)"
+            >
+              -
+            </button>
+          </div>
+          <div class="input-group mb-3">
+            <select
+              id="patrocinadores"
+              [(ngModel)]="selectedSponsor"
+              class="form-control"
+              name="patrocinadores"
+            >
+              <option
+                *ngFor="let sponsor of availableSponsors"
+                [value]="sponsor.Sname"
+              >
+                {{ sponsor.Sname }}
+              </option>
+            </select>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addSponsor()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Groups (Conditional) -->
+        <div *ngIf="showGroups" class="form-group">
+          <label for="grupos">Grupos</label>
+          <div
+            *ngFor="let group of currentChallenge.grupos; let i = index"
+            class="d-flex align-items-center mb-2"
+          >
+            <span class="mr-2">{{ group }}</span>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="removeGroup(i)"
+            >
+              -
+            </button>
+          </div>
+          <div class="input-group mb-3">
+            <select
+              id="grupos"
+              [(ngModel)]="selectedGroup"
+              class="form-control"
+              name="grupos"
+            >
+              <option
+                *ngFor="let group of availableGroups"
+                [value]="group.Gname"
+              >
+                {{ group.Gname }}
+              </option>
+            </select>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addGroup()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit and Delete Buttons -->
+        <div
+          *ngIf="mode === 'edit'"
+          class="form-actions d-flex justify-content-start"
+        >
+          <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteChallenge()"
+          >
+            Eliminar
+          </button>
+        </div>
+
+        <div *ngIf="mode === 'create'" class="form-actions">
+          <button type="submit" class="btn btn-success">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

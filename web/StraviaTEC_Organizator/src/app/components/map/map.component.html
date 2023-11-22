@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="row row-map">
+  <div class="col-md-9">
+    <h2 class="heading">Map</h2>
+    <hr />
+    <div id="map"></div>
+  </div>
+  <div class="col-md-3 info-container">
+    <div id="run-info">
+      <h2 class="heading">Run Data</h2>
+      <hr />
+      <div class="data-heading">Route Name:</div>
+      <p class="data-entry">{{ activityName }}</p>
+      <hr />
+
+      <div class="data-heading">Date:</div>
+      <p class="data-entry">{{ activityDate }}</p>
+      <p></p>
+      <hr />
+
+      <div class="data-heading">Total Distance:</div>
+      <p class="data-entry">{{ activityDistance }} miles</p>
+      <hr />
+
+      <div class="data-heading">Duración:</div>
+      <p class="data-entry">{{ activityDuration }}</p>
+      <hr />
+
+      <div class="data-heading">Comentarios:</div>
+      <div *ngFor="let comment of activityComments">
+        <p class="data-entry">{{ comment.auser }}: {{ comment.content }}</p>
+      </div>
+      <hr />
+    </div>
+  </div>
+
+  <div class="col-md-3 info-container">
+    <!-- ... otros elementos ... -->
+
+    <div class="data-heading">Agregar comentario:</div>
+    <textarea
+      class="form-control comment-box"
+      [(ngModel)]="newComment"
+      rows="3"
+    ></textarea>
+    <button
+      class="btn btn-primary comment-submit-btn mt-2"
+      (click)="submitComment()"
+    >
+      Subir
+    </button>
+    <hr />
+  </div>
+</div>
+<app-footer></app-footer>

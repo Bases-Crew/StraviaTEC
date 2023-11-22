@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.118.2" />
+    <title>Headers · Bootstrap v5.3</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/headers/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+  </head>
+  <body>
+    <header class="p-3 mb-3 border-bottom">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            routerLink="/init"
+            class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+          >
+            <img
+              src="../../../assets/exercise_sport_13306.png"
+              alt="icon"
+              class="bi me-2"
+              width="32"
+            />
+          </a>
+
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="!(currentUrl === 'init')"
+                [class.disabled]="currentUrl === 'init'"
+                routerLink="/init"
+              >
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'manage')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'manage'
+                "
+                routerLink="/manage"
+              >
+                Menu Organizador
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(
+                    currentUrl === 'init' ||
+                    currentUrl === 'display-report-participants'
+                  )
+                "
+                [class.disabled]="
+                  currentUrl === 'init' ||
+                  currentUrl === 'display-report-participants'
+                "
+                routerLink="/display-report-participants"
+              >
+                Reporte de Participantes por Carrera
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-report')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-report'
+                "
+                routerLink="/display-report"
+              >
+                Reporte de Posiciones de Carrera
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

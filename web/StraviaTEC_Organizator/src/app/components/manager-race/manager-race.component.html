@@ -1,0 +1,297 @@
+<div class="container-fluid">
+  <!-- Buttons for switching modes -->
+  <div class="btn-group mb-3" role="group">
+    <button type="button" class="btn btn-primary" (click)="setMode('create')">
+      Crear
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="setMode('edit')">
+      Editar
+    </button>
+  </div>
+  <div class="row">
+    <!-- Race Selection List (Edit Mode) - Left Side -->
+    <div *ngIf="mode === 'edit'" class="col-md-4">
+      <div class="race-list" style="max-height: 600px; overflow-y: auto">
+        <ul class="list-group">
+          <li
+            class="list-group-item group-item"
+            *ngFor="let race of races"
+            (click)="loadRace(race)"
+          >
+            {{ race.raceName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <form (ngSubmit)="onSubmit()">
+        <!-- Race Name -->
+        <div class="form-group">
+          <label for="raceName">Nombre del Evento</label>
+          <input
+            type="text"
+            id="raceName"
+            [(ngModel)]="currentRace.raceName"
+            class="form-control"
+            name="raceName"
+          />
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <label for="racePrice">Precio</label>
+          <input
+            type="number"
+            id="racePrice"
+            [(ngModel)]="currentRace.price"
+            class="form-control"
+            name="racePrice"
+          />
+        </div>
+
+        <!-- Date -->
+        <div class="form-group">
+          <label for="raceDate">Fecha de Evento</label>
+          <input
+            type="date"
+            id="raceDate"
+            [(ngModel)]="currentRace.date"
+            class="form-control"
+            name="raceDate"
+          />
+        </div>
+
+        <!-- Route -->
+        <div class="form-group">
+          <label for="raceRoute">Ruta de Evento</label>
+          <input
+            type="text"
+            id="raceRoute"
+            [(ngModel)]="currentRace.route"
+            class="form-control"
+            name="raceRoute"
+          />
+        </div>
+
+        <!-- Privacy Toggle -->
+        <div class="form-group form-check">
+          <input
+            type="checkbox"
+            id="privateRace"
+            [(ngModel)]="currentRace.privacy"
+            class="form-check-input"
+            name="privateRace"
+          />
+          <label for="privateRace" class="form-check-label"
+            >Evento Privado</label
+          >
+        </div>
+
+        <!-- Sport Type Dropdown -->
+        <div class="form-group">
+          <label for="sportType">Deporte</label>
+          <select
+            id="sportType"
+            [(ngModel)]="currentRace.sportName"
+            class="form-control"
+            name="sportType"
+          >
+            <option
+              *ngFor="let sport of availableSports"
+              [value]="sport.SportName"
+            >
+              {{ sport.SportName }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Categories -->
+        <div class="form-group">
+          <label for="categories">Categorías</label>
+          <div class="overflow-auto" style="max-height: 150px">
+            <div
+              *ngFor="let category of currentRace.categories; let i = index"
+              class="d-flex align-items-center mb-2"
+            >
+              <span class="mr-2">{{ category }}</span>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="removeCategory(i)"
+              >
+                -
+              </button>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <select
+              id="categories"
+              [(ngModel)]="selectedCategory"
+              class="form-control"
+              name="selectedCategory"
+            >
+              <option
+                *ngFor="let category of availableCategories"
+                [value]="category.CategoryName"
+              >
+                {{ category.CategoryName }}
+              </option>
+            </select>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addCategory()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bank Accounts -->
+        <div class="form-group">
+          <label for="bankAccounts">Cuentas Bancarias</label>
+          <div class="overflow-auto" style="max-height: 150px">
+            <div
+              *ngFor="let account of currentRace.bankAccounts; let i = index"
+              class="d-flex align-items-center mb-2"
+            >
+              <span class="mr-2">{{ account }}</span>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="removeBankAccount(i)"
+              >
+                -
+              </button>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="number"
+              id="newBankAccount"
+              [(ngModel)]="newBankAccount"
+              name="newBankAccount"
+              class="form-control"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addBankAccount()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sponsors -->
+        <div class="form-group">
+          <label for="sponsors">Patrocinadores</label>
+          <div class="overflow-auto" style="max-height: 150px">
+            <div
+              *ngFor="let sponsor of currentRace.sponsors; let i = index"
+              class="d-flex align-items-center mb-2"
+            >
+              <span class="mr-2">{{ sponsor }}</span>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="removeSponsor(i)"
+              >
+                -
+              </button>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <select
+              id="sponsors"
+              [(ngModel)]="selectedSponsor"
+              class="form-control"
+              name="selectedSponsor"
+            >
+              <option
+                *ngFor="let sponsor of availableSponsors"
+                [value]="sponsor.Sname"
+              >
+                {{ sponsor.Sname }}
+              </option>
+            </select>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addSponsor()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Groups (Conditional) -->
+        <div *ngIf="currentRace.privacy" class="form-group">
+          <label for="groups">Grupos</label>
+          <div class="overflow-auto" style="max-height: 150px">
+            <div
+              *ngFor="let group of currentRace.groups; let i = index"
+              class="d-flex align-items-center mb-2"
+            >
+              <span class="mr-2">{{ group }}</span>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="removeGroup(i)"
+              >
+                -
+              </button>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <select
+              id="groups"
+              [(ngModel)]="selectedGroup"
+              class="form-control"
+              name="selectedGroup"
+            >
+              <option
+                *ngFor="let group of availableGroups"
+                [value]="group.Gname"
+              >
+                {{ group.Gname }}
+              </option>
+            </select>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addGroup()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit and Delete Buttons (Edit Mode) -->
+        <div
+          *ngIf="mode === 'edit'"
+          class="form-actions d-flex justify-content-start"
+        >
+          <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteRace()">
+            Eliminar
+          </button>
+        </div>
+
+        <!-- Create Button (Create Mode) -->
+        <div *ngIf="mode === 'create'" class="form-actions">
+          <button type="submit" class="btn btn-success">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

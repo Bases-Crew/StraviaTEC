@@ -1,0 +1,37 @@
+<div *ngIf="reportDetails" id="report-container" class="report-container">
+  <h1 class="report-title">{{ reportDetails.rname }}</h1>
+  <div class="report-details">
+    <!-- Detalles del reporte -->
+  </div>
+
+  <div class="participants-table">
+    <div class="table-header">
+      <div>Name</div>
+      <div>Category</div>
+      <div>Age</div>
+      <!-- Nueva columna para la edad -->
+      <div>Completion Time</div>
+    </div>
+
+    <!-- Iterar a través de las categorías -->
+    <ng-container *ngFor="let category of categories">
+      <div class="table-category-header">{{ category }}</div>
+      <div
+        class="table-row"
+        *ngFor="let athlete of getAthletesByCategory(category)"
+      >
+        <div class="name-cell">
+          {{ athlete.fname }} {{ athlete.mname }} {{ athlete.lname1 }}
+          {{ athlete.lname2 }}
+          <span *ngIf="athlete.isWinner" class="winner-icon">🏆</span>
+        </div>
+        <div>{{ getCategoryByAge(athlete.edad) }}</div>
+        <div>{{ athlete.edad }}</div>
+        <!-- Mostrar la edad aquí -->
+        <div>{{ athlete.tiempocompletado }} mins</div>
+      </div>
+    </ng-container>
+  </div>
+
+  <button class="export-button" (click)="onExportToPDF()">Export to PDF</button>
+</div>

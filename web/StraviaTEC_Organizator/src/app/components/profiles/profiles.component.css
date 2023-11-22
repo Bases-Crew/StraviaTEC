@@ -1,0 +1,72 @@
+/* Estilo General */
+body {
+  font-family: "San Francisco", "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Estilo del Contenedor Principal */
+.container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estilo de las Tarjetas de Carreras */
+.race-card {
+  margin-bottom: 20px;
+}
+
+/* Estilo de los Títulos */
+h2 {
+  color: #007aff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Estilo de la Información */
+.info {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Estilo para Elementos Destacados */
+.highlight {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Estilo para Mensajes de Carga y Error */
+.message {
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+/* Estilo Específico para Mensajes de Error */
+.error {
+  color: #ff3b30;
+}
+
+/* Mejoras en la visualización para dispositivos móviles */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .container,
+  .message {
+    padding: 15px;
+    border-radius: 8px;
+  }
+}

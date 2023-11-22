@@ -1,0 +1,25 @@
+<head>
+  <title>Carreras</title>
+
+  <!-- Asegúrate de enlazar tu archivo CSS aquí -->
+</head>
+<body>
+  <div *ngIf="allRaces.length > 0" class="container">
+    <div *ngFor="let race of allRaces" class="race-card">
+      <h2>{{ race.rname }}</h2>
+      <p class="info">
+        Precio: <span class="highlight">{{ race.price }}</span>
+      </p>
+      <p class="info">
+        Fecha:
+        <span class="highlight">{{ race.rdate | date : "longDate" }}</span>
+      </p>
+      <p class="info">
+        Deporte: <span class="highlight">{{ race.sportname }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="message">Cargando...</div>
+  <div *ngIf="error" class="message error">Error: {{ error }}</div>
+</body>

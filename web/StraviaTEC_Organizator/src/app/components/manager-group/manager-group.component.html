@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="btn-group mb-3" role="group">
+    <button type="button" class="btn btn-primary" (click)="setMode('create')">
+      Crear
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="setMode('edit')">
+      Editar
+    </button>
+  </div>
+
+  <div class="row">
+    <!-- Group Selection List (Edit Mode) -->
+    <div *ngIf="mode === 'edit'" class="col-md-4">
+      <ul class="list-group">
+        <li
+          class="list-group-item group-item"
+          *ngFor="let group of groups"
+          (click)="selectGroupForEdit(group)"
+        >
+          {{ group.gname }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Group Form -->
+    <div class="col-md-8">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="gname">Nombre del Grupo</label>
+          <input
+            type="text"
+            id="gname"
+            [(ngModel)]="currentGroup.gname"
+            class="form-control"
+            name="gname"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="logo">Logo (URL)</label>
+          <input
+            type="text"
+            id="logo"
+            [(ngModel)]="currentGroup.logo"
+            class="form-control"
+            name="logo"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-success" *ngIf="mode === 'create'">
+          Crear
+        </button>
+        <button type="submit" class="btn btn-primary" *ngIf="mode === 'edit'">
+          Actualizar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          *ngIf="mode === 'edit'"
+          (click)="deleteGroup()"
+        >
+          Eliminar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

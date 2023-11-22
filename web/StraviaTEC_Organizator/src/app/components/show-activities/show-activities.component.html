@@ -1,0 +1,41 @@
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+  <link
+    rel="canonical"
+    href="https://getbootstrap.com/docs/5.3/examples/album-rtl/"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+</head>
+<body>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-12" *ngFor="let activity of activities">
+          <div
+            class="card shadow-sm mx-auto"
+            style="max-width: 540px"
+            (click)="showComments(activity)"
+          >
+            <h5 class="card-title">{{ activity.auser }}</h5>
+            <img
+              width="25%"
+              height="auto"
+              alt="image"
+              src="https://freepngimg.com/thumb/map/66960-maps-google-computer-icons-free-png-hq.png"
+              style="cursor: pointer; display: block; margin: auto"
+            />
+            <div class="card-body text-center">
+              <p class="card-text">Duración: {{ activity.aduration }}</p>
+              <p class="card-text">
+                Hora: {{ activity.ahour }}, Dia: {{ activity.adate }}
+              </p>
+              <p class="card-text">Kilometros: {{ activity.millage }} km</p>
+              <p class="card-text">Deporte: {{ activity.sport_name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>

@@ -1,0 +1,16 @@
+<div class="groups-wrapper">
+  <div *ngFor="let group of groups" class="group-container">
+    <img class="group-image" [src]="group.Logo" alt="{{ group.Gname }}" />
+    <div class="group-details">
+      <!-- Detalles del grupo aquí -->
+      <h3 class="group-name">{{ group.Gname }}</h3>
+      <button
+        class="join-leave-btn"
+        [ngClass]="{ joined: group.joined }"
+        (click)="onJoinLeave(group)"
+      >
+        {{ group.joined ? "Leave" : "Join" }}
+      </button>
+    </div>
+  </div>
+</div>

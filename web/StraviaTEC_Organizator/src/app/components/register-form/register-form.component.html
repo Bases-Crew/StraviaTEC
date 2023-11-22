@@ -1,0 +1,167 @@
+<!-- registration-form.component.html -->
+
+<div class="text-center">
+  <form class="form-signup" (ngSubmit)="register()">
+    <div class="text-center">
+      <form class="form-signup" (ngSubmit)="register()">
+        <div *ngIf="!successFull">
+          <input
+            type="file"
+            id="inputImage"
+            class="form-control d-none"
+            (change)="onImageUpload($event)"
+            accept="image/jpeg"
+          />
+          <label for="inputImage" id="imageUploadButton">
+            <img
+              id="imagePreview"
+              [src]="
+                imageSrc ||
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Grey_user_add_icon_%28Wikiproject_icons%29.svg/640px-Grey_user_add_icon_%28Wikiproject_icons%29.svg.png'
+              "
+              alt="Upload Image"
+              style="
+                max-width: 150px;
+                max-height: 150px;
+                width: auto;
+                height: auto;
+              "
+            />
+          </label>
+          <!-- Name Fields in Row -->
+          <div class="text">Nombre</div>
+          <div class="row">
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputFirstName"
+                class="form-control"
+                placeholder="Primer Nombre"
+                required
+                [(ngModel)]="fname"
+                name="firstName"
+              />
+            </div>
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputMiddleName"
+                class="form-control"
+                placeholder="Segundo Nombre"
+                [(ngModel)]="mname"
+                name="middleName"
+              />
+            </div>
+          </div>
+          <!-- Last Name Fields in Row -->
+          <div class="text-center">Apellidos</div>
+          <div class="row">
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputLastName"
+                class="form-control"
+                placeholder="Apellido"
+                required
+                [(ngModel)]="lname1"
+                name="lastName"
+              />
+            </div>
+            <div class="col form-group">
+              <input
+                type="text"
+                id="inputLastName2"
+                class="form-control"
+                placeholder="Segundo Apellido"
+                [(ngModel)]="lname2"
+                name="lastName2"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail" class="sr-only" style="text-align: center"
+              >Correo</label
+            >
+            <input
+              type="email"
+              id="inputEmail"
+              class="form-control"
+              placeholder="ejemplo@dominio.com"
+              required
+              [(ngModel)]="aemail"
+              name="email"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="inputPassword"
+              class="sr-only"
+              style="text-align: center"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              id="inputPassword"
+              class="form-control"
+              placeholder="Contraseña"
+              required
+              [(ngModel)]="apassword"
+              name="password"
+            />
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <label for="Select Country">Select Country</label>
+              <select
+                id="country"
+                class="form-control"
+                [(ngModel)]="countryname"
+                name="country"
+              >
+                <option
+                  *ngFor="let countryname of countrynamesL"
+                  [value]="countryname"
+                >
+                  {{ countryname }}
+                </option>
+              </select>
+            </div>
+            <div class="col form-group">
+              <label for="inputBirthDate">Fecha de Nacimiento</label>
+              <input
+                type="date"
+                id="inputBirthDate"
+                class="form-control"
+                placeholder="YYYY-MM-DD"
+                required
+                [(ngModel)]="birth_date"
+                name="birthDate"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
+        <div class="btn-group d-flex" role="group" style="margin-top: 20px">
+          <button
+            class="btn btn-lg btn-secondary btn-block"
+            type="button"
+            (click)="goBack()"
+          >
+            Volver
+          </button>
+          <button
+            *ngIf="!successFull"
+            class="btn btn-lg btn-primary btn-block"
+            type="submit"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </form>
+</div>
