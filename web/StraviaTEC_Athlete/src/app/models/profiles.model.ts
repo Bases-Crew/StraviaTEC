@@ -1,41 +1,59 @@
-export interface Profile {
-  id: number;
-  profile_name: string;
-  description: string;
-  activity_type: string;
-  start_date: Date;
-  end_date: Date;
-  completion?: number;
+export interface Report {
+  raceId: number;
+  rname: string;
+  price: number;
+  rdate: Date;
+  sportname: string;
+  athletes: Athlete[];
 }
 
-export const profilesList: Profile[] = [
-  // Perfiles de tipo 'Run'
-  {
-    id: 1,
-    profile_name: 'TIburoncin',
-    description: 'Nada 4.5 kilometros',
-    activity_type: 'swim run',
-    start_date: new Date('2023-07-01'),
-    end_date: new Date('2023-07-23'),
-    completion: 53,
-  },
-  {
-    id: 1,
-    profile_name: 'Maratón de la Ciudad',
-    description:
-      'Corre un total de 42.2 km (26.2 millas) a través de la ciudad.',
-    activity_type: 'Run',
-    start_date: new Date('2023-07-01'),
-    end_date: new Date('2023-07-31'),
-  },
-  {
-    id: 12,
-    profile_name: 'Desafío de Flexibilidad',
+export interface Athlete {
+  aemail: string;
+  fname: string;
+  mname?: string;
+  lname1: string;
+  lname2: string;
+  edad: number;
+  isWinner?: boolean;
+  category: string;
+  tiempocompletado?: number;
+}
 
-    description: 'Practica una rutina de estiramiento diaria durante 30 días.',
-    activity_type: 'Workout',
-    start_date: new Date('2023-09-01'),
-    end_date: new Date('2023-09-30'),
-    completion: 70,
-  },
-];
+export interface RaceEvent {
+  races: Report[];
+}
+
+export const raceEventExample: RaceEvent = {
+  races: [
+    {
+      raceId: 1,
+      rname: 'City Marathon',
+      price: 100.0,
+      rdate: new Date('2023-11-16'),
+      sportname: 'Running',
+      athletes: [
+        {
+          aemail: 'junior2@example.com',
+          fname: 'Mia',
+          mname: 'L.',
+          lname1: 'Torres',
+          lname2: 'Ruiz',
+          edad: 12,
+          category: '',
+          tiempocompletado: 115.3,
+        },
+        {
+          aemail: 'junior3@example.com',
+          fname: 'Lucas',
+          mname: 'M.',
+          lname1: 'Ortiz',
+          lname2: 'Santos',
+          edad: 10,
+          category: '',
+          tiempocompletado: 118.4,
+        },
+        // ...otros atletas
+      ],
+    },
+  ],
+};

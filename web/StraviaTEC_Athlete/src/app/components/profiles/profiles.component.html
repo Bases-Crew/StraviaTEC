@@ -1,22 +1,12 @@
-<div *ngFor="let profile of profiles" class="profile-frame">
-  <div class="profile-card">
-    <div class="profile-header">
-      <h3>{{ profile.profile_name }}</h3>
-      <span class="profile-dates">
-        {{ profile.start_date | date : "mediumDate" }} -
-        {{ profile.end_date | date : "mediumDate" }}
-      </span>
-    </div>
-    <p>{{ profile.description }}</p>
-    <span class="profile-type">Tipo: {{ profile.activity_type }}</span>
-
-    <div class="progress-container">
-      <div
-        class="progress-bar"
-        [ngStyle]="{ width: (profile.completion || 0) + '%' }"
-      >
-        <span class="progress-text">{{ profile.completion || 0 }}%</span>
-      </div>
-    </div>
+<div *ngIf="allRaces.length > 0">
+  <div *ngFor="let race of allRaces">
+    <h2>{{ race.rname }}</h2>
+    <p>Precio: {{ race.price }}</p>
+    <p>Fecha: {{ race.rdate | date : "longDate" }}</p>
+    <p>Deporte: {{ race.sportname }}</p>
+    <hr />
   </div>
 </div>
+
+<div *ngIf="loading">Cargando...</div>
+<div *ngIf="error">Error: {{ error }}</div>

@@ -60,7 +60,8 @@
 /* Modifica los estilos del icono del ganador si es necesario */
 .winner-icon {
   margin-left: auto; /* Empuja el icono del ganador a la derecha */
-  font-size: 1.5em; /* Ajusta el tamaño del emoji según sea necesario */
+  font-size: 1.5em;
+  align-items: flex-start; /* Ajusta el tamaño del emoji según sea necesario */
 }
 
 /* Estilos para la tabla para manejar nombres largos */
