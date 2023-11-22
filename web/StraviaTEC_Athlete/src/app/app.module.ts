@@ -50,6 +50,7 @@ import { ManagerEntriesComponent } from './components/manager-entries/manager-en
 import { HeaderOrgComponent } from './components/header-org/header-org.component';
 import { DisplayReportComponent } from './components/display-report/display-report.component';
 import { DisplayReportParticipantsComponent } from './components/display-report-participants/display-report-participants.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -92,6 +93,7 @@ import { DisplayReportParticipantsComponent } from './components/display-report-
     HeaderOrgComponent,
     DisplayReportComponent,
     DisplayReportParticipantsComponent,
+    InscriptionComponent,
   ],
   providers: [
     ExampleRickMortyService,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportService } from 'src/app/services/report.service';
 import { ReportParticipantsService } from 'src/app/services/report-participants.service';
 import { Report, Athlete } from 'src/app/models/report.model';
 
@@ -26,10 +25,7 @@ export class ReportParticipantsComponent implements OnInit {
    * @param {ReportService} reportService - The report service.
    * @param {ReportParticipantsService} reportParticipantsService - The report participants service.
    */
-  constructor(
-    private reportService: ReportService,
-    private reportParticipantsService: ReportParticipantsService
-  ) {}
+  constructor(private reportParticipantsService: ReportParticipantsService) {}
 
   /**
    * Initializes the component and calls the getReportDetails function.
@@ -45,7 +41,7 @@ export class ReportParticipantsComponent implements OnInit {
    * @return {void} This function does not return a value.
    */
   getReportDetails(): void {
-    this.reportDetails = this.reportService.getReportDetails();
+    this.reportDetails = this.reportParticipantsService.getReportDetails();
   }
 
   /**
@@ -69,6 +65,7 @@ export class ReportParticipantsComponent implements OnInit {
    * @return {string} The category based on the age.
    */
   getCategoryByAge(age: number): string {
+    // El método getCategoryByAge se duplica en el servicio, podrías considerar removerlo de aquí y usarlo directamente desde el servicio
     if (age < 15) return 'Junior';
     if (age >= 15 && age <= 23) return 'Sub-23';
     if (age >= 24 && age <= 30) return 'Open';

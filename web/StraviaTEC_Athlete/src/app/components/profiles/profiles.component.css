@@ -1,69 +1,72 @@
-/* Estilos para el contenedor del perfil */
-.profile-frame {
-  border: 2px solid #cccccc;
-  padding: 15px;
+/* Estilo General */
+body {
+  font-family: "San Francisco", "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Estilo del Contenedor Principal */
+.container {
+  background: white;
   border-radius: 12px;
-  width: 80%;
-  margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-.profile-card {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+/* Estilo de las Tarjetas de Carreras */
+.race-card {
+  margin-bottom: 20px;
 }
 
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+/* Estilo de los Títulos */
+h2 {
+  color: #007aff;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
-.profile-header h3 {
-  margin: 0;
-  color: #333;
-  font-size: 1.2rem;
-}
-
-.profile-dates {
-  font-size: 0.9rem;
+/* Estilo de la Información */
+.info {
+  font-size: 16px;
   color: #666;
+  margin: 5px 0;
 }
 
-.profile-type {
-  background-color: #4ca8af;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  margin-top: 8px;
-}
-
-/* Estilos para la barra de progreso */
-.progress-container {
-  width: 100%;
-  height: 16px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 12px;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: #4caf50;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width 0.5s ease-in-out;
-  white-space: nowrap;
-}
-
-.progress-text {
-  color: white;
+/* Estilo para Elementos Destacados */
+.highlight {
+  color: #333;
   font-weight: bold;
+}
+
+/* Estilo para Mensajes de Carga y Error */
+.message {
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+/* Estilo Específico para Mensajes de Error */
+.error {
+  color: #ff3b30;
+}
+
+/* Mejoras en la visualización para dispositivos móviles */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .container,
+  .message {
+    padding: 15px;
+    border-radius: 8px;
+  }
 }

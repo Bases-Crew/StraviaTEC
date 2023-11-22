@@ -1,18 +1,19 @@
-export interface Race {
+export interface Inscription {
   raceName: string;
   price: number;
   date: string;
-  route?: string;
+  route: string;
   privacy: number;
   sportName: string;
   sponsors: string[];
   categories: string[];
   bankAccounts: number[];
   groups: string[];
+  id?: number;
 }
 
 // Ejemplo de carreras
-export const races: Race[] = [
+export const inscriptionExamples: Inscription[] = [
   {
     raceName: 'Maratón de la Ciudad',
     price: 50,
@@ -49,18 +50,6 @@ export const races: Race[] = [
     bankAccounts: [98765432, 12345678],
     groups: ['Adultos'],
   },
-  {
-    raceName: 'Carrera de Obstáculos Juvenil',
-    price: 30,
-    date: '2023-09-10',
-    route: 'Circuito de aventuras',
-    privacy: 1,
-    sportName: 'Obstáculos',
-    sponsors: ['Under Armour', 'Powerade'],
-    categories: ['Juvenil'],
-    bankAccounts: [22334455, 55667788],
-    groups: ['Jóvenes'],
-  },
 ];
 
-export default races;
+export default inscriptionExamples;
