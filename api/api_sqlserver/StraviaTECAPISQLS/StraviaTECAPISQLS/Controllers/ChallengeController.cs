@@ -49,8 +49,8 @@ namespace StraviaTECAPISQLS.Controllers
         public JsonResult GetInfo()
         {
             string query = @"
-                EXEC sp_GetChallengesInfo
-            ";
+        EXEC sp_GetChallengesInfo
+    ";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("StraviaTEC");
@@ -67,18 +67,25 @@ namespace StraviaTECAPISQLS.Controllers
                     myCon.Close();
                 }
             }
+
+            // Modify column names in the DataTable
+            foreach (DataColumn col in table.Columns)
+            {
+                col.ColumnName = Char.ToLower(col.ColumnName[0]) + col.ColumnName.Substring(1);
+            }
+
             List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
             foreach (DataRow dr in table.Rows)
             {
                 Dictionary<string, object> row = new Dictionary<string, object>();
                 foreach (DataColumn col in table.Columns)
                 {
-                    if (col.ColumnName == "StartDate" || col.ColumnName == "FinalDate")
+                    if (col.ColumnName == "startDate" || col.ColumnName == "finalDate")
                     {
                         // Cambiar el formato de fecha
                         row[col.ColumnName] = ((DateTime)dr[col]).ToString("yyyy-MM-dd");
                     }
-                    else if (col.ColumnName == "Patrocinadores" || col.ColumnName == "Grupos")
+                    else if (col.ColumnName == "patrocinadores" || col.ColumnName == "grupos")
                     {
                         // Convertir la cadena CSV a una lista
                         row[col.ColumnName] = ((string)dr[col]).Split(',').Select(s => s.Trim()).ToList();
