@@ -13,15 +13,26 @@ export class GroupComponent implements OnInit {
   constructor(private groupService: GroupService) {}
 
   ngOnInit(): void {
-    this.groups = this.groupService.getGroups();
+    this.getGroups();
+  }
+
+  getGroups(): void {
+    this.groupService.getGroups().subscribe({
+      next: (groups) => {
+        this.groups = groups;
+      },
+      error: (error) => {
+        console.error('Error fetching groups:', error);
+      },
+    });
   }
 
   onJoinLeave(group: Group): void {
     if (group.joined) {
-      this.groupService.leaveGroup(group.id);
+      this.groupService.leaveGroup(group.Gname);
       group.joined = false; // Actualizar el estado en el componente
     } else {
-      this.groupService.joinGroup(group.id);
+      this.groupService.joinGroup(group.Gname);
       group.joined = true; // Actualizar el estado en el componente
     }
   }
