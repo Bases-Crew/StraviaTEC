@@ -14,10 +14,12 @@ import { MapComponent } from './components/map/map.component';
 import { DisplayGroupComponent } from './components/display-group/display-group.component';
 import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
 import { LoginOrgComponent } from './components/login-org/login-org.component';
+import { DisplayReportComponent } from './components/display-report/display-report.component';
+import { DisplayReportParticipantsComponent } from './components/display-report-participants/display-report-participants.component';
 
 const routes: Routes = [
-  { path: 'init', component: InitialStageComponent },
-  //{ path: 'init', component: LoginOrgComponent },
+  //{ path: 'init', component: InitialStageComponent },
+  { path: 'init', component: LoginOrgComponent },
   { path: 'manage', component: ManagerComponent },
   { path: 'display-example', component: DisplayExampleComponent },
   { path: 'homepage', component: HomepageComponent },
@@ -28,6 +30,11 @@ const routes: Routes = [
   { path: 'display-profile', component: DisplayProfileComponent },
   { path: 'display-tril', component: DisplayTrilComponent },
   { path: 'display-group', component: DisplayGroupComponent },
+  {
+    path: 'display-report-participants',
+    component: DisplayReportParticipantsComponent,
+  },
+  { path: 'display-report', component: DisplayReportComponent },
   {
     path: 'display-publish-activity',
     component: DisplayPublishActivityComponent,

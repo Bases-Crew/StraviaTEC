@@ -47,12 +47,8 @@
             <li>
               <a
                 class="nav-link px-2"
-                [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'homepage')
-                "
-                [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'homepage'
-                "
+                [class.link-body-emphasis]="!(currentUrl === 'init')"
+                [class.disabled]="currentUrl === 'init'"
                 routerLink="/init"
               >
                 Inicio
@@ -62,118 +58,49 @@
               <a
                 class="nav-link px-2"
                 [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'manage')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'manage'
+                "
+                routerLink="/manage"
+              >
+                Menu Organizador
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
                   !(
                     currentUrl === 'init' ||
-                    currentUrl === 'display-publish-activity'
+                    currentUrl === 'display-report-participants'
                   )
                 "
                 [class.disabled]="
                   currentUrl === 'init' ||
-                  currentUrl === 'display-publish-activity'
+                  currentUrl === 'display-report-participants'
                 "
-                routerLink="/display-publish-activity"
+                routerLink="/display-report-participants"
               >
-                Publicar Actividad
+                Reporte de Participantes por Carrera
               </a>
             </li>
             <li>
               <a
                 class="nav-link px-2"
                 [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'display-friends')
+                  !(currentUrl === 'init' || currentUrl === 'display-report')
                 "
                 [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'display-friends'
+                  currentUrl === 'init' || currentUrl === 'display-report'
                 "
-                routerLink="/display-friends"
+                routerLink="/display-report"
               >
-                Buscar Amigos
-              </a>
-            </li>
-            <li>
-              <a
-                class="nav-link px-2"
-                [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'display-challenge')
-                "
-                [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'display-challenge'
-                "
-                routerLink="/display-challenge"
-              >
-                Ver Retos
-              </a>
-            </li>
-            <li>
-              <a
-                class="nav-link px-2"
-                [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'display-runs')
-                "
-                [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'display-runs'
-                "
-                routerLink="/display-runs"
-              >
-                Ver Carreras
-              </a>
-            </li>
-            <li>
-              <a
-                class="nav-link px-2"
-                [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'display-group')
-                "
-                [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'display-group'
-                "
-                routerLink="/display-group"
-              >
-                Ver Grupos
-              </a>
-            </li>
-            <li>
-              <a
-                class="nav-link px-2"
-                [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'display-profile')
-                "
-                [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'display-profile'
-                "
-                routerLink="/display-profile"
-              >
-                Mis Retos
-              </a>
-            </li>
-            <li>
-              <a
-                class="nav-link px-2"
-                [class.link-body-emphasis]="
-                  !(currentUrl === 'init' || currentUrl === 'display-tril')
-                "
-                [class.disabled]="
-                  currentUrl === 'init' || currentUrl === 'display-tril'
-                "
-                routerLink="/display-tril"
-              >
-                Mis Carreras
+                Reporte de Posiciones de Carrera
               </a>
             </li>
           </ul>
-
-          <div
-            *ngIf="currentUrl !== 'init' && user.fname !== ''"
-            class="dropdown text-end"
-          >
-            <img
-              src="{{ user.image }}"
-              alt="mdo"
-              width="32"
-              height="32"
-              class="rounded-circle"
-            />
-          </div>
         </div>
       </div>
     </header>

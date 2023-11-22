@@ -48,6 +48,8 @@ import { PublishActivityComponent } from './components/publish-activity/publish-
 import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
 import { ManagerEntriesComponent } from './components/manager-entries/manager-entries.component';
 import { HeaderOrgComponent } from './components/header-org/header-org.component';
+import { DisplayReportComponent } from './components/display-report/display-report.component';
+import { DisplayReportParticipantsComponent } from './components/display-report-participants/display-report-participants.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -88,6 +90,8 @@ import { HeaderOrgComponent } from './components/header-org/header-org.component
     PublishActivityComponent,
     DisplayPublishActivityComponent,
     HeaderOrgComponent,
+    DisplayReportComponent,
+    DisplayReportParticipantsComponent,
   ],
   providers: [
     ExampleRickMortyService,
