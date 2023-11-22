@@ -1,42 +1,33 @@
 export interface Comments {
-  aemail: string;
+  auser: string;
+  actid: number;
   content: string;
-  actid?: number;
 }
 
-export interface ActivityComments {
-  activityid: number;
-  comments: Comments[];
-}
-
-export const comments1Example: ActivityComments = {
-  activityid: 1,
-  comments: [
-    {
-      aemail: 'david@example.com',
-      content: 'Wow, eso es mucha distancia.',
-    },
-    {
-      aemail: 'sophia@gmailcom',
-      content: 'Vamos tu puedes!',
-    },
-    {
-      aemail: 'javier@gmailcom',
-      content: 'Que bueno!',
-    },
-  ],
-};
-
-export const comments2Example: ActivityComments = {
-  activityid: 2,
-  comments: [
-    {
-      aemail: 'maria@gmail.com',
-      content: 'Creo que hare esa ruta.',
-    },
-    {
-      aemail: 'javier@gmailcom',
-      content: 'Que bueno!',
-    },
-  ],
-};
+export const COMMENTS: Comments[] = [
+  {
+    auser: 'david@example.com',
+    actid: 1,
+    content: 'Wow, eso es mucha distancia.',
+  },
+  {
+    auser: 'sophia@gmailcom',
+    actid: 1,
+    content: 'Vamos tu puedes!',
+  },
+  {
+    auser: 'javier@gmailcom',
+    actid: 1,
+    content: 'Que bueno!',
+  },
+  {
+    auser: 'maria@gmail.com',
+    actid: 2,
+    content: 'Creo que hare esa ruta.',
+  },
+  {
+    auser: 'javier@gmailcom',
+    actid: 2,
+    content: 'Que bueno!',
+  },
+];
