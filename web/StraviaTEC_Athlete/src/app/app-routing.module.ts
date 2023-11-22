@@ -18,8 +18,8 @@ import { DisplayReportComponent } from './components/display-report/display-repo
 import { DisplayReportParticipantsComponent } from './components/display-report-participants/display-report-participants.component';
 
 const routes: Routes = [
-  //{ path: 'init', component: InitialStageComponent },
-  { path: 'init', component: LoginOrgComponent },
+  { path: 'init', component: InitialStageComponent },
+  // { path: 'init', component: LoginOrgComponent },
   { path: 'manage', component: ManagerComponent },
   { path: 'display-example', component: DisplayExampleComponent },
   { path: 'homepage', component: HomepageComponent },
