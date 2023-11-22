@@ -34,7 +34,7 @@ export class ChallengesComponent implements OnInit {
    * Handles errors by logging them to the console.
    */
   getChallenges(): void {
-    this.challengeService.getChallenges(user.aemail).subscribe({
+    this.challengeService.getChallenges().subscribe({
       next: (challenges) => {
         console.log(JSON.stringify(challenges, null, 2));
         this.challenges = challenges;

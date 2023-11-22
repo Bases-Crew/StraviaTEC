@@ -11,13 +11,9 @@ import { environment } from '../environment';
 export class ChallengeService {
   constructor(private http: HttpClient) {}
 
-  getChallenges(aemail: string): Observable<Challenge[]> {
-    const params = new HttpParams().set('aemail', aemail);
+  getChallenges(): Observable<Challenge[]> {
     return this.http.get<Challenge[]>(
-      environment.apiUrlSqlServer + '/challenge/athlete/unaccepted',
-      {
-        params,
-      }
+      environment.apiUrlSqlServer + '/challenge/available'
     );
   }
 }

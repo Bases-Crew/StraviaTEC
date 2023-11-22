@@ -228,7 +228,7 @@ GO
 CREATE OR ALTER VIEW NotExpiredChallengesView AS
 SELECT C.ChallengeID AS id , C.Cname AS challenge_name, C.Mileage, C.Ctype AS challenge_type, C.StartDate AS 'start_date', C.FinalDate AS 'final_date', S.SportName
 	FROM CHALLENGE C
-	JOIN SPORT S ON C.Pid = S.SportID
+	JOIN SPORT S ON C.Sptid = S.SportID
 	WHERE FinalDate > GETDATE();
 GO
 
