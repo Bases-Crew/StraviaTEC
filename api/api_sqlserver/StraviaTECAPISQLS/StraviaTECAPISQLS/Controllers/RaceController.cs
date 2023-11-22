@@ -46,19 +46,19 @@ namespace StraviaTECAPISQLS.Controllers
             var racesInfo = table.AsEnumerable()
                 .Select(row => new
                 {
-                    RaceID = row.Field<int>("RaceID"),
+                    raceID = row.Field<int>("RaceID"),
                     raceName = row.Field<string>("raceName"),
-                    Price = row.Field<decimal>("Price"),
+                    price = row.Field<decimal>("Price"),
                     date = ((DateTime)row["date"]).ToString("yyyy-MM-dd"),
                     route = row.Field<string>("route"),
-                    Privacy = row.Field<int>("Privacy"),
-                    Sponsors = row.Field<string>("Sponsors").Split(", "),
-                    Categories = row.Field<string>("Categories").Split(", "),
-                    BankAccounts = row.Field<string>("BankAccounts").Split(", ")
+                    privacy = row.Field<int>("Privacy"),
+                    sponsors = row.Field<string>("Sponsors").Split(", "),
+                    categories = row.Field<string>("Categories").Split(", "),
+                    bankAccounts = row.Field<string>("BankAccounts").Split(", ")
                         .Select(account => Convert.ToInt32(account))
                         .ToList(),
-                    SportName = row.Field<string>("SportName"),
-                    Groups = row.Field<string>("Groups").Split(", ")
+                    sportName = row.Field<string>("SportName"),
+                    groups = row.Field<string>("Groups").Split(", ")
                 })
                 .ToList();
 

@@ -145,16 +145,16 @@ CREATE OR ALTER PROCEDURE sp_GetChallengesInfo
 AS
 BEGIN
     SELECT
-        CH.ChallengeID,
-        CH.Cname,
-        CH.Ctype,
-		CH.Mileage,
-        CH.StartDate,
-        CH.FinalDate,
-        CH.Pid,
-		COALESCE(STRING_AGG(SP.Sname, ', '), '') AS Patrocinadores,
-        COALESCE(STRING_AGG(G.Gname, ', '), '') AS Grupos,
-        S.SportName
+        CH.ChallengeID AS challengeID,
+        CH.Cname AS cname,
+        CH.Ctype AS ctype,
+        CH.Mileage AS mileage,
+        CH.StartDate AS startDate,
+        CH.FinalDate AS finalDate,
+        CH.Pid AS pid,
+        COALESCE(STRING_AGG(SP.Sname, ', '), '') AS patrocinadores,
+        COALESCE(STRING_AGG(G.Gname, ', '), '') AS grupos,
+        S.SportName AS SportName
     FROM
         CHALLENGE CH
     LEFT JOIN
@@ -165,11 +165,11 @@ BEGIN
         CHALLENGE_SPONSOR CS ON CH.ChallengeID = CS.Challid
     LEFT JOIN
         SPONSOR SP ON CS.Spnid = SP.SponsorID
-	LEFT JOIN
+    LEFT JOIN
         GROUP_PRIVACY GP ON CH.Pid = GP.Pid
     LEFT JOIN
         SGROUP G ON GP.Gid = G.GroupID
-	GROUP BY
+    GROUP BY
         CH.ChallengeID,
         CH.Cname,
         CH.Ctype,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RaceService } from '../../services/race.service';
+import { SharedService } from '../../services/shared.service';
 import { Race } from '../../models/race.model';
 
 @Component({
@@ -80,6 +81,12 @@ export class ManagerRaceComponent {
 
   loadRace(race: Race) {
     this.currentRace = race;
+    /*
+    if (this.currentRace.route) {
+      const decodedRoute = atob(this.currentRace.route);
+      this.currentRace.route = decodedRoute;
+    }
+    */
   }
 
   toggleGroupsDisplay() {
@@ -168,12 +175,15 @@ export class ManagerRaceComponent {
 
   loadRaces() {
     this.raceService.getRaces().subscribe(
-      (races) => (this.races = races),
+      (races) => ((this.races = races), console.log(races)),
       (error) => console.error(error)
     );
   }
 
   onSubmit() {
+    if (this.currentRace.route == '') {
+      delete this.currentRace.route;
+    }
     if (this.mode === 'create') {
       this.raceService.createRace(this.currentRace).subscribe(/* ... */);
     } else {

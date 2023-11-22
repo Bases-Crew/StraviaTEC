@@ -24,66 +24,32 @@ export class RaceService {
   // Fake update race method
   updateRace(race: any) {
     console.log('Updating race:', race);
-    return of({ success: true }); // Simulate successful response
+    return of({ success: true });
   }
 
   // Fake delete race method
   deleteRace(raceName: string) {
     console.log('Deleting race with ID:', raceName);
-    return of({ success: true }); // Simulate successful response
+    return of({ success: true });
   }
 
   getSports(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlSqlServer}/sport`); // replace with actual URL
+    return this.http.get<any>(`${environment.apiUrlSqlServer}/sport`);
   }
 
   getSponsors(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlSqlServer}/sponsor`); // replace with actual URL
+    return this.http.get<any>(`${environment.apiUrlSqlServer}/sponsor`);
   }
 
   getGroups(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlSqlServer}/group`); // replace with actual URL
+    return this.http.get<any>(`${environment.apiUrlSqlServer}/group`);
   }
 
   getCategories(): Observable<string[]> {
-    // Replace with the actual HTTP request to your API
     return this.http.get<string[]>(`${environment.apiUrlSqlServer}/category`);
   }
 
   getRaces(): Observable<Race[]> {
-    // Fake GPX content as a string
-    const fakeGPXContent = `GPX data...`;
-
-    const fakeRaces: Race[] = [
-      {
-        raceName: 'PedroCarrera',
-        price: 10,
-        date: '2023-01-01',
-        route: fakeGPXContent,
-        privacy: 1, // 1 for private
-        sportName: 'Cycling',
-        sponsors: ['Sponsor A', 'Sponsor B'],
-        categories: ['Category 1', 'Category 2'],
-        bankAccounts: [123456, 789012],
-        groups: ['Group 1', 'Group 2'],
-      },
-      {
-        raceName: 'Antorcha',
-        price: 700,
-        date: '2023-12-01',
-        route: fakeGPXContent,
-        privacy: 0, // 0 for public
-        sportName: 'Running',
-        sponsors: ['Sponsor C'],
-        categories: ['Category 3'],
-        bankAccounts: [345678],
-        groups: [],
-      },
-      // ... other races ...
-    ];
-
-    return of(fakeRaces);
+    return this.http.get<Race[]>(`${environment.apiUrlSqlServer}/race/allinfo`);
   }
-
-  // ... other service methods
 }
