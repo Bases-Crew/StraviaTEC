@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreateActivity } from 'src/app/models/create-activity.model';
 
 @Component({
@@ -7,6 +8,8 @@ import { CreateActivity } from 'src/app/models/create-activity.model';
   styleUrls: ['./publish-activity.component.css'],
 })
 export class PublishActivityComponent {
+  constructor(private router: Router) {}
+
   activity: CreateActivity = {
     fechaHora: new Date(),
     duracion: 0,
@@ -24,6 +27,7 @@ export class PublishActivityComponent {
   submitForm() {
     // Aquí puedes enviar la actividad al servidor o realizar las acciones necesarias
     console.log(this.activity);
+    this.router.navigate(['/homepage']);
   }
 
   /**
