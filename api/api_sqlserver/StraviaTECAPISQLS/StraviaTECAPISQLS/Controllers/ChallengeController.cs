@@ -101,6 +101,7 @@ namespace StraviaTECAPISQLS.Controllers
             return new JsonResult(rows);
         }
 
+
         [HttpGet]
         [Route("available")]
         public JsonResult GetNotExpired()

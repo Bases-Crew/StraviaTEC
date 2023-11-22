@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.118.2" />
+    <title>Headers · Bootstrap v5.3</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/headers/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+  </head>
+  <body>
+    <header class="p-3 mb-3 border-bottom">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            routerLink="/init"
+            class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+          >
+            <img
+              src="../../../assets/exercise_sport_13306.png"
+              alt="icon"
+              class="bi me-2"
+              width="32"
+            />
+          </a>
+
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'homepage')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'homepage'
+                "
+                routerLink="/init"
+              >
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(
+                    currentUrl === 'init' ||
+                    currentUrl === 'display-publish-activity'
+                  )
+                "
+                [class.disabled]="
+                  currentUrl === 'init' ||
+                  currentUrl === 'display-publish-activity'
+                "
+                routerLink="/display-publish-activity"
+              >
+                Publicar Actividad
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-friends')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-friends'
+                "
+                routerLink="/display-friends"
+              >
+                Buscar Amigos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-challenge')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-challenge'
+                "
+                routerLink="/display-challenge"
+              >
+                Ver Retos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-runs')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-runs'
+                "
+                routerLink="/display-runs"
+              >
+                Ver Carreras
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-group')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-group'
+                "
+                routerLink="/display-group"
+              >
+                Ver Grupos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-profile')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-profile'
+                "
+                routerLink="/display-profile"
+              >
+                Mis Retos
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link px-2"
+                [class.link-body-emphasis]="
+                  !(currentUrl === 'init' || currentUrl === 'display-tril')
+                "
+                [class.disabled]="
+                  currentUrl === 'init' || currentUrl === 'display-tril'
+                "
+                routerLink="/display-tril"
+              >
+                Mis Carreras
+              </a>
+            </li>
+          </ul>
+
+          <div
+            *ngIf="currentUrl !== 'init' && user.fname !== ''"
+            class="dropdown text-end"
+          >
+            <img
+              src="{{ user.image }}"
+              alt="mdo"
+              width="32"
+              height="32"
+              class="rounded-circle"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

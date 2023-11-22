@@ -22,7 +22,6 @@ export class ManagerRaceComponent {
   selectedSponsor: string = '';
   selectedGroup: string = '';
   selectedCategory: string = '';
-
   addBankAccount() {
     if (
       this.newBankAccount !== null &&

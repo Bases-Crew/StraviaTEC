@@ -125,10 +125,18 @@ export class ManagerChallengeComponent {
   }
 
   loadChallenges() {
-    this.challengeService.getChallenges().subscribe(
-      (challenges) => ((this.challenges = challenges), console.log(challenges)),
-      (error) => console.error(error)
-    );
+    this.challengeService.getChallenges().subscribe({
+      next: (data) => {
+        console.log(JSON.stringify(data));
+        this.challenges = data;
+      },
+      error: (error) => {
+        console.error('Error fetching challenges:', error);
+      },
+      complete: () => {
+        console.log('Finished fetching challenges');
+      },
+    });
   }
 
   onSubmit() {

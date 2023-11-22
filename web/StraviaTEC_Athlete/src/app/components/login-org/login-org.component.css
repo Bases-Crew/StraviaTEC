@@ -1,0 +1,81 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.form-signin h2 {
+  font-weight: bold;
+}
+
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  margin-bottom: 20px; /* Adds more space between the input fields */
+}
+
+.icon {
+  display: flex; /* Makes .icon a flex container */
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically */
+}
+
+/* Estilos para el ícono cuadrado */
+.icon img {
+  width: 150px; /* Tamaño del ícono cuadrado */
+  height: 130px; /* Tamaño del ícono cuadrado */
+  background-color: #ffffff; /* Color de fondo del ícono */
+  border-radius: 5px; /* Bordes redondeados del ícono */
+  margin-bottom: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-header,
+app-footer {
+  z-index: 1;
+  flex-shrink: 0; /* Prevents them from shrinking */
+}
+
+.content-container {
+  flex-grow: 1; /* Allows it to take up the remaining space */
+  display: flex;
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  position: relative; /* For absolute positioning of children */
+  overflow: hidden; /* Optional, to hide overflow */
+}
+
+app-basic-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2vh;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  overflow-y: auto; /* Adds vertical scrollbar when content overflows */
+  max-height: 100vh;
+  z-index: 2; /* Add scroll if content is too large */
+  max-height: 100%; /* Ensures it doesn't exceed the container's height */
+  /* Any additional styling for the panel */
+}

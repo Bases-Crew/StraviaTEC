@@ -9,22 +9,12 @@ export class ManagerPanelComponent {
   showManageRace: boolean = false;
   showManageGroup: boolean = false;
   showManageChallenge: boolean = false;
+  showManageEntries: boolean = false;
 
-  Race() {
-    this.showManageRace = true;
-    this.showManageGroup = false;
-    this.showManageChallenge = false;
-  }
-
-  Group() {
-    this.showManageRace = false;
-    this.showManageGroup = true;
-    this.showManageChallenge = false;
-  }
-
-  Challenge() {
-    this.showManageRace = false;
-    this.showManageGroup = false;
-    this.showManageChallenge = true;
+  showPanel(panelName: string) {
+    this.showManageRace = panelName === 'Race';
+    this.showManageGroup = panelName === 'Group';
+    this.showManageChallenge = panelName === 'Challenge';
+    this.showManageEntries = panelName === 'Entries';
   }
 }

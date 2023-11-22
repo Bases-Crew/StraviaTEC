@@ -13,9 +13,11 @@ import { DisplayTrilComponent } from './components/display-tril/display-tril.com
 import { MapComponent } from './components/map/map.component';
 import { DisplayGroupComponent } from './components/display-group/display-group.component';
 import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
+import { LoginOrgComponent } from './components/login-org/login-org.component';
 
 const routes: Routes = [
   { path: 'init', component: InitialStageComponent },
+  //{ path: 'init', component: LoginOrgComponent },
   { path: 'manage', component: ManagerComponent },
   { path: 'display-example', component: DisplayExampleComponent },
   { path: 'homepage', component: HomepageComponent },

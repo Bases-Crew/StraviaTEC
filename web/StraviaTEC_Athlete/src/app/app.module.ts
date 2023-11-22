@@ -26,6 +26,7 @@ import { BasicPanelComponent } from './components/basic-pannel/basic-panel.compo
 import { BasicBackgroundComponent } from './components/basic-background/basic-background.component';
 import { InitialStageComponent } from './components/initial-stage/initial-stage.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { LoginOrgComponent } from './components/login-org/login-org.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShowActivitiesComponent } from './components/show-activities/show-activities.component';
@@ -45,6 +46,8 @@ import { ReportParticipantsComponent } from './components/report-participants/re
 import { DisplayGroupComponent } from './components/display-group/display-group.component';
 import { PublishActivityComponent } from './components/publish-activity/publish-activity.component';
 import { DisplayPublishActivityComponent } from './components/display-publish-activity/display-publish-activity.component';
+import { ManagerEntriesComponent } from './components/manager-entries/manager-entries.component';
+import { HeaderOrgComponent } from './components/header-org/header-org.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   declarations: [
@@ -64,9 +67,11 @@ import { DisplayPublishActivityComponent } from './components/display-publish-ac
     BasicBackgroundComponent,
     InitialStageComponent,
     LoginFormComponent,
+    LoginOrgComponent,
     RegisterFormComponent,
     ShowActivitiesComponent,
     ManagerComponent,
+    ManagerEntriesComponent,
     ManagerPanelComponent,
     ManagerRaceComponent,
     ManagerGroupComponent,
@@ -82,6 +87,7 @@ import { DisplayPublishActivityComponent } from './components/display-publish-ac
     DisplayGroupComponent,
     PublishActivityComponent,
     DisplayPublishActivityComponent,
+    HeaderOrgComponent,
   ],
   providers: [
     ExampleRickMortyService,

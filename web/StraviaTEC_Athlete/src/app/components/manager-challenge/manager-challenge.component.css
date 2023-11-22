@@ -14,3 +14,8 @@
 .d-flex .mr-2 {
   margin-right: 10px;
 }
+
+.group-item {
+  max-height: 100px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
