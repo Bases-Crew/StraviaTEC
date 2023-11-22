@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Group, sampleGroups } from 'src/app/models/group.model'; // Asegúrate de que la ruta al modelo es correcta
+import { environment } from '../environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,15 +10,15 @@ import { Group, sampleGroups } from 'src/app/models/group.model'; // Asegúrate 
 export class GroupService {
   private groups: Group[] = sampleGroups;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Retrieves the groups.
    *
    * @return {Group[]} The array of groups.
    */
-  getGroups(): Group[] {
-    return this.groups;
+  getGroups(): Observable<Group[]> {
+    return this.http.get<Group[]>(`${environment.apiUrlSqlServer}/group`);
   }
 
   /**
@@ -24,11 +27,11 @@ export class GroupService {
    * @param {number} groupId - The ID of the group to join.
    * @return {void} This function does not return anything.
    */
-  joinGroup(groupId: number): void {
-    const group = this.groups.find((group) => group.id === groupId);
+  joinGroup(groupId: string): void {
+    const group = this.groups.find((group) => group.Gname === groupId);
     if (group) {
       group.joined = true;
-      console.log(`Joined group: ${group.name}`);
+      console.log(`Joined group: ${group.Gname}`);
     }
   }
 
@@ -38,11 +41,11 @@ export class GroupService {
    * @param {number} groupId - The ID of the group to leave.
    * @return {void} This function does not return anything.
    */
-  leaveGroup(groupId: number): void {
-    const group = this.groups.find((group) => group.id === groupId);
+  leaveGroup(groupId: string): void {
+    const group = this.groups.find((group) => group.Gname === groupId);
     if (group) {
       group.joined = false;
-      console.log(`Left group: ${group.name}`);
+      console.log(`Left group: ${group.Gname}`);
     }
   }
 }

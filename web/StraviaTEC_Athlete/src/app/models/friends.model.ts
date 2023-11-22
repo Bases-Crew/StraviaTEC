@@ -1,6 +1,6 @@
 // Definiendo la interfaz Friend
 export interface Friend {
-  aemail: string;
+  Aemail: string;
   nombre: string;
   firstname: string;
   secondname: string;
@@ -9,12 +9,12 @@ export interface Friend {
   pais: string;
   challenges: number;
   runs: number;
-  following: boolean;
+  arefriends: boolean;
 }
 
 // Creando un amigo de ejemplo
 export const friend: Friend = {
-  aemail: 'juan@gmail.com',
+  Aemail: 'juan@gmail.com',
   nombre: 'Juan Carlos',
   firstname: 'Juan',
   secondname: 'Carlos',
@@ -23,13 +23,13 @@ export const friend: Friend = {
   pais: 'España',
   challenges: 50,
   runs: 20,
-  following: false,
+  arefriends: false,
 };
 
 // Creando una lista de amigos de ejemplo
 export const friendsList: Friend[] = [
   {
-    aemail: 'ana@gmail.com',
+    Aemail: 'ana@gmail.com',
     nombre: 'Ana Torres',
     firstname: 'Ana',
     secondname: '',
@@ -38,10 +38,10 @@ export const friendsList: Friend[] = [
     pais: 'Estados Unidos',
     challenges: 20,
     runs: 25,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'javier@gmail.com',
+    Aemail: 'javier@gmail.com',
     nombre: 'Javier Gómez',
     firstname: 'Javier',
     secondname: '',
@@ -50,10 +50,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 15,
     runs: 35,
-    following: true,
+    arefriends: true,
   },
   {
-    aemail: 'sophia@gmail.com',
+    Aemail: 'sophia@gmail.com',
     nombre: 'Sofía Navarro',
     firstname: 'Sofía',
     secondname: '',
@@ -62,10 +62,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 40,
     runs: 45,
-    following: true,
+    arefriends: true,
   },
   {
-    aemail: 'david@gmail.com',
+    Aemail: 'david@gmail.com',
     nombre: 'David Ruiz',
     firstname: 'David',
     secondname: '',
@@ -74,10 +74,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 35,
     runs: 20,
-    following: true,
+    arefriends: true,
   },
   {
-    aemail: 'lucia@gmail.com',
+    Aemail: 'lucia@gmail.com',
     nombre: 'Lucía Hernández',
     firstname: 'Lucía',
     secondname: '',
@@ -86,10 +86,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 50,
     runs: 50,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'daniel@gmail.com',
+    Aemail: 'daniel@gmail.com',
     nombre: 'Daniel Jiménez',
     firstname: 'Daniel',
     secondname: '',
@@ -98,10 +98,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 25,
     runs: 30,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'carmen@gmail.com',
+    Aemail: 'carmen@gmail.com',
     nombre: 'Carmen Rodríguez',
     firstname: 'Carmen',
     secondname: '',
@@ -110,10 +110,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 45,
     runs: 25,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'francisco@gmail.com',
+    Aemail: 'francisco@gmail.com',
     nombre: 'Francisco Martínez',
     firstname: 'Francisco',
     secondname: '',
@@ -122,10 +122,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 10,
     runs: 40,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'elena@gmail.com',
+    Aemail: 'elena@gmail.com',
     nombre: 'Elena Álvarez',
     firstname: 'Elena',
     secondname: '',
@@ -134,10 +134,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 55,
     runs: 35,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'miguel@gmail.com',
+    Aemail: 'miguel@gmail.com',
     nombre: 'Miguel Ángel Domínguez',
     firstname: 'Miguel Ángel',
     secondname: '',
@@ -146,10 +146,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 20,
     runs: 20,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'patricia@gmail.com',
+    Aemail: 'patricia@gmail.com',
     nombre: 'Patricia Morales',
     firstname: 'Patricia',
     secondname: '',
@@ -158,10 +158,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 35,
     runs: 15,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'raul@gmail.com',
+    Aemail: 'raul@gmail.com',
     nombre: 'Raúl Fernández',
     firstname: 'Raúl',
     secondname: '',
@@ -170,10 +170,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 22,
     runs: 48,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'ana@gmail.com',
+    Aemail: 'ana@gmail.com',
     nombre: 'Beatriz Martín',
     firstname: 'Beatriz',
     secondname: '',
@@ -182,10 +182,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 60,
     runs: 30,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'javier@gmail.com',
+    Aemail: 'javier@gmail.com',
     nombre: 'Sergio Sánchez',
     firstname: 'Sergio',
     secondname: '',
@@ -194,10 +194,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 10,
     runs: 50,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'maria@gmail.com',
+    Aemail: 'maria@gmail.com',
     nombre: 'Laura García',
     firstname: 'Laura',
     secondname: '',
@@ -206,10 +206,10 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 45,
     runs: 22,
-    following: false,
+    arefriends: false,
   },
   {
-    aemail: 'pedrog@gmail.com',
+    Aemail: 'pedrog@gmail.com',
     nombre: 'Pedro Gonzalez',
     firstname: 'Pedro',
     secondname: 'Pepe',
@@ -218,6 +218,6 @@ export const friendsList: Friend[] = [
     pais: 'España',
     challenges: 0,
     runs: 0,
-    following: false,
+    arefriends: false,
   },
 ];

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Challenge } from 'src/app/models/challenges.model';
+import { Router } from '@angular/router';
+import { Challenge, challengesList } from 'src/app/models/challenges.model';
+import { user } from 'src/app/models/login.model';
 import { ChallengeService } from 'src/app/services/challenges.service';
 
 @Component({
@@ -12,10 +14,18 @@ export class ChallengesComponent implements OnInit {
   filteredChallenges: Challenge[] = [];
   selectedTypes: string[] = [];
 
-  constructor(private challengeService: ChallengeService) {}
+  constructor(
+    private challengeService: ChallengeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.getChallenges();
+    console.log(JSON.stringify(challengesList, null, 2));
+    if (user.aemail == '') {
+      this.router.navigate(['/init']);
+    } else {
+      this.getChallenges();
+    }
   }
 
   /**
@@ -24,16 +34,16 @@ export class ChallengesComponent implements OnInit {
    * Handles errors by logging them to the console.
    */
   getChallenges(): void {
-    this.challengeService.getChallenges().subscribe(
-      (challenges) => {
+    this.challengeService.getChallenges(user.aemail).subscribe({
+      next: (challenges) => {
+        console.log(JSON.stringify(challenges, null, 2));
         this.challenges = challenges;
-        this.filterChallenges(); // Filtra los desafíos inmediatamente después de la asignación
+        this.filterChallenges();
       },
-      (error) => {
-        // Considera añadir manejo de errores aquí
+      error: (error) => {
         console.error('Error fetching challenges:', error);
-      }
-    );
+      },
+    });
   }
 
   /**
@@ -60,10 +70,10 @@ export class ChallengesComponent implements OnInit {
   filterChallenges(): void {
     if (this.selectedTypes.length > 0) {
       this.filteredChallenges = this.challenges.filter((challenge) =>
-        this.selectedTypes.includes(challenge.challenge_type)
+        this.selectedTypes.includes(challenge.SportName)
       );
     } else {
-      this.filteredChallenges = [...this.challenges]; // Utiliza una copia de la lista original si no hay tipos seleccionados
+      this.filteredChallenges = [...this.challenges];
     }
   }
 

@@ -50,9 +50,9 @@
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title">{{ challenge.challenge_name }}</h5>
-          <p class="card-text">{{ challenge.description }}</p>
-          <p class="card-text">Kilometros o Altura: {{ challenge.millage }}</p>
-          <div class="badge bg-secondary">{{ challenge.challenge_type }}</div>
+          <p class="card-text">{{ challenge.challenge_type }}</p>
+          <p class="card-text">Kilómetros o Altura: {{ challenge.Mileage }}</p>
+          <div class="badge bg-secondary">{{ challenge.SportName }}</div>
           <div class="d-flex justify-content-between align-items-center">
             <small class="text-muted"
               >Desde: {{ challenge.start_date | date : "shortDate" }}</small

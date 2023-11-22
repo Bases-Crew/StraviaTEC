@@ -2,9 +2,9 @@
 export interface Challenge {
   id: number;
   challenge_name: string;
-  description: string;
-  challenge_type: 'Run' | 'Ride' | 'Swim' | 'Walk' | 'Hike' | 'Kayak';
-  millage: number;
+  challenge_type: string;
+  SportName: 'Run' | 'Ride' | 'Swim' | 'Walk' | 'Hike' | 'Kayak';
+  Mileage: number;
   start_date: Date;
   final_date: Date;
 }
@@ -14,119 +14,121 @@ export const challengesList: Challenge[] = [
   {
     id: 1,
     challenge_name: 'Maratón de la Ciudad',
-    description:
+    challenge_type:
       'Corre un total de 42.2 km (26.2 millas) a través de la ciudad.',
-    challenge_type: 'Run',
+    SportName: 'Run',
     start_date: new Date('2023-07-01'),
     final_date: new Date('2023-07-31'),
-    millage: 42,
+    Mileage: 42,
   },
   {
     id: 2,
     challenge_name: 'Carrera de Velocidad',
-    description:
+    challenge_type:
       'Completa 10 sprints de 100 metros en el menor tiempo posible.',
-    challenge_type: 'Run',
+    SportName: 'Run',
     start_date: new Date('2023-09-01'),
     final_date: new Date('2023-09-30'),
-    millage: 4,
+    Mileage: 4,
   },
   // Desafíos de tipo 'Ride'
   {
     id: 3,
     challenge_name: 'Tour Ciclista',
-    description: 'Recorre 100 km en bicicleta por caminos rurales.',
-    challenge_type: 'Ride',
+    challenge_type: 'Recorre 100 km en bicicleta por caminos rurales.',
+    SportName: 'Ride',
     start_date: new Date('2023-08-01'),
     final_date: new Date('2023-08-31'),
-    millage: 32,
+    Mileage: 32,
   },
   {
     id: 4,
     challenge_name: 'Ascenso Montañoso',
-    description: 'Asciende un total de 2000 metros en bicicleta de montaña.',
-    challenge_type: 'Ride',
+    challenge_type: 'Asciende un total de 2000 metros en bicicleta de montaña.',
+    SportName: 'Ride',
     start_date: new Date('2023-10-01'),
     final_date: new Date('2023-10-31'),
-    millage: 20,
+    Mileage: 20,
   },
   // Desafíos de tipo 'Swim'
   {
     id: 5,
     challenge_name: 'Travesía Acuática',
-    description: 'Nada un total de 5 km en aguas abiertas.',
-    challenge_type: 'Swim',
+    challenge_type: 'Nada un total de 5 km en aguas abiertas.',
+    SportName: 'Swim',
     start_date: new Date('2023-06-01'),
     final_date: new Date('2023-06-30'),
-    millage: 5,
+    Mileage: 5,
   },
   {
     id: 6,
     challenge_name: 'Maratón de Natación',
-    description: 'Completa una distancia de natación de 10 km en piscina.',
-    challenge_type: 'Swim',
+    challenge_type: 'Completa una distancia de natación de 10 km en piscina.',
+    SportName: 'Swim',
     start_date: new Date('2023-11-01'),
     final_date: new Date('2023-11-30'),
-    millage: 10,
+    Mileage: 10,
   },
   // Desafíos de tipo 'Walk'
   {
     id: 7,
     challenge_name: 'Caminata por el Parque',
-    description: 'Disfruta de una caminata de 5 km por tu parque local.',
-    challenge_type: 'Walk',
+    challenge_type: 'Disfruta de una caminata de 5 km por tu parque local.',
+    SportName: 'Walk',
     start_date: new Date('2023-07-15'),
     final_date: new Date('2023-08-15'),
-    millage: 5,
+    Mileage: 5,
   },
   {
     id: 8,
     challenge_name: 'Exploración Urbana',
-    description: 'Camine un total de 20 km por las calles de tu ciudad.',
-    challenge_type: 'Walk',
+    challenge_type: 'Camine un total de 20 km por las calles de tu ciudad.',
+    SportName: 'Walk',
     start_date: new Date('2023-09-16'),
     final_date: new Date('2023-10-16'),
-    millage: 64,
+    Mileage: 64,
   },
   // Desafíos de tipo 'Hike'
   {
     id: 9,
     challenge_name: 'Sendero de Montaña',
-    description:
+    challenge_type:
       'Completa una ruta de senderismo con un ascenso total de 1500 metros.',
-    challenge_type: 'Hike',
+    SportName: 'Hike',
     start_date: new Date('2023-08-01'),
     final_date: new Date('2023-08-31'),
-    millage: 15,
+    Mileage: 15,
   },
   {
     id: 10,
     challenge_name: 'Aventura de Altura',
-    description: 'Realiza una caminata de 25 km por senderos de alta montaña.',
-    challenge_type: 'Hike',
+    challenge_type:
+      'Realiza una caminata de 25 km por senderos de alta montaña.',
+    SportName: 'Hike',
     start_date: new Date('2023-12-01'),
     final_date: new Date('2023-12-31'),
-    millage: 23,
+    Mileage: 23,
   },
   // Desafíos de tipo 'Kayak'
   {
     id: 11,
     challenge_name: 'Reto de Fuerza',
-    description:
+    challenge_type:
       'Completa un entrenamiento de fuerza con 50 repeticiones de cada ejercicio.',
-    challenge_type: 'Kayak',
+    SportName: 'Kayak',
     start_date: new Date('2023-07-01'),
     final_date: new Date('2023-07-31'),
-    millage: 6,
+    Mileage: 6,
   },
   {
     id: 12,
     challenge_name: 'Desafío de Flexibilidad',
-    description: 'Practica una rutina de estiramiento diaria durante 30 días.',
-    challenge_type: 'Kayak',
+    challenge_type:
+      'Practica una rutina de estiramiento diaria durante 30 días.',
+    SportName: 'Kayak',
     start_date: new Date('2023-09-01'),
     final_date: new Date('2023-09-30'),
-    millage: 9,
+    Mileage: 9,
   },
   // Añadir más challenges según sea necesario
 ];

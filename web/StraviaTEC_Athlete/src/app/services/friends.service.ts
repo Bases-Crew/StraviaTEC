@@ -1,6 +1,9 @@
 // friends.service.ts
 import { Injectable } from '@angular/core';
 import { Friend, friendsList } from 'src/app/models/friends.model'; // Importa la lista de ejemplo
+import { environment } from '../environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +11,21 @@ import { Friend, friendsList } from 'src/app/models/friends.model'; // Importa l
 export class FriendsService {
   private friendsList: Friend[] = friendsList; // Usa la lista de ejemplo
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Retrieves all friends.
    *
    * @return {Friend[]} An array of Friend objects representing all the friends.
    */
-  getAllFriends(): Friend[] {
-    return this.friendsList;
+  getAllFriends(aemail: string): Observable<Friend[]> {
+    const params = new HttpParams().set('aemail', aemail);
+    return this.http.get<Friend[]>(
+      environment.apiUrlSqlServer + '/follow/all',
+      {
+        params,
+      }
+    );
   }
 
   /**
@@ -28,6 +37,14 @@ export class FriendsService {
   getFriendsByName(name: string): Friend[] {
     return this.friendsList.filter((friend) =>
       friend.nombre.toLowerCase().includes(name.toLowerCase())
+    );
+  }
+
+  postFollowUpdate(afollower: string, afollows: string): Observable<Friend[]> {
+    const body = { afollower, afollows };
+    return this.http.post<Friend[]>(
+      environment.apiUrlSqlServer + '/follow/update',
+      body
     );
   }
 }
