@@ -609,7 +609,7 @@ BEGIN
 END;
 GO
 
-CREATE VIEW ActivitySportView AS
+CREATE OR ALTER VIEW ActivitySportView AS
 SELECT 
     A.ActivityID,
     A.Adate,
