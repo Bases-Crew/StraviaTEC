@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit {
     image: '',
   };
 
+  photo: File | null = null;
+
   currentUrl: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute) {}

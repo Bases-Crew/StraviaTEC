@@ -1,7 +1,7 @@
 CREATE OR ALTER PROCEDURE sp_GetCountries
 AS
 BEGIN
-	SELECT CountryName, Flag
+	SELECT Cnumber, CountryName, Flag
 	FROM COUNTRY
 	ORDER BY CountryName
 END;

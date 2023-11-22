@@ -10,6 +10,7 @@ export interface User {
   flag: string;
   countryname: string;
   image?: string;
+  cno?: number;
 }
 
 export const exampleUser: User = {
