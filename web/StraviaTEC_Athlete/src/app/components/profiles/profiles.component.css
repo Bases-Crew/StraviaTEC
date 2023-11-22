@@ -1,74 +1,72 @@
-.race-details-container {
-  background-color: #e6f7ff; /* Color de fondo claro */
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: auto;
-  font-family: "Arial", sans-serif; /* Tipografía legible */
-}
-
-.race-title {
-  text-align: center;
-  color: #005f73; /* Color oscuro para el título */
-  margin-bottom: 20px;
-  font-size: 1.5rem; /* Tamaño de fuente más grande */
-}
-
-.details-content {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.detail-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  align-items: center;
-}
-
-.detail-label {
-  font-weight: bold;
-  color: #0077b6; /* Color llamativo para las etiquetas */
-  display: flex;
-  align-items: center;
-}
-
-.detail-label::before {
-  content: ""; /* Aquí podrías agregar los iconos correspondientes */
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.detail-value {
+/* Estilo General */
+body {
+  font-family: "San Francisco", "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f4f4;
   color: #333;
-  font-size: 1.1rem; /* Tamaño de fuente más grande para valores */
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
 }
 
-/* Estilos adicionales para los mensajes de carga y error */
-.loading-message,
-.error-message {
+/* Estilo del Contenedor Principal */
+.container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estilo de las Tarjetas de Carreras */
+.race-card {
+  margin-bottom: 20px;
+}
+
+/* Estilo de los Títulos */
+h2 {
+  color: #007aff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Estilo de la Información */
+.info {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Estilo para Elementos Destacados */
+.highlight {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Estilo para Mensajes de Carga y Error */
+.message {
+  font-weight: bold;
   text-align: center;
-  color: #d9534f;
-  font-size: 1.1rem;
+  font-size: 18px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
 }
 
-/* Estilos para dispositivos móviles */
-@media (max-width: 600px) {
-  .race-details-container {
-    width: 90%;
+/* Estilo Específico para Mensajes de Error */
+.error {
+  color: #ff3b30;
+}
+
+/* Mejoras en la visualización para dispositivos móviles */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .container,
+  .message {
     padding: 15px;
-  }
-  .race-title {
-    font-size: 1.3rem;
-  }
-  .detail-value {
-    font-size: 1rem;
+    border-radius: 8px;
   }
 }
