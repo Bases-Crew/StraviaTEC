@@ -19,6 +19,10 @@ VALUES('Vietnam', 'https://es.wikipedia.org/wiki/Vietnam#/media/Archivo:Flag_of_
 INSERT INTO ORGANIZER(Oemail, Opassword)
 VALUES('pedrog@gmail.com', '1234');
 
+INSERT INTO ORGANIZER(Oemail, Opassword)
+VALUES('admin@gmail.com', '1234');
+
+
 INSERT INTO SPORT(SportName)
 VALUES('Run')
 
@@ -72,3 +76,9 @@ VALUES ('Master B', 'De 41 a 50 anyos')
 
 INSERT INTO CATEGORY (CategoryName, Descr) 
 VALUES ('Master C', 'Mas de 51 anyos')
+
+
+INSERT INTO SGROUP (Gname, Ouser, Logo)
+VALUES ('CorreTEC', 'admin@gmail.com', 'https://www.tec.ac.cr/sites/default/files/styles/colorbox/public/media/img/gallery/v2_carrusel_82x.png'),
+        ('TICOSPRO', 'admin@gmail.com','https://scontent.fsyq1-1.fna.fbcdn.net/v/t1.6435-9/156806253_265994004894107_175676435716779135_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=be3454&_nc_ohc=FPTxJjVH-zwAX_8jZJH&_nc_ht=scontent.fsyq1-1.fna&oh=00_AfANPoDGDp1wt48f5uh8ZvuazcxKjUo1QLUXTo_PdOiuDg&oe=65849B9F'),
+        ('GuanacasteSport', 'admin@gmail.com', 'https://www.nacion.com/resizer/sTLMR_u1nv4HINp2Oq1jSQdq3lM=/1440x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/gruponacion/JE3LSNLRNBGKXJAL4AZBQQDP4Y.jpg');
