@@ -38,7 +38,7 @@ export class MapService {
     map.maxZoom = 100;
 
     L.tileLayer(
-      'https://api.mapbox.com/styles/v1/carlos12001/clp3y534c00zt01pe7kox24vy/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2FybG9zMTIwMDEiLCJhIjoiY2xwM3dtdXcwMHJleDJrbWkxbzk5NWJnYSJ9.5kh6vbE31lySQV6MJ6wGUg',
+      'https://api.mapbox.com/styles/v1/carlos12001/clp3y534c00zt01pe7kox24vy/tiles/256/{z}/{x}/{y}@2x?access_token=',
       {
         attribution:
           'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
